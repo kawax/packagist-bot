@@ -29,6 +29,8 @@ class PackagistGetCommand extends Command
      */
     protected $description = 'Command description';
 
+    const PATH = 'packagist/public/';
+
     /**
      * @var Client
      */
@@ -48,14 +50,11 @@ class PackagistGetCommand extends Command
         $this->providers();
     }
 
-    /**
-     * 1. packages.jsonをダウンロード
-     */
     protected function packages()
     {
         $this->client->getAsync('/packages.json')
                      ->then(function (ResponseInterface $res) {
-                         Storage::put('packages.json', $res->getBody()->getContents());
+                         Storage::put(self::PATH . 'packages.json', $res->getBody()->getContents());
                          $this->task('packages.json');
 
                      }, function (RequestException $e) {
@@ -65,7 +64,7 @@ class PackagistGetCommand extends Command
 
     protected function providers()
     {
-        $packages = json_decode(Storage::get('packages.json'));
+        $packages = json_decode(Storage::get(self::PATH . 'packages.json'));
 
         $providers = data_get($packages, 'provider-includes');
 
@@ -89,21 +88,15 @@ class PackagistGetCommand extends Command
         $pool = new Pool($this->client, $requests($urls), [
             'concurrency' => config('packagist.concurrency'),
             'fulfilled'   => function ($res, $index) use ($urls) {
-                if (!Storage::exists($urls[$index]['url'])) {
-                    Storage::put($urls[$index]['url'], $res->getBody()->getContents());
+                $this->task('<info>Provider: </info>' . basename($urls[$index]['url']));
 
-                    $dir = str_replace('%hash%.json', '*', Storage::path($urls[$index]['provider']));
-                    foreach (File::glob($dir) as $file) {
-                        if ($file !== Storage::path($urls[$index]['url'])) {
-                            File::delete($file);
-                            $this->line('Delete : ' . basename($file));
-                        }
-                    }
+                if (!Storage::exists(self::PATH . $urls[$index]['url'])) {
+                    Storage::put(self::PATH . $urls[$index]['url'], $res->getBody()->getContents());
 
                     $this->package($urls[$index]['url']);
-                }
 
-                $this->task('<info>Provider: </info>' . basename($urls[$index]['url']));
+                    $this->delete($urls[$index]);
+                }
             },
             'rejected'    => function ($reason, $index) use ($urls) {
                 $this->info('Provider Fail : ' . $urls[$index]['url']);
@@ -114,9 +107,20 @@ class PackagistGetCommand extends Command
         $promise->wait();
     }
 
+    protected function delete($url)
+    {
+        $dir = str_replace('%hash%.json', '*', Storage::path(self::PATH . $url['provider']));
+        foreach (File::glob($dir) as $file) {
+            if ($file !== Storage::path(self::PATH . $url['url'])) {
+                File::delete($file);
+                $this->line('Delete : ' . basename($file));
+            }
+        }
+    }
+
     protected function package($provider)
     {
-        $packages = json_decode(Storage::get($provider))->providers;
+        $packages = json_decode(Storage::get(self::PATH . $provider))->providers;
 
         $urls = [];
         foreach ($packages as $package => $sha) {
@@ -125,7 +129,7 @@ class PackagistGetCommand extends Command
                 'url'     => '/p/' . $package . '$' . $sha->sha256 . '.json',
             ];
 
-            if (count($urls) > 20) {
+            if (count($urls) > 10) {
                 break;
             }
         }
@@ -148,8 +152,8 @@ class PackagistGetCommand extends Command
             'fulfilled'   => function ($res, $index) use ($urls, $bar) {
                 $package = $urls[$index]['package'];
 
-                if (!Storage::exists('/p/' . $package . '.json')) {
-                    Storage::put('/p/' . $package . '.json', $res->getBody()->getContents());
+                if (!Storage::exists(self::PATH . 'p/' . $package . '.json')) {
+                    Storage::put(self::PATH . 'p/' . $package . '.json', $res->getBody()->getContents());
                 }
 
                 $bar->advance();
