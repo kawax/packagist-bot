@@ -34,10 +34,10 @@ build:
 pages:
   stage: deploy
   script:
-    - mv storage/app/packagist/public/ public/
+    - cp storage/app/packagist/public/ public/
   artifacts:
     paths:
       - public
-      - storage
+    #  - storage
 #  only:
 #    - schedules
