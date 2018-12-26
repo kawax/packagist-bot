@@ -34,7 +34,7 @@ build:
 pages:
   stage: deploy
   script:
-    - cp storage/app/packagist/public/ public/
+    - cp -r storage/app/packagist/public/ public/
   artifacts:
     paths:
       - public
