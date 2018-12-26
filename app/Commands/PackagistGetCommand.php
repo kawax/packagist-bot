@@ -119,10 +119,16 @@ class PackagistGetCommand extends Command
 
         $urls = [];
         foreach ($packages as $package => $sha) {
+            if (cache($package, '') === $sha->sha256) {
+                continue;
+            }
+
             $urls[] = [
                 'package' => $package,
                 'url'     => '/p/' . $package . '$' . $sha->sha256 . '.json',
             ];
+
+            cache()->forever($package, $sha->sha256);
 
             //            if (count($urls) > 10) {
             //                break;
@@ -147,9 +153,7 @@ class PackagistGetCommand extends Command
             'fulfilled'   => function ($res, $index) use ($urls, $bar) {
                 $package = $urls[$index]['package'];
 
-                if (!Storage::exists($this->path . 'p/' . $package . '.json')) {
-                    Storage::put($this->path . 'p/' . $package . '.json', $res->getBody()->getContents());
-                }
+                Storage::put($this->path . 'p/' . $package . '.json', $res->getBody()->getContents());
 
                 $bar->advance();
                 $bar->setMessage($package);
