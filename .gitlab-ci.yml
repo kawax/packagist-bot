@@ -9,6 +9,9 @@ cache:
     - vendor
     - storage
 
+stages:
+  - build
+
 test:
   stage: test
   script:
@@ -22,6 +25,6 @@ build:
   script:
     - cp .env.example .env
     - php arty packagist:providers
-    - php arty packagist:get --p=p/provider-2013$%hash%.json
-  only:
-    - schedules
+    - php arty packagist:get --p=p/provider-2014$%hash%.json
+  #only:
+  #  - schedules
