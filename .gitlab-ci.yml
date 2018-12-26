@@ -9,9 +9,6 @@ cache:
     - vendor
     - storage
 
-stages:
-  - build
-
 test:
   stage: test
   script:
