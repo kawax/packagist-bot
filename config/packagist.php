@@ -15,5 +15,5 @@ return [
     /**
      * 同時接続数
      */
-    'concurrency' => 4,
+    'concurrency' => 10,
 ];
