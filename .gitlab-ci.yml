@@ -27,7 +27,7 @@ build:
   script:
     - cp .env.example .env
     - php arty packagist:providers
-    - php arty packagist:get --p=p/provider-2018-01$%hash%.json
+    - php arty packagist:get
   #only:
   #  - schedules
 
@@ -39,5 +39,5 @@ pages:
     paths:
       - public
       - storage
-  only:
-    - schedules
+#  only:
+#    - schedules
