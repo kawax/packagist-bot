@@ -27,7 +27,7 @@ build:
   script:
     - cp .env.example .env
     - php arty packagist:providers
-    - php arty packagist:get --p=p/provider-2016$%hash%.json
+    - php arty packagist:get --p=p/provider-2017$%hash%.json
   #only:
   #  - schedules
 
