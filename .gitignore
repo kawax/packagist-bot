@@ -1,4 +1,5 @@
 /vendor
 .env
-/storage
+/storage/*.key
+/storage/app/packagist/
 /builds

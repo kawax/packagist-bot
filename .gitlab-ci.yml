@@ -23,6 +23,7 @@ pages:
     - php arty packagist:providers
     - php arty packagist:get
     - cp -r storage/app/packagist/public/ public/
+    - php arty packagist:index
   artifacts:
     paths:
       - public
