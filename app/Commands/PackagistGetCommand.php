@@ -20,7 +20,7 @@ class PackagistGetCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'packagist:get';
+    protected $signature = 'packagist:get {--p=}';
 
     /**
      * The description of the command.
@@ -29,12 +29,15 @@ class PackagistGetCommand extends Command
      */
     protected $description = 'Command description';
 
-    const PATH = 'packagist/public/';
-
     /**
      * @var Client
      */
     protected $client;
+
+    /**
+     * @var string
+     */
+    protected $path;
 
     /**
      * Execute the console command.
@@ -45,32 +48,24 @@ class PackagistGetCommand extends Command
     {
         $this->client = new Client(config('packagist.guzzle'));
 
-        $this->packages();
+        $this->path = config('packagist.path');
 
         $this->providers();
     }
 
-    protected function packages()
-    {
-        $this->client->getAsync('/packages.json')
-                     ->then(function (ResponseInterface $res) {
-                         Storage::put(self::PATH . 'packages.json', $res->getBody()->getContents());
-                         $this->task('packages.json');
-
-                     }, function (RequestException $e) {
-                         $this->error($e->getMessage());
-                     })->wait();
-    }
-
     protected function providers()
     {
-        $packages = json_decode(Storage::get(self::PATH . 'packages.json'));
+        $packages = json_decode(Storage::get($this->path . 'packages.json'));
 
         $providers = data_get($packages, 'provider-includes');
 
         $urls = [];
 
         foreach ($providers as $provider => $sha) {
+            if (filled($this->option('p')) and $this->option('p') !== $provider) {
+                continue;
+            }
+
             $urls[] = [
                 'provider' => $provider,
                 'url'      => str_replace('%hash%', $sha->sha256, $provider),
@@ -90,8 +85,8 @@ class PackagistGetCommand extends Command
             'fulfilled'   => function ($res, $index) use ($urls) {
                 $this->task('<info>Provider: </info>' . basename($urls[$index]['url']));
 
-                if (!Storage::exists(self::PATH . $urls[$index]['url'])) {
-                    Storage::put(self::PATH . $urls[$index]['url'], $res->getBody()->getContents());
+                if (!Storage::exists($this->path . $urls[$index]['url'])) {
+                    Storage::put($this->path . $urls[$index]['url'], $res->getBody()->getContents());
 
                     $this->package($urls[$index]['url']);
 
@@ -109,9 +104,9 @@ class PackagistGetCommand extends Command
 
     protected function delete($url)
     {
-        $dir = str_replace('%hash%.json', '*', Storage::path(self::PATH . $url['provider']));
+        $dir = str_replace('%hash%.json', '*', Storage::path($this->path . $url['provider']));
         foreach (File::glob($dir) as $file) {
-            if ($file !== Storage::path(self::PATH . $url['url'])) {
+            if ($file !== Storage::path($this->path . $url['url'])) {
                 File::delete($file);
                 $this->line('Delete : ' . basename($file));
             }
@@ -120,7 +115,7 @@ class PackagistGetCommand extends Command
 
     protected function package($provider)
     {
-        $packages = json_decode(Storage::get(self::PATH . $provider))->providers;
+        $packages = json_decode(Storage::get($this->path . $provider))->providers;
 
         $urls = [];
         foreach ($packages as $package => $sha) {
@@ -129,9 +124,9 @@ class PackagistGetCommand extends Command
                 'url'     => '/p/' . $package . '$' . $sha->sha256 . '.json',
             ];
 
-            if (count($urls) > 10) {
-                break;
-            }
+            //            if (count($urls) > 10) {
+            //                break;
+            //            }
         }
 
         $bar = $this->output->createProgressBar(count($urls));
@@ -152,8 +147,8 @@ class PackagistGetCommand extends Command
             'fulfilled'   => function ($res, $index) use ($urls, $bar) {
                 $package = $urls[$index]['package'];
 
-                if (!Storage::exists(self::PATH . 'p/' . $package . '.json')) {
-                    Storage::put(self::PATH . 'p/' . $package . '.json', $res->getBody()->getContents());
+                if (!Storage::exists($this->path . 'p/' . $package . '.json')) {
+                    Storage::put($this->path . 'p/' . $package . '.json', $res->getBody()->getContents());
                 }
 
                 $bar->advance();

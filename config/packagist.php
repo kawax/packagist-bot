@@ -8,6 +8,11 @@ return [
     ],
 
     /**
+     * storage内のpath
+     */
+    'path'        => 'packagist/public/',
+
+    /**
      * 同時接続数
      */
     'concurrency' => 4,
