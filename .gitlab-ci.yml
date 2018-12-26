@@ -14,19 +14,30 @@ stages:
   - build
   - deploy
 
-test:
-  stage: test
-  script:
-    - cp .env.example .env
-    - vendor/bin/phpunit
-  except:
-    - schedules
+#test:
+#  stage: test
+#  script:
+#    - cp .env.example .env
+#    - vendor/bin/phpunit
+#  except:
+#    - schedules
 
 build:
   stage: build
   script:
     - cp .env.example .env
     - php arty packagist:providers
-    - php arty packagist:get --p=p/provider-2015$%hash%.json
+    - php arty packagist:get --p=p/provider-2016$%hash%.json
   #only:
   #  - schedules
+
+pages:
+  stage: deploy
+  script:
+    - mv storage/app/packagist/public/ public/
+  artifacts:
+    paths:
+      - public
+      - storage
+  only:
+    - schedules
