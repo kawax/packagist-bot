@@ -62,7 +62,7 @@ class PackagesCommand extends Command
         $urls = [];
 
         foreach ($providers as $provider => $sha) {
-            if (filled($this->option('provider')) and $this->option('p') !== $provider) {
+            if (filled($this->option('provider')) and $this->option('provider') !== $provider) {
                 continue;
             }
 
