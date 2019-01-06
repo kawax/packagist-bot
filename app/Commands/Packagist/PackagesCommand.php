@@ -119,16 +119,18 @@ class PackagesCommand extends Command
 
         $urls = [];
         foreach ($packages as $package => $meta) {
-            if (cache($package, '') === $meta->sha256) {
+            $file = 'p/' . $package . '$' . $meta->sha256 . '.json';
+
+            if (Storage::exists($this->path . $file)) {
                 continue;
             }
 
             $urls[] = [
                 'package' => $package,
-                'url'     => 'p/' . $package . '$' . $meta->sha256 . '.json',
+                'url'     => $file,
             ];
 
-            cache()->forever($package, $meta->sha256);
+            //            cache()->forever($package, $meta->sha256);
 
             //            if (count($urls) > 10) {
             //                break;
@@ -175,7 +177,7 @@ class PackagesCommand extends Command
 
     protected function deletePackage($url)
     {
-        $dir = Storage::path($this->path . 'p/' . $url['package']) . '*';
+        $dir = Storage::path($this->path . 'p/' . $url['package']) . '$*';
 
         foreach (File::glob($dir) as $file) {
             if ($file !== Storage::path($this->path . $url['url'])) {
