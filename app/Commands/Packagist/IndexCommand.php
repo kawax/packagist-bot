@@ -37,6 +37,8 @@ class IndexCommand extends Command
             ->render();
 
         Storage::put(config('packagist.path') . 'index.html', $html);
+
+        Storage::put(config('packagist.path') . '404.html', view('404')->render());
     }
 
     /**
