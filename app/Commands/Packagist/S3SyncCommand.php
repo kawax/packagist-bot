@@ -40,7 +40,10 @@ class S3SyncCommand extends Command
 
         $process = new Process(
             explode(' ', config('packagist.s3_sync')),
-            Storage::path(config('packagist.path'))
+            Storage::path(config('packagist.path')),
+            null,
+            null,
+            600
         );
 
         $process->run(function ($type, $buffer) {

@@ -61,14 +61,14 @@ class PackagesCommand extends Command
 
         $urls = [];
 
-        foreach ($providers as $provider => $sha) {
+        foreach ($providers as $provider => $meta) {
             if (filled($this->option('provider')) and $this->option('provider') !== $provider) {
                 continue;
             }
 
             $urls[] = [
                 'provider' => $provider,
-                'url'      => str_replace('%hash%', $sha->sha256, $provider),
+                'url'      => str_replace('%hash%', $meta->sha256, $provider),
             ];
         }
 
@@ -118,21 +118,21 @@ class PackagesCommand extends Command
         $packages = json_decode(Storage::get($this->path . $provider))->providers;
 
         $urls = [];
-        foreach ($packages as $package => $sha) {
-            if (cache($package, '') === $sha->sha256) {
+        foreach ($packages as $package => $meta) {
+            if (cache($package, '') === $meta->sha256) {
                 continue;
             }
 
             $urls[] = [
                 'package' => $package,
-                'url'     => 'p/' . $package . '$' . $sha->sha256 . '.json',
+                'url'     => 'p/' . $package . '$' . $meta->sha256 . '.json',
             ];
 
-            cache()->forever($package, $sha->sha256);
+            cache()->forever($package, $meta->sha256);
 
-//            if (count($urls) > 10) {
-//                break;
-//            }
+            //            if (count($urls) > 10) {
+            //                break;
+            //            }
         }
 
         $bar = $this->output->createProgressBar(count($urls));
