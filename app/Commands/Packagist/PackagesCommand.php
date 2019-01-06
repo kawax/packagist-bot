@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Commands;
+namespace App\Commands\Packagist;
 
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
@@ -13,14 +13,14 @@ use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Pool;
 
-class PackagistGetCommand extends Command
+class PackagesCommand extends Command
 {
     /**
      * The signature of the command.
      *
      * @var string
      */
-    protected $signature = 'packagist:get {--p=}';
+    protected $signature = 'packagist:get {--P|provider=}';
 
     /**
      * The description of the command.
@@ -62,7 +62,7 @@ class PackagistGetCommand extends Command
         $urls = [];
 
         foreach ($providers as $provider => $sha) {
-            if (filled($this->option('p')) and $this->option('p') !== $provider) {
+            if (filled($this->option('provider')) and $this->option('p') !== $provider) {
                 continue;
             }
 
@@ -90,7 +90,7 @@ class PackagistGetCommand extends Command
 
                     $this->package($urls[$index]['url']);
 
-                    $this->delete($urls[$index]);
+                    $this->deleteProvider($urls[$index]);
                 }
             },
             'rejected'    => function ($reason, $index) use ($urls) {
@@ -102,7 +102,7 @@ class PackagistGetCommand extends Command
         $promise->wait();
     }
 
-    protected function delete($url)
+    protected function deleteProvider($url)
     {
         $dir = str_replace('%hash%.json', '*', Storage::path($this->path . $url['provider']));
         foreach (File::glob($dir) as $file) {
@@ -125,14 +125,14 @@ class PackagistGetCommand extends Command
 
             $urls[] = [
                 'package' => $package,
-                'url'     => '/p/' . $package . '$' . $sha->sha256 . '.json',
+                'url'     => 'p/' . $package . '$' . $sha->sha256 . '.json',
             ];
 
             cache()->forever($package, $sha->sha256);
 
-            //            if (count($urls) > 10) {
-            //                break;
-            //            }
+            if (count($urls) > 10) {
+                break;
+            }
         }
 
         $bar = $this->output->createProgressBar(count($urls));
@@ -153,7 +153,9 @@ class PackagistGetCommand extends Command
             'fulfilled'   => function ($res, $index) use ($urls, $bar) {
                 $package = $urls[$index]['package'];
 
-                Storage::put($this->path . 'p/' . $package . '.json', $res->getBody()->getContents());
+                Storage::put($this->path . $urls[$index]['url'], $res->getBody()->getContents());
+
+                $this->deletePackage($urls[$index]);
 
                 $bar->advance();
                 $bar->setMessage($package);
@@ -169,6 +171,17 @@ class PackagistGetCommand extends Command
 
         $bar->finish();
         $this->line('');
+    }
+
+    protected function deletePackage($url)
+    {
+        $dir = Storage::path($this->path . 'p/' . $url['package']) . '*';
+
+        foreach (File::glob($dir) as $file) {
+            if ($file !== Storage::path($this->path . $url['url'])) {
+                File::delete($file);
+            }
+        }
     }
 
     /**

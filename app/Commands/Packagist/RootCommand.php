@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Commands;
+namespace App\Commands\Packagist;
 
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
@@ -11,14 +11,14 @@ use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
 
-class ProvidersCommand extends Command
+class RootCommand extends Command
 {
     /**
      * The signature of the command.
      *
      * @var string
      */
-    protected $signature = 'packagist:providers';
+    protected $signature = 'packagist:root';
 
     /**
      * The description of the command.
@@ -36,7 +36,7 @@ class ProvidersCommand extends Command
     {
         $client = new Client(config('packagist.guzzle'));
 
-        $client->getAsync('/packages.json')
+        $client->getAsync('packages.json')
                ->then(function (ResponseInterface $res) {
                    $json = $res->getBody()->getContents();
                    Storage::put(config('packagist.path') . 'packages.json', $json);
