@@ -5,8 +5,6 @@ namespace App\Commands\Packagist;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
-use Illuminate\Support\Facades\Artisan;
-
 class ReloadCommand extends Command
 {
     /**
@@ -30,10 +28,10 @@ class ReloadCommand extends Command
      */
     public function handle()
     {
-        Artisan::call('packagist:root');
-        Artisan::call('packagist:get');
-        Artisan::call('packagist:index');
-        Artisan::call('packagist:sync');
+        $this->call('packagist:root');
+        $this->call('packagist:get');
+        $this->call('packagist:index');
+        $this->call('packagist:sync');
     }
 
     /**
