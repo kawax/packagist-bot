@@ -130,9 +130,9 @@ class PackagesCommand extends Command
 
             cache()->forever($package, $sha->sha256);
 
-            if (count($urls) > 10) {
-                break;
-            }
+//            if (count($urls) > 10) {
+//                break;
+//            }
         }
 
         $bar = $this->output->createProgressBar(count($urls));
