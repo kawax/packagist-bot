@@ -62,9 +62,9 @@ class ServeCommand extends Command
                     $this->channel($message);
                 }
 
-                if ($message->channel->type === 'dm') {
-                    $this->direct($message);
-                }
+                //                if ($message->channel->type === 'dm') {
+                //                    $this->direct($message);
+                //                }
             } catch (\Exception $error) {
                 $this->error($error->getMessage());
             }

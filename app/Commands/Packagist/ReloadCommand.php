@@ -34,12 +34,12 @@ class ReloadCommand extends Command
         $this->call('packagist:get');
         $this->call('packagist:index');
         $result = $this->call('packagist:sync');
-        $this->call('packagist:purge');
+        //        $this->call('packagist:purge');
 
         if ($result === 0) {
             $content = 'Reload completed!';
         } else {
-            $content = 'Reload failed!';
+            $content = 'Reload failed?';
         }
 
         RestCord::channel()->createMessage([

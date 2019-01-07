@@ -3,8 +3,6 @@
         Last-Modified : {{ $last->tz('UTC')->toIso8601String() }} UTC
     </div>
 
-    <div class="">
-        <a href="https://discord.gg/req6FYE" class="btn btn-secondary">Discord</a>
-    </div>
+    <a href="https://discord.gg/req6FYE" class="btn btn-outline-secondary">Discord</a>
 
 </div>

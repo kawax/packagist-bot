@@ -28,4 +28,6 @@ return [
         'secret' => env('AWS_CF_SECRET'),
         'dist'   => env('AWS_CF_DIST'),
     ],
+
+    'analytics' => env('GOOGLE_ANALYTICS'),
 ];

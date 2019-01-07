@@ -1,4 +1,11 @@
 <div class="tab-pane fade show active" id="ja" role="tabpanel" aria-labelledby="ja-tab">
+
+
+    <div class="lead my-3">
+        <a href="https://packagist.jp/" target="_blank">packagist.jp</a>と同じようなミラーサイト。
+    </div>
+
+
     <div class="alert alert-primary" role="alert">
         Last-Modified : {{ $last->tz('Asia/Tokyo')->toIso8601String() }} JST
     </div>
@@ -10,7 +17,7 @@
     </div>
 
 
-    <a href="https://discord.gg/req6FYE" class="btn btn-secondary">Discord</a>
+    <a href="https://discord.gg/req6FYE" class="btn btn-outline-secondary">Discord</a>
 
     <dl class="row">
         <dt class="col-1">Reload</dt>
@@ -24,8 +31,10 @@
             <p><code>@packagist /purge</code> CloudFrontキャッシュを削除</p>
             <p><code>@packagist /p</code> 短縮形</p>
         </dd>
-
-
     </dl>
 
+    <h2>連絡先</h2>
+    <div>
+        更新が止まってる場合はDiscordかTwitterかQiitadon辺りから連絡してもらえれば。
+    </div>
 </div>
