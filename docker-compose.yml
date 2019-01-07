@@ -7,3 +7,10 @@ services:
       - .:/app
     working_dir: /app
     entrypoint: php arty
+
+  serve:
+    image: chilio/laravel-dusk-ci:stable
+    command: php arty discord:serve
+    volumes:
+      - .:/app
+    working_dir: /app

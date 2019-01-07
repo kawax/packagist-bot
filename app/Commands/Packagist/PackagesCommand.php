@@ -69,6 +69,7 @@ class PackagesCommand extends Command
             $urls[] = [
                 'provider' => $provider,
                 'url'      => str_replace('%hash%', $meta->sha256, $provider),
+                'sha'      => $meta->sha256,
             ];
         }
 
@@ -86,7 +87,12 @@ class PackagesCommand extends Command
                 $this->task('<info>Provider: </info>' . basename($urls[$index]['url']));
 
                 if (!Storage::exists($this->path . $urls[$index]['url'])) {
-                    Storage::put($this->path . $urls[$index]['url'], $res->getBody()->getContents());
+                    $content = $res->getBody()->getContents();
+                    if ($urls[$index]['sha'] === hash('sha256', $content)) {
+                        Storage::put($this->path . $urls[$index]['url'], $content);
+                    } else {
+                        $this->error('Hash error: ' . $urls[$index]['provider']);
+                    }
 
                     $this->package($urls[$index]['url']);
 
@@ -128,13 +134,8 @@ class PackagesCommand extends Command
             $urls[] = [
                 'package' => $package,
                 'url'     => $file,
+                'sha'     => $meta->sha256,
             ];
-
-            //            cache()->forever($package, $meta->sha256);
-
-            //            if (count($urls) > 10) {
-            //                break;
-            //            }
         }
 
         $bar = $this->output->createProgressBar(count($urls));
@@ -155,7 +156,12 @@ class PackagesCommand extends Command
             'fulfilled'   => function ($res, $index) use ($urls, $bar) {
                 $package = $urls[$index]['package'];
 
-                Storage::put($this->path . $urls[$index]['url'], $res->getBody()->getContents());
+                $content = $res->getBody()->getContents();
+                if ($urls[$index]['sha'] === hash('sha256', $content)) {
+                    Storage::put($this->path . $urls[$index]['url'], $content);
+                } else {
+                    $this->error('Hash error: ' . $urls[$index]['package']);
+                }
 
                 $this->deletePackage($urls[$index]);
 

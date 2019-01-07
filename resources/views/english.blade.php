@@ -3,6 +3,6 @@
         Last-Modified : {{ $last->tz('UTC')->toIso8601String() }} UTC
     </div>
 
-    <a href="https://discord.gg/req6FYE" class="btn btn-outline-secondary">Discord</a>
+    <a href="{{ config('services.discord.url') }}" class="btn btn-outline-secondary">Discord</a>
 
 </div>

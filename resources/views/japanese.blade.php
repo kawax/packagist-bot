@@ -10,16 +10,18 @@
         Last-Modified : {{ $last->tz('Asia/Tokyo')->toIso8601String() }} JST
     </div>
 
-    <h2>Discordコマンド</h2>
+    <h3 class="my-3">Discordコマンド</h3>
 
     <div>
+        S3+CloudFrontで完全に静的に配信してるので動的な機能はDiscord botを経由して行う。#packagistチャンネルでのみ有効。
+    </div>
 
+    <div>
+        <a href="{{ config('services.discord.url') }}" class="btn btn-outline-secondary">Discord</a>
     </div>
 
 
-    <a href="https://discord.gg/req6FYE" class="btn btn-outline-secondary">Discord</a>
-
-    <dl class="row">
+    <dl class="row mt-3">
         <dt class="col-1">Reload</dt>
         <dd class="col-11">
             <p><code>@packagist /reload</code> メタファイルを更新</p>
@@ -33,7 +35,7 @@
         </dd>
     </dl>
 
-    <h2>連絡先</h2>
+    <h3>連絡先</h3>
     <div>
         更新が止まってる場合はDiscordかTwitterかQiitadon辺りから連絡してもらえれば。
     </div>

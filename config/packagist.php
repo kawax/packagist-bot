@@ -15,7 +15,7 @@ return [
     /**
      * 同時接続数
      */
-    'concurrency' => 10,
+    'concurrency' => 5,
 
     /**
      * S3 Sync command
