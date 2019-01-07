@@ -30,15 +30,13 @@ class IndexCommand extends Command
      */
     public function handle()
     {
-        $last_updated = now('Asia/Tokyo');
+        $last = now();
 
         $html = view('welcome')
-            ->with(compact('last_updated'))
+            ->with(compact('last'))
             ->render();
 
         Storage::put(config('packagist.path') . 'index.html', $html);
-
-        Storage::put(config('packagist.path') . '404.html', view('404')->render());
     }
 
     /**

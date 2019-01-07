@@ -79,6 +79,10 @@ class ServeCommand extends Command
      */
     protected function channel(Message $message)
     {
+        if ($message->channel->getId() !== config('services.discord.channel')) {
+            return;
+        }
+
         if (!$message->mentions->members->has(config('services.discord.bot'))) {
             return;
         }
