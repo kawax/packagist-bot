@@ -22,7 +22,7 @@ class Reload
     {
         $reply = 'Reload start...';
 
-        $message->reply($reply)->done(function () {
+        $message->reply($reply)->always(function () {
             Artisan::call('packagist:reload');
         });
 
