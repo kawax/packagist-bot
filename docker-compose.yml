@@ -14,3 +14,4 @@ services:
     volumes:
       - .:/app
     working_dir: /app
+    restart: always
