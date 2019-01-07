@@ -5,6 +5,8 @@ namespace App\Commands\Packagist;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
+use Revolution\DiscordManager\Facades\RestCord;
+
 class ReloadCommand extends Command
 {
     /**
@@ -31,7 +33,18 @@ class ReloadCommand extends Command
         $this->call('packagist:root');
         $this->call('packagist:get');
         $this->call('packagist:index');
-        $this->call('packagist:sync');
+        $result = $this->call('packagist:sync');
+
+        if ($result === 0) {
+            $content = 'Reload completed!';
+        } else {
+            $content = 'Reload failed!';
+        }
+
+        RestCord::channel()->createMessage([
+            'content'    => $content,
+            'channel.id' => (int)config('services.discord.channel'),
+        ]);
     }
 
     /**
