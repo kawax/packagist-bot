@@ -23,7 +23,7 @@ class Reload
         $reply = 'Reload start...';
 
         $message->reply($reply)->always(function () {
-            Artisan::call('packagist:reload');
+            Artisan::queue('packagist:reload');
         });
 
         return '';
