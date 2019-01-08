@@ -5,7 +5,8 @@ namespace App\Commands\Packagist;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
-use Revolution\DiscordManager\Facades\RestCord;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\ReloadNotification;
 
 class ReloadCommand extends Command
 {
@@ -30,11 +31,22 @@ class ReloadCommand extends Command
      */
     public function handle()
     {
+        if (cache()->has('reload.lock')) {
+            Notification::route('discord', config('services.discord.channel'))
+                        ->notify(new ReloadNotification('Reload locked!'));
+
+            return;
+        }
+
+        cache(['reload.lock' => true], 60);
+
         $this->call('packagist:root');
         $this->call('packagist:get');
         $this->call('packagist:index');
         $result = $this->call('packagist:sync');
         //        $this->call('packagist:purge');
+
+        cache()->forget('reload.lock');
 
         if ($result === 0) {
             $content = 'Reload completed!';
@@ -42,10 +54,8 @@ class ReloadCommand extends Command
             $content = 'Reload failed?';
         }
 
-        RestCord::channel()->createMessage([
-            'content'    => $content,
-            'channel.id' => (int)config('services.discord.channel'),
-        ]);
+        Notification::route('discord', config('services.discord.channel'))
+                    ->notify(new ReloadNotification($content));
     }
 
     /**

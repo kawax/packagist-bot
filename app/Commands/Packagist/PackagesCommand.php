@@ -20,7 +20,7 @@ class PackagesCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'packagist:get {--P|provider=}';
+    protected $signature = 'packagist:get {--provider=}';
 
     /**
      * The description of the command.
