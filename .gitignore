@@ -2,3 +2,4 @@
 .env
 /storage/*.key
 /builds
+/database/database.sqlite
