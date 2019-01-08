@@ -1,9 +1,9 @@
 <div class="tab-pane fade show active" id="ja" role="tabpanel" aria-labelledby="ja-tab">
 
 
-    <div class="lead my-3">
-        <a href="https://packagist.jp/" target="_blank">packagist.jp</a>と同じようなミラーサイト。
-    </div>
+    <p class="lead my-3">
+        <a href="https://packagist.jp/" target="_blank">packagist.jp</a>と同じようなミラーサイト。同じなので特に説明はない。
+    </p>
 
 
     <div class="alert alert-primary" role="alert">
@@ -12,13 +12,13 @@
 
     <h3 class="my-3">Discordコマンド</h3>
 
-    <div>
+    <p>
         S3+CloudFrontで完全に静的に配信してるので動的な機能はDiscord botを経由して行う。#packagistチャンネルでのみ有効。
-    </div>
+    </p>
 
-    <div>
+    <p>
         <a href="{{ config('services.discord.url') }}" class="btn btn-outline-secondary">Discord</a>
-    </div>
+    </p>
 
 
     <dl class="row mt-3">
@@ -36,14 +36,15 @@
     </dl>
 
     <h3>設定</h3>
-    <div>
-        1時間に1回の更新。50分開始。CloudFrontのキャッシュは残る。急ぐならDiscordで操作する想定。
-        12時にキャッシュ強制削除。12時過ぎから自動composer updateするため。
-        現状は自分で使うためだけの設定。
-    </div>
+    <ul>
+        <li>1時間に1回の更新。50分開始。CloudFrontのキャッシュは残る。急ぐならDiscordで操作する想定。</li>
+        <li>12時にキャッシュ強制削除。12時過ぎから自動composer updateするため。</li>
+        <li>現状は自分で使うためだけの設定。</li>
+    </ul>
+
 
     <h3>連絡先</h3>
-    <div>
+    <p>
         更新が止まってる場合はDiscordかTwitterかQiitadon辺りから連絡してもらえれば。
-    </div>
+    </p>
 </div>
