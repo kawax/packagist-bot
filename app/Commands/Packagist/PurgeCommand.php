@@ -7,6 +7,8 @@ use LaravelZero\Framework\Commands\Command;
 
 use Aws\CloudFront\CloudFrontClient;
 
+use Revolution\DiscordManager\Facades\RestCord;
+
 class PurgeCommand extends Command
 {
     /**
@@ -54,6 +56,13 @@ class PurgeCommand extends Command
                 'CallerReference' => now()->timestamp,
             ],
         ]);
+
+        $status = data_get($result, 'Invalidation.Status', '');
+
+        RestCord::channel()->createMessage([
+            'content'    => "Purge start... **{$status}**",
+            'channel.id' => (int)config('services.discord.channel'),
+        ]);
     }
 
     /**
@@ -65,6 +74,6 @@ class PurgeCommand extends Command
      */
     public function schedule(Schedule $schedule): void
     {
-        // $schedule->command(static::class)->everyMinute();
+        $schedule->command(static::class)->dailyAt('12:00');
     }
 }

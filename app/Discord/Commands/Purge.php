@@ -22,6 +22,6 @@ class Purge
     {
         Artisan::call('packagist:purge');
 
-        return 'Purge start...';
+        return '';
     }
 }
