@@ -82,6 +82,7 @@ return [
         Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Illuminate\Redis\RedisServiceProvider::class,
 
         NotificationChannels\Discord\DiscordServiceProvider::class,
 
