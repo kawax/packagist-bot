@@ -5,8 +5,6 @@ namespace App\Commands\Packagist;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
-use Illuminate\Support\Facades\Storage;
-
 class IndexCommand extends Command
 {
     /**
@@ -32,11 +30,7 @@ class IndexCommand extends Command
     {
         $last = now();
 
-        $html = view('welcome')
-            ->with(compact('last'))
-            ->render();
-
-        Storage::put(config('packagist.path') . 'index.html', $html);
+        view('welcome')->with(compact('last'))->publish('index.html');
     }
 
     /**

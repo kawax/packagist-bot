@@ -1,10 +1,8 @@
 <div class="tab-pane fade show active" id="ja" role="tabpanel" aria-labelledby="ja-tab">
 
-
     <p class="lead my-3">
         <a href="https://packagist.jp/" target="_blank">packagist.jp</a>と同じようなミラーサイト。同じなので特に説明はない。
     </p>
-
 
     <div class="alert alert-primary" role="alert">
         Last-Modified : {{ $last->tz('Asia/Tokyo')->toIso8601String() }} JST
@@ -38,6 +36,7 @@
     <h3>設定</h3>
     <ul>
         <li>1時間に1回の更新。50分開始。CloudFrontのキャッシュは残る。急ぐならDiscordで操作する想定。</li>
+        <li>このページ自体キャッシュされてるのでLast-Modifiedは参考にならない。Discord内の通知が正確。普段見ることはないので優先度は低い。</li>
         <li>12時にキャッシュ強制削除。12時過ぎから自動composer updateするため。</li>
         <li>現状は自分で使うためだけの設定。</li>
     </ul>
