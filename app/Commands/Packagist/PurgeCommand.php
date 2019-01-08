@@ -57,7 +57,7 @@ class PurgeCommand extends Command
             ],
         ]);
 
-        $status = data_get($result, 'Invalidation.Status', '');
+        $status = data_get($result, 'Invalidation.Status', 'Error?');
 
         RestCord::channel()->createMessage([
             'content'    => "Purge start... **{$status}**",
