@@ -60,7 +60,7 @@ class PurgeCommand extends Command
         $status = data_get($result, 'Invalidation.Status', 'Error?');
 
         RestCord::channel()->createMessage([
-            'content'    => "Purge start... **{$status}**",
+            'content'    => "🧹Purge start... **{$status}**",
             'channel.id' => (int)config('services.discord.channel'),
         ]);
     }
