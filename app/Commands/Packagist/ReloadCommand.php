@@ -43,7 +43,7 @@ class ReloadCommand extends Command
             });
         } catch (LockTimeoutException $e) {
             Notification::route('discord', config('services.discord.channel'))
-                        ->notify(new ReloadNotification($e->getMessage()));
+                        ->notify(new ReloadNotification('Reload locked!'));
 
             return;
         }
