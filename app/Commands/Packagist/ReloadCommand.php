@@ -8,6 +8,8 @@ use LaravelZero\Framework\Commands\Command;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\ReloadNotification;
 
+use Illuminate\Contracts\Cache\LockTimeoutException;
+
 class ReloadCommand extends Command
 {
     /**
@@ -31,22 +33,20 @@ class ReloadCommand extends Command
      */
     public function handle()
     {
-        if (cache()->has('reload.lock')) {
+        try {
+            cache()->lock('reload', 60 * 60)->block(5, function () use (&$result) {
+                $this->call('packagist:root');
+                $this->call('packagist:get');
+                $this->call('packagist:index');
+                $result = $this->call('packagist:sync');
+                //        $this->call('packagist:purge');
+            });
+        } catch (LockTimeoutException $e) {
             Notification::route('discord', config('services.discord.channel'))
-                        ->notify(new ReloadNotification('Reload locked!'));
+                        ->notify(new ReloadNotification($e->getMessage()));
 
             return;
         }
-
-        cache(['reload.lock' => true], 60);
-
-        $this->call('packagist:root');
-        $this->call('packagist:get');
-        $this->call('packagist:index');
-        $result = $this->call('packagist:sync');
-        //        $this->call('packagist:purge');
-
-        cache()->forget('reload.lock');
 
         if ($result === 0) {
             $content = 'Reload completed!';
