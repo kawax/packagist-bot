@@ -20,7 +20,7 @@ class Purge
      */
     public function __invoke(Message $message)
     {
-        Artisan::call('packagist:purge');
+        Artisan::queue('packagist:purge');
 
         return '';
     }

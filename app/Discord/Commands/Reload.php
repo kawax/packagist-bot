@@ -20,12 +20,8 @@ class Reload
      */
     public function __invoke(Message $message)
     {
-        $reply = 'Reload start...';
+        Artisan::queue('packagist:reload');
 
-        $message->reply($reply)->always(function () {
-            Artisan::queue('packagist:reload');
-        });
-
-        return '';
+        return 'Reload start...';
     }
 }
