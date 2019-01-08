@@ -34,7 +34,7 @@ class ReloadCommand extends Command
     public function handle()
     {
         try {
-            cache()->lock('reload', 60 * 60)->block(5, function () use (&$result) {
+            cache()->lock('reload', 60 * 60)->block(2, function () use (&$result) {
                 $this->call('packagist:root');
                 $this->call('packagist:get');
                 $this->call('packagist:index');
@@ -43,7 +43,7 @@ class ReloadCommand extends Command
             });
         } catch (LockTimeoutException $e) {
             Notification::route('discord', config('services.discord.channel'))
-                        ->notify(new ReloadNotification('Reload locked!' . $e->getMessage()));
+                        ->notify(new ReloadNotification('Reload locked!'));
 
             return;
         }
