@@ -50,7 +50,6 @@ class RootCommand extends Command
                    foreach ($providers as $provider => $sha) {
                        $this->info($provider);
                    }
-
                }, function (RequestException $e) {
                    $this->error($e->getMessage());
                })->wait();
