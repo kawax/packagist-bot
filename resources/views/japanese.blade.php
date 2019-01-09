@@ -43,9 +43,13 @@
 
 
     <h3>連絡先</h3>
-    <p>
-        更新が止まってる場合はDiscordかTwitterかQiitadon辺りから連絡してもらえれば。
-    </p>
+    <ul>
+        <li>更新が止まってたらDiscordか
+            <a href="https://twitter.com/kawaxbiz" target="_blank">Twitter</a>か
+            <a href="https://qiitadon.com/@kawax" target="_blank">Qiitadon</a>
+            辺りから連絡してもらえれば。
+        </li>
+    </ul>
 
     <h3>終了条件</h3>
     <ul>
