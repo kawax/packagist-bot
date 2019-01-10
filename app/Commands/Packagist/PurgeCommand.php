@@ -33,7 +33,7 @@ class PurgeCommand extends Command
     public function handle()
     {
         $paths = [
-            //            '/',
+            '/',
             '/packages.json',
         ];
 
