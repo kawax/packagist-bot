@@ -59,11 +59,57 @@ class PackagesCommand extends Command
      */
     protected function providers()
     {
-        $packages = json_decode(Storage::get($this->path . 'packages.json'));
+        $urls = $this->providerUrls();
 
-        $providers = data_get($packages, 'provider-includes');
+        $requests = function ($urls) {
+            foreach ($urls as $url) {
+                yield function () use ($url) {
+                    return $this->client->get($url['url']);
+                };
+            }
+        };
 
-        $urls = collect($providers)
+        $fulfilled = function (ResponseInterface $res, $index) use ($urls) {
+            $this->task('<info>Provider: </info>' . basename($urls[$index]['url']));
+
+            if (Storage::exists($this->path . $urls[$index]['url'])) {
+                return;
+            }
+
+            $content = $res->getBody()->getContents();
+            if ($urls[$index]['sha'] === hash('sha256', $content)) {
+                Storage::put($this->path . $urls[$index]['url'], $content);
+
+                $this->package($urls[$index]['url']);
+            } else {
+                $this->error('Hash error: ' . $urls[$index]['provider']);
+            }
+
+            $this->deleteProvider($urls[$index]);
+        };
+
+        $pool = new Pool($this->client, $requests($urls), [
+            'concurrency' => config('packagist.concurrency'),
+            'fulfilled'   => $fulfilled,
+            'rejected'    => function ($reason, $index) use ($urls) {
+                $this->info('Provider Fail : ' . $urls[$index]['url']);
+            },
+        ]);
+
+        $promise = $pool->promise();
+        $promise->wait();
+    }
+
+    /**
+     * @return Collection
+     */
+    protected function providerUrls()
+    {
+        $providers = json_decode(Storage::get($this->path . 'packages.json'));
+
+        $providers = data_get($providers, 'provider-includes');
+
+        return collect($providers)
             ->when(filled($this->argument('provider')), function (Collection $collect) {
                 return $collect->filter(function ($meta, $provider) {
                     return $this->argument('provider') === $provider;
@@ -75,44 +121,6 @@ class PackagesCommand extends Command
                     'sha'      => data_get($meta, 'sha256'),
                 ];
             })->values();
-
-        $requests = function ($urls) {
-            foreach ($urls as $url) {
-                yield function () use ($url) {
-                    return $this->client->get($url['url']);
-                };
-            }
-        };
-
-        $pool = new Pool($this->client, $requests($urls), [
-            'concurrency' => config('packagist.concurrency'),
-
-            'fulfilled' => function (ResponseInterface $res, $index) use ($urls) {
-                $this->task('<info>Provider: </info>' . basename($urls[$index]['url']));
-
-                if (Storage::exists($this->path . $urls[$index]['url'])) {
-                    return;
-                }
-
-                $content = $res->getBody()->getContents();
-                if ($urls[$index]['sha'] === hash('sha256', $content)) {
-                    Storage::put($this->path . $urls[$index]['url'], $content);
-
-                    $this->package($urls[$index]['url']);
-                } else {
-                    $this->error('Hash error: ' . $urls[$index]['provider']);
-                }
-
-                $this->deleteProvider($urls[$index]);
-            },
-
-            'rejected' => function ($reason, $index) use ($urls) {
-                $this->info('Provider Fail : ' . $urls[$index]['url']);
-            },
-        ]);
-
-        $promise = $pool->promise();
-        $promise->wait();
     }
 
     /**
@@ -134,24 +142,11 @@ class PackagesCommand extends Command
      */
     protected function package(string $provider)
     {
-        $packages = json_decode(Storage::get($this->path . $provider));
+        $urls = $this->packageUrls($provider);
 
-        $packages = data_get($packages, 'providers');
-
-        $urls = collect($packages)
-            ->reject(function ($meta, $package) {
-                return Storage::exists($this->path . $this->packageFile($package, data_get($meta, 'sha256')));
-            })->map(function ($meta, $package) {
-                return [
-                    'package' => $package,
-                    'url'     => $this->packageFile($package, data_get($meta, 'sha256')),
-                    'sha'     => data_get($meta, 'sha256'),
-                ];
-            })->values();
-
-        $bar = $this->output->createProgressBar(count($urls));
+        $bar = $this->output->createProgressBar($urls->count());
         $bar->setFormat(' %current%/%max% [%bar%] %percent:3s%% %message%');
-
+        $bar->setMessage('');
         $bar->start();
 
         $requests = function ($urls) {
@@ -162,26 +157,26 @@ class PackagesCommand extends Command
             }
         };
 
+        $fulfilled = function (ResponseInterface $res, $index) use ($urls, $bar) {
+            $package = $urls[$index]['package'];
+
+            $content = $res->getBody()->getContents();
+            if ($urls[$index]['sha'] === hash('sha256', $content)) {
+                Storage::put($this->path . $urls[$index]['url'], $content);
+            } else {
+                $this->error('Hash error: ' . $urls[$index]['package']);
+            }
+
+            $this->deletePackage($urls[$index]);
+
+            $bar->advance();
+            $bar->setMessage($package);
+        };
+
         $pool = new Pool($this->client, $requests($urls), [
             'concurrency' => config('packagist.concurrency'),
-
-            'fulfilled' => function (ResponseInterface $res, $index) use ($urls, $bar) {
-                $package = $urls[$index]['package'];
-
-                $content = $res->getBody()->getContents();
-                if ($urls[$index]['sha'] === hash('sha256', $content)) {
-                    Storage::put($this->path . $urls[$index]['url'], $content);
-                } else {
-                    $this->error('Hash error: ' . $urls[$index]['package']);
-                }
-
-                $this->deletePackage($urls[$index]);
-
-                $bar->advance();
-                $bar->setMessage($package);
-            },
-
-            'rejected' => function ($reason, $index) use ($urls, $bar) {
+            'fulfilled'   => $fulfilled,
+            'rejected'    => function ($reason, $index) use ($urls, $bar) {
                 $this->info('Package Fail: ' . $urls[$index]['package']);
                 $bar->advance();
             },
@@ -192,6 +187,29 @@ class PackagesCommand extends Command
 
         $bar->finish();
         $this->line('');
+    }
+
+    /**
+     * @param string $provider
+     *
+     * @return Collection
+     */
+    protected function packageUrls(string $provider)
+    {
+        $packages = json_decode(Storage::get($this->path . $provider));
+
+        $packages = data_get($packages, 'providers');
+
+        return collect($packages)
+            ->reject(function ($meta, $package) {
+                return Storage::exists($this->path . $this->packageFile($package, data_get($meta, 'sha256')));
+            })->map(function ($meta, $package) {
+                return [
+                    'package' => $package,
+                    'url'     => $this->packageFile($package, data_get($meta, 'sha256')),
+                    'sha'     => data_get($meta, 'sha256'),
+                ];
+            })->values();
     }
 
     /**
