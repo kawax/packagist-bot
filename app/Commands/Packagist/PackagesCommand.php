@@ -20,7 +20,7 @@ class PackagesCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'packagist:get {--provider=}';
+    protected $signature = 'packagist:get {provider?}';
 
     /**
      * The description of the command.
@@ -53,25 +53,24 @@ class PackagesCommand extends Command
         $this->providers();
     }
 
+    /**
+     *
+     */
     protected function providers()
     {
         $packages = json_decode(Storage::get($this->path . 'packages.json'));
 
         $providers = data_get($packages, 'provider-includes');
 
-        $urls = [];
-
-        foreach ($providers as $provider => $meta) {
-            if (filled($this->option('provider')) and $this->option('provider') !== $provider) {
-                continue;
-            }
-
-            $urls[] = [
+        $urls = collect($providers)->filter(function ($meta, $provider) {
+            return (blank($this->argument('provider')) or $this->argument('provider') === $provider);
+        })->map(function ($meta, $provider) {
+            return [
                 'provider' => $provider,
-                'url'      => str_replace('%hash%', $meta->sha256, $provider),
-                'sha'      => $meta->sha256,
+                'url'      => str_replace('%hash%', data_get($meta, 'sha256'), $provider),
+                'sha'      => data_get($meta, 'sha256'),
             ];
-        }
+        })->values();
 
         $requests = function ($urls) {
             foreach ($urls as $url) {
@@ -83,23 +82,27 @@ class PackagesCommand extends Command
 
         $pool = new Pool($this->client, $requests($urls), [
             'concurrency' => config('packagist.concurrency'),
-            'fulfilled'   => function ($res, $index) use ($urls) {
+
+            'fulfilled' => function (ResponseInterface $res, $index) use ($urls) {
                 $this->task('<info>Provider: </info>' . basename($urls[$index]['url']));
 
-                if (!Storage::exists($this->path . $urls[$index]['url'])) {
-                    $content = $res->getBody()->getContents();
-                    if ($urls[$index]['sha'] === hash('sha256', $content)) {
-                        Storage::put($this->path . $urls[$index]['url'], $content);
-                    } else {
-                        $this->error('Hash error: ' . $urls[$index]['provider']);
-                    }
+                if (Storage::exists($this->path . $urls[$index]['url'])) {
+                    return;
+                }
+
+                $content = $res->getBody()->getContents();
+                if ($urls[$index]['sha'] === hash('sha256', $content)) {
+                    Storage::put($this->path . $urls[$index]['url'], $content);
 
                     $this->package($urls[$index]['url']);
-
-                    $this->deleteProvider($urls[$index]);
+                } else {
+                    $this->error('Hash error: ' . $urls[$index]['provider']);
                 }
+
+                $this->deleteProvider($urls[$index]);
             },
-            'rejected'    => function ($reason, $index) use ($urls) {
+
+            'rejected' => function ($reason, $index) use ($urls) {
                 $this->info('Provider Fail : ' . $urls[$index]['url']);
             },
         ]);
@@ -108,7 +111,10 @@ class PackagesCommand extends Command
         $promise->wait();
     }
 
-    protected function deleteProvider($url)
+    /**
+     * @param array $url
+     */
+    protected function deleteProvider(array $url)
     {
         $dir = str_replace('%hash%.json', '*', Storage::path($this->path . $url['provider']));
         foreach (File::glob($dir) as $file) {
@@ -119,24 +125,24 @@ class PackagesCommand extends Command
         }
     }
 
-    protected function package($provider)
+    /**
+     * @param string $provider
+     */
+    protected function package(string $provider)
     {
-        $packages = json_decode(Storage::get($this->path . $provider))->providers;
+        $packages = json_decode(Storage::get($this->path . $provider));
 
-        $urls = [];
-        foreach ($packages as $package => $meta) {
-            $file = 'p/' . $package . '$' . $meta->sha256 . '.json';
+        $packages = data_get($packages, 'providers');
 
-            if (Storage::exists($this->path . $file)) {
-                continue;
-            }
-
-            $urls[] = [
+        $urls = collect($packages)->reject(function ($meta, $package) {
+            return Storage::exists($this->path . $this->packageFile($package, data_get($meta, 'sha256')));
+        })->map(function ($meta, $package) {
+            return [
                 'package' => $package,
-                'url'     => $file,
-                'sha'     => $meta->sha256,
+                'url'     => $this->packageFile($package, data_get($meta, 'sha256')),
+                'sha'     => data_get($meta, 'sha256'),
             ];
-        }
+        })->values();
 
         $bar = $this->output->createProgressBar(count($urls));
         $bar->setFormat(' %current%/%max% [%bar%] %percent:3s%% %message%');
@@ -153,7 +159,8 @@ class PackagesCommand extends Command
 
         $pool = new Pool($this->client, $requests($urls), [
             'concurrency' => config('packagist.concurrency'),
-            'fulfilled'   => function ($res, $index) use ($urls, $bar) {
+
+            'fulfilled' => function (ResponseInterface $res, $index) use ($urls, $bar) {
                 $package = $urls[$index]['package'];
 
                 $content = $res->getBody()->getContents();
@@ -168,7 +175,8 @@ class PackagesCommand extends Command
                 $bar->advance();
                 $bar->setMessage($package);
             },
-            'rejected'    => function ($reason, $index) use ($urls, $bar) {
+
+            'rejected' => function ($reason, $index) use ($urls, $bar) {
                 $this->info('Package Fail: ' . $urls[$index]['package']);
                 $bar->advance();
             },
@@ -181,7 +189,21 @@ class PackagesCommand extends Command
         $this->line('');
     }
 
-    protected function deletePackage($url)
+    /**
+     * @param string $package
+     * @param string $sha
+     *
+     * @return string
+     */
+    protected function packageFile(string $package, string $sha): string
+    {
+        return 'p/' . $package . '$' . $sha . '.json';
+    }
+
+    /**
+     * @param array $url
+     */
+    protected function deletePackage(array $url)
     {
         $dir = Storage::path($this->path . 'p/' . $url['package']) . '$*';
 
