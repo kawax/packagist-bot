@@ -31,7 +31,7 @@ class ReloadCommand extends Command
      */
     public function handle()
     {
-        if (cache()->lock('reload', 60 * 60)->get()) {
+        if (cache()->lock('reload', 60 * 30)->get()) {
             $this->call('packagist:root');
             $this->call('packagist:get');
             $this->call('packagist:index');
