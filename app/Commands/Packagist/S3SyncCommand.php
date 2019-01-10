@@ -32,14 +32,14 @@ class S3SyncCommand extends Command
      */
     public function handle()
     {
-        if (empty(config('packagist.s3_sync'))) {
+        if (empty(config('packagist.s3.sync'))) {
             $this->error('S3_SYNC is empty');
 
             return;
         }
 
         $process = new Process(
-            explode(' ', config('packagist.s3_sync')),
+            explode(' ', config('packagist.s3.sync')),
             Storage::path(config('packagist.path')),
             null,
             null,

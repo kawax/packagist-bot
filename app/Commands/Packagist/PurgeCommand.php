@@ -37,10 +37,16 @@ class PurgeCommand extends Command
             '/packages.json',
         ];
 
+        if (empty(config('packagist.cloudfront.dist'))) {
+            $this->error('Set CloudFront Distribution ID');
+
+            return;
+        }
+
         $client = new CloudFrontClient([
             'credentials' => [
-                'key'    => config('packagist.cloudfront.key'),
-                'secret' => config('packagist.cloudfront.secret'),
+                'key'    => config('packagist.aws.key'),
+                'secret' => config('packagist.aws.secret'),
             ],
             'region'      => 'us-east-1',
             'version'     => 'latest',

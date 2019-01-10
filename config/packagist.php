@@ -1,32 +1,49 @@
 <?php
 return [
     /**
-     * GuzzleClientのオプション
+     * GuzzleClient options
      */
     'guzzle'      => [
         'base_uri' => 'https://packagist.org/',
     ],
 
     /**
-     * storage内のpath
+     * path in storage
+     * storage/app/packagist/
      */
     'path'        => 'packagist/',
 
     /**
-     * 同時接続数
+     * Max connection
      */
     'concurrency' => env('CONCURRENCY', 5),
 
     /**
-     * S3 Sync command
-     * aws s3 sync . s3://bucket --delete
+     * S3
      */
-    's3_sync'     => env('S3_SYNC'),
+    's3'          => [
+        //Sync command
+        //aws s3 sync . s3://bucket --delete
+        'sync' => env('S3_SYNC'),
 
-    'cloudfront' => [
-        'key'    => env('AWS_CF_KEY'),
-        'secret' => env('AWS_CF_SECRET'),
-        'dist'   => env('AWS_CF_DIST'),
+        'bucket' => env('S3_BUCKET'),
+    ],
+
+    /**
+     * AWS IAM User
+     * S3(read/write), CloudFront(read/write), CloudWatch(read)
+     */
+    'aws'         => [
+        'key'    => env('AWS_KEY'),
+        'secret' => env('AWS_SECRET'),
+        'region' => env('AWS_REGION', 'ap-northeast-1'),
+    ],
+
+    /**
+     * CloudFront Distribution ID
+     */
+    'cloudfront'  => [
+        'dist' => env('AWS_CF_DIST'),
     ],
 
     'analytics' => env('GOOGLE_ANALYTICS'),
