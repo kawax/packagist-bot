@@ -3,6 +3,7 @@
 namespace App\Commands\Packagist;
 
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Collection;
 use LaravelZero\Framework\Commands\Command;
 
 use Illuminate\Support\Facades\Storage;
@@ -62,15 +63,18 @@ class PackagesCommand extends Command
 
         $providers = data_get($packages, 'provider-includes');
 
-        $urls = collect($providers)->filter(function ($meta, $provider) {
-            return (blank($this->argument('provider')) or $this->argument('provider') === $provider);
-        })->map(function ($meta, $provider) {
-            return [
-                'provider' => $provider,
-                'url'      => str_replace('%hash%', data_get($meta, 'sha256'), $provider),
-                'sha'      => data_get($meta, 'sha256'),
-            ];
-        })->values();
+        $urls = collect($providers)
+            ->when(filled($this->argument('provider')), function (Collection $collect) {
+                return $collect->filter(function ($meta, $provider) {
+                    return $this->argument('provider') === $provider;
+                });
+            })->map(function ($meta, $provider) {
+                return [
+                    'provider' => $provider,
+                    'url'      => str_replace('%hash%', data_get($meta, 'sha256'), $provider),
+                    'sha'      => data_get($meta, 'sha256'),
+                ];
+            })->values();
 
         $requests = function ($urls) {
             foreach ($urls as $url) {
@@ -134,15 +138,16 @@ class PackagesCommand extends Command
 
         $packages = data_get($packages, 'providers');
 
-        $urls = collect($packages)->reject(function ($meta, $package) {
-            return Storage::exists($this->path . $this->packageFile($package, data_get($meta, 'sha256')));
-        })->map(function ($meta, $package) {
-            return [
-                'package' => $package,
-                'url'     => $this->packageFile($package, data_get($meta, 'sha256')),
-                'sha'     => data_get($meta, 'sha256'),
-            ];
-        })->values();
+        $urls = collect($packages)
+            ->reject(function ($meta, $package) {
+                return Storage::exists($this->path . $this->packageFile($package, data_get($meta, 'sha256')));
+            })->map(function ($meta, $package) {
+                return [
+                    'package' => $package,
+                    'url'     => $this->packageFile($package, data_get($meta, 'sha256')),
+                    'sha'     => data_get($meta, 'sha256'),
+                ];
+            })->values();
 
         $bar = $this->output->createProgressBar(count($urls));
         $bar->setFormat(' %current%/%max% [%bar%] %percent:3s%% %message%');
