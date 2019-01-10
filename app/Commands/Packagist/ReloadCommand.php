@@ -36,7 +36,9 @@ class ReloadCommand extends Command
             $this->call('packagist:get');
             $this->call('packagist:index');
             $result = $this->call('packagist:sync');
-            //        $this->call('packagist:purge');
+            //            $this->call('packagist:purge');
+
+            cache()->lock('reload')->release();
         } else {
             Notification::route('discord', config('services.discord.channel'))
                         ->notify(new ReloadNotification('🔒Reload locked!'));
