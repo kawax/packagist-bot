@@ -34,25 +34,22 @@ class RootCommand extends Command
      */
     public function handle()
     {
-        $client = new Client(config('packagist.guzzle'));
+        resolve(Client::class)
+            ->getAsync('packages.json')
+            ->then(function (ResponseInterface $res) {
+                $json = $res->getBody()->getContents();
+                Storage::put(config('packagist.path') . 'packages.json', $json);
 
-        $client->getAsync('packages.json')
-               ->then(function (ResponseInterface $res) {
-                   $json = $res->getBody()->getContents();
-                   Storage::put(config('packagist.path') . 'packages.json', $json);
+                $this->task('packages.json');
 
-                   $this->task('packages.json');
+                $providers = data_get(json_decode($json), 'provider-includes');
 
-                   $packages = json_decode($json);
-
-                   $providers = data_get($packages, 'provider-includes');
-
-                   foreach ($providers as $provider => $sha) {
-                       $this->info($provider);
-                   }
-               }, function (RequestException $e) {
-                   $this->error($e->getMessage());
-               })->wait();
+                foreach ($providers as $provider => $sha) {
+                    $this->info($provider);
+                }
+            }, function (RequestException $e) {
+                $this->error($e->getMessage());
+            })->wait();
     }
 
     /**

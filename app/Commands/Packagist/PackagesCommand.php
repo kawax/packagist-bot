@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\File;
 
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
-use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Pool;
 
 class PackagesCommand extends Command
@@ -47,7 +46,7 @@ class PackagesCommand extends Command
      */
     public function handle()
     {
-        $this->client = new Client(config('packagist.guzzle'));
+        $this->client = resolve(Client::class);
 
         $this->path = config('packagist.path');
 
