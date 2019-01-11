@@ -31,7 +31,7 @@ return [
 
     /**
      * AWS IAM User
-     * S3(read/write), CloudFront(read/write), CloudWatch(read)
+     * S3(read/write), CloudFront(read/write)
      */
     'aws'         => [
         'key'    => env('AWS_KEY'),

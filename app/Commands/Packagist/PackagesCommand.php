@@ -85,7 +85,7 @@ class PackagesCommand extends Command
                 $this->error('Hash error: ' . $urls[$index]['provider']);
             }
 
-            $this->deleteProvider($urls[$index]);
+            $this->providerDelete($urls[$index]);
         };
 
         $pool = new Pool($this->client, $requests($urls), [
@@ -126,7 +126,7 @@ class PackagesCommand extends Command
     /**
      * @param array $url
      */
-    protected function deleteProvider(array $url)
+    protected function providerDelete(array $url)
     {
         $dir = str_replace('%hash%.json', '*', Storage::path($this->path . $url['provider']));
         foreach (File::glob($dir) as $file) {
@@ -167,7 +167,7 @@ class PackagesCommand extends Command
                 $this->error('Hash error: ' . $urls[$index]['package']);
             }
 
-            $this->deletePackage($urls[$index]);
+            $this->packageDelete($urls[$index]);
 
             $bar->advance();
             $bar->setMessage($package);
@@ -226,7 +226,7 @@ class PackagesCommand extends Command
     /**
      * @param array $url
      */
-    protected function deletePackage(array $url)
+    protected function packageDelete(array $url)
     {
         $dir = Storage::path($this->path . 'p/' . $url['package']) . '$*';
 
