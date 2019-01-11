@@ -35,11 +35,12 @@ class ReloadCommand extends Command
             $this->call('packagist:root');
             $this->call('packagist:get');
             $this->call('packagist:index');
+            $this->call('packagist:info');
             $result = $this->call('packagist:sync');
             //            $this->call('packagist:purge');
 
             if ($result === 0) {
-                $content = '🎉Reload completed!';
+                $content = '🎉Reload completed! **' . cache('info_size') . '**';
             } else {
                 $content = '☠️Reload failed?';
             }
