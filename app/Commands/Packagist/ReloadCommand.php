@@ -40,7 +40,7 @@ class ReloadCommand extends Command
             //            $this->call('packagist:purge');
 
             if ($result === 0) {
-                $content = '🎉Reload completed! **' . cache('info_size') . ' / ' . cache('info_size') . '**';
+                $content = '🎉Reload completed! **' . cache('info_count') . ' / ' . cache('info_size') . '**';
             } else {
                 $content = '☠️Reload failed?';
             }
