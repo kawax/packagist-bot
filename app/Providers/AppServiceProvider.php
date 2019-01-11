@@ -21,10 +21,6 @@ class AppServiceProvider extends ServiceProvider
         View::macro('publish', function (string $file = 'index.html') {
             Storage::put(config('packagist.path') . $file, $this->render());
         });
-
-        $this->app->singleton(Client::class, function ($app) {
-            return new Client(config('packagist.guzzle'));
-        });
     }
 
     /**
@@ -34,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(Client::class, function ($app) {
+            return new Client(config('packagist.guzzle'));
+        });
     }
 }
