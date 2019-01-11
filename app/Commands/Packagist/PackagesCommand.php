@@ -128,8 +128,9 @@ class PackagesCommand extends Command
      */
     protected function providerDelete(array $url)
     {
-        $dir = str_replace('%hash%.json', '*', Storage::path($this->path . $url['provider']));
-        foreach (File::glob($dir) as $file) {
+        $pattern = str_replace('%hash%.json', '*', Storage::path($this->path . $url['provider']));
+
+        foreach (File::glob($pattern) as $file) {
             if ($file !== Storage::path($this->path . $url['url'])) {
                 File::delete($file);
                 $this->line('Delete : ' . basename($file));
@@ -228,9 +229,9 @@ class PackagesCommand extends Command
      */
     protected function packageDelete(array $url)
     {
-        $dir = Storage::path($this->path . 'p/' . $url['package']) . '$*';
+        $pattern = Storage::path($this->path . 'p/' . $url['package']) . '$*';
 
-        foreach (File::glob($dir) as $file) {
+        foreach (File::glob($pattern) as $file) {
             if ($file !== Storage::path($this->path . $url['url'])) {
                 File::delete($file);
             }

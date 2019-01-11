@@ -6,7 +6,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\ReloadNotification;
+use App\Notifications\SimpleNotification;
 
 class ReloadCommand extends Command
 {
@@ -41,7 +41,7 @@ class ReloadCommand extends Command
             cache()->lock('reload')->release();
         } else {
             Notification::route('discord', config('services.discord.channel'))
-                        ->notify(new ReloadNotification('🔒Reload locked!'));
+                        ->notify(new SimpleNotification('🔒Reload locked!'));
 
             return;
         }
@@ -53,7 +53,7 @@ class ReloadCommand extends Command
         }
 
         Notification::route('discord', config('services.discord.channel'))
-                    ->notify(new ReloadNotification($content));
+                    ->notify(new SimpleNotification($content));
     }
 
     /**

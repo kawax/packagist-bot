@@ -10,7 +10,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use NotificationChannels\Discord\DiscordChannel;
 use NotificationChannels\Discord\DiscordMessage;
 
-class ReloadNotification extends Notification
+class SimpleNotification extends Notification
 {
     use Queueable;
 

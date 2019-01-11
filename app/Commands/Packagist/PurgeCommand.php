@@ -7,7 +7,8 @@ use LaravelZero\Framework\Commands\Command;
 
 use Aws\CloudFront\CloudFrontClient;
 
-use Revolution\DiscordManager\Facades\RestCord;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\SimpleNotification;
 
 class PurgeCommand extends Command
 {
@@ -43,6 +44,13 @@ class PurgeCommand extends Command
             return;
         }
 
+        if (cache()->lock('purge', 60 * 2)->get() === false) {
+            Notification::route('discord', config('services.discord.channel'))
+                        ->notify(new SimpleNotification('🔒Purge rate limit!'));
+
+            return;
+        }
+
         $client = new CloudFrontClient([
             'credentials' => [
                 'key'    => config('packagist.aws.key'),
@@ -64,11 +72,10 @@ class PurgeCommand extends Command
         ]);
 
         $status = data_get($result, 'Invalidation.Status', 'Error?');
+        $content = "🧹Purge start... **{$status}**";
 
-        RestCord::channel()->createMessage([
-            'content'    => "🧹Purge start... **{$status}**",
-            'channel.id' => (int)config('services.discord.channel'),
-        ]);
+        Notification::route('discord', config('services.discord.channel'))
+                    ->notify(new SimpleNotification($content));
     }
 
     /**
