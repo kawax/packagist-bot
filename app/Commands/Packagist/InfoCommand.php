@@ -42,7 +42,7 @@ class InfoCommand extends Command
     protected function fileSize()
     {
         $process = new Process(
-            ['du', '-sh'],
+            explode(' ', 'du -sh'),
             Storage::path(config('packagist.path'))
         );
 
@@ -62,27 +62,17 @@ class InfoCommand extends Command
     protected function fileCount()
     {
         $find = new Process(
-            [
-                'find',
-                '.',
-                '-type',
-                'f',
-            ],
+            explode(' ', 'find . -type f'),
             Storage::path(config('packagist.path'))
         );
         $find->run();
-        $file = $find->getOutput();
+        $file = $find->isSuccessful() ? $find->getOutput() : '';
 
-        $process = new Process(
-            [
-                'wc',
-                '-l',
-            ]
-        );
+        $process = new Process(explode(' ', 'wc -l'));
         $process->setInput($file);
         $process->run();
 
-        $count = $process->isSuccessful() ? $process->getOutput() : $process->getErrorOutput();
+        $count = $process->isSuccessful() ? $process->getOutput() : 0;
         $count = trim($count);
 
         $count = number_format($count);
