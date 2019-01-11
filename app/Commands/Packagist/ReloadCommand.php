@@ -38,22 +38,20 @@ class ReloadCommand extends Command
             $result = $this->call('packagist:sync');
             //            $this->call('packagist:purge');
 
+            if ($result === 0) {
+                $content = '🎉Reload completed!';
+            } else {
+                $content = '☠️Reload failed?';
+            }
+
+            Notification::route('discord', config('services.discord.channel'))
+                        ->notify(new SimpleNotification($content));
+
             cache()->lock('reload')->release();
         } else {
             Notification::route('discord', config('services.discord.channel'))
                         ->notify(new SimpleNotification('🔒Reload locked!'));
-
-            return;
         }
-
-        if ($result === 0) {
-            $content = '🎉Reload completed!';
-        } else {
-            $content = '☠️Reload failed?';
-        }
-
-        Notification::route('discord', config('services.discord.channel'))
-                    ->notify(new SimpleNotification($content));
     }
 
     /**
