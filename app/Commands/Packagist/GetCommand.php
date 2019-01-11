@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
 use GuzzleHttp\Client;
-use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Pool;
+use Psr\Http\Message\ResponseInterface;
 
-class PackagesCommand extends Command
+class GetCommand extends Command
 {
     /**
      * The signature of the command.
