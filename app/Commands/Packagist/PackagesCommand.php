@@ -110,9 +110,7 @@ class PackagesCommand extends Command
 
         return collect($providers)
             ->when(filled($this->argument('provider')), function (Collection $collect) {
-                return $collect->filter(function ($meta, $provider) {
-                    return $this->argument('provider') === $provider;
-                });
+                return $collect->only($this->argument('provider'));
             })->map(function ($meta, $provider) {
                 return [
                     'provider' => $provider,
