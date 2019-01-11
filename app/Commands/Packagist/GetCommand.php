@@ -3,11 +3,11 @@
 namespace App\Commands\Packagist;
 
 use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Support\Collection;
 use LaravelZero\Framework\Commands\Command;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Collection;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
@@ -69,29 +69,27 @@ class GetCommand extends Command
         };
 
         $fulfilled = function (ResponseInterface $res, $index) use ($urls) {
-            $this->task('<info>Provider: </info>' . basename($urls[$index]['url']));
+            $file = $urls[$index]['url'];
 
-            if (Storage::exists($this->path . $urls[$index]['url'])) {
-                return;
-            }
-
-            $content = $res->getBody()->getContents();
-            if ($urls[$index]['sha'] === hash('sha256', $content)) {
-                Storage::put($this->path . $urls[$index]['url'], $content);
-
-                $this->package($urls[$index]['url']);
-            } else {
-                $this->error('Hash error: ' . $urls[$index]['provider']);
-            }
+            $this->task('<info>Provider: </info>' . basename($file));
 
             $this->providerDelete($urls[$index]);
+
+            $content = $res->getBody()->getContents();
+
+            if (hash('sha256', $content) === $urls[$index]['sha']) {
+                Storage::put($this->path . $file, $content);
+                $this->package($file);
+            } else {
+                $this->error('Hash error: ' . $file);
+            }
         };
 
         $pool = new Pool($this->client, $requests($urls), [
             'concurrency' => config('packagist.concurrency'),
             'fulfilled'   => $fulfilled,
             'rejected'    => function ($reason, $index) use ($urls) {
-                $this->info('Provider Fail : ' . $urls[$index]['url']);
+                $this->error('Provider Fail : ' . $urls[$index]['url']);
             },
         ]);
 
@@ -111,13 +109,26 @@ class GetCommand extends Command
         return collect($providers)
             ->when(filled($this->argument('provider')), function (Collection $collect) {
                 return $collect->only($this->argument('provider'));
+            })->reject(function ($meta, $provider) {
+                return Storage::exists($this->path . $this->providerFile($provider, $meta));
             })->map(function ($meta, $provider) {
                 return [
                     'provider' => $provider,
-                    'url'      => str_replace('%hash%', data_get($meta, 'sha256'), $provider),
+                    'url'      => $this->providerFile($provider, $meta),
                     'sha'      => data_get($meta, 'sha256'),
                 ];
             })->values();
+    }
+
+    /**
+     * @param string $provider
+     * @param object $meta
+     *
+     * @return string
+     */
+    protected function providerFile(string $provider, $meta): string
+    {
+        return str_replace('%hash%', data_get($meta, 'sha256'), $provider);
     }
 
     /**
@@ -159,10 +170,11 @@ class GetCommand extends Command
             $package = $urls[$index]['package'];
 
             $content = $res->getBody()->getContents();
-            if ($urls[$index]['sha'] === hash('sha256', $content)) {
+
+            if (hash('sha256', $content) === $urls[$index]['sha']) {
                 Storage::put($this->path . $urls[$index]['url'], $content);
             } else {
-                $this->error('Hash error: ' . $urls[$index]['package']);
+                $this->error('Hash error: ' . $package);
             }
 
             $this->packageDelete($urls[$index]);
@@ -175,7 +187,7 @@ class GetCommand extends Command
             'concurrency' => config('packagist.concurrency'),
             'fulfilled'   => $fulfilled,
             'rejected'    => function ($reason, $index) use ($urls, $bar) {
-                $this->info('Package Fail: ' . $urls[$index]['package']);
+                $this->error('Package Fail: ' . $urls[$index]['package']);
                 $bar->advance();
             },
         ]);
@@ -200,11 +212,11 @@ class GetCommand extends Command
 
         return collect($packages)
             ->reject(function ($meta, $package) {
-                return Storage::exists($this->path . $this->packageFile($package, data_get($meta, 'sha256')));
+                return Storage::exists($this->path . $this->packageFile($package, $meta));
             })->map(function ($meta, $package) {
                 return [
                     'package' => $package,
-                    'url'     => $this->packageFile($package, data_get($meta, 'sha256')),
+                    'url'     => $this->packageFile($package, $meta),
                     'sha'     => data_get($meta, 'sha256'),
                 ];
             })->values();
@@ -212,13 +224,13 @@ class GetCommand extends Command
 
     /**
      * @param string $package
-     * @param string $sha
+     * @param object $meta
      *
      * @return string
      */
-    protected function packageFile(string $package, string $sha): string
+    protected function packageFile(string $package, $meta): string
     {
-        return 'p/' . $package . '$' . $sha . '.json';
+        return 'p/' . $package . '$' . data_get($meta, 'sha256') . '.json';
     }
 
     /**
