@@ -32,6 +32,15 @@ class InfoCommand extends Command
      */
     public function handle()
     {
+        $this->fileSize();
+        $this->fileCount();
+    }
+
+    /**
+     * File Size
+     */
+    protected function fileSize()
+    {
         $process = new Process(
             ['du', '-sh'],
             Storage::path(config('packagist.path'))
@@ -45,6 +54,42 @@ class InfoCommand extends Command
         $this->info($size);
 
         cache()->forever('info_size', $size);
+    }
+
+    /**
+     * File Count
+     */
+    protected function fileCount()
+    {
+        $find = new Process(
+            [
+                'find',
+                '.',
+                '-type',
+                'f',
+            ],
+            Storage::path(config('packagist.path'))
+        );
+        $find->run();
+        $file = $find->getOutput();
+
+        $process = new Process(
+            [
+                'wc',
+                '-l',
+            ]
+        );
+        $process->setInput($file);
+        $process->run();
+
+        $count = $process->isSuccessful() ? $process->getOutput() : $process->getErrorOutput();
+        $count = trim($count);
+
+        $count = number_format($count);
+
+        $this->info($count);
+
+        cache()->forever('info_count', $count);
     }
 
     /**
