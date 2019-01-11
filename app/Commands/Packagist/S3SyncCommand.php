@@ -38,13 +38,9 @@ class S3SyncCommand extends Command
             return;
         }
 
-        $process = new Process(
-            explode(' ', config('packagist.s3.sync')),
-            Storage::path(config('packagist.path')),
-            null,
-            null,
-            600
-        );
+        $process = new Process(explode(' ', config('packagist.s3.sync')));
+        $process->setWorkingDirectory(Storage::path(config('packagist.path')));
+        $process->setTimeout(600);
 
         $process->run(function ($type, $buffer) {
             if (Process::ERR === $type) {

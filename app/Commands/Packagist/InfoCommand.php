@@ -41,14 +41,12 @@ class InfoCommand extends Command
      */
     protected function fileSize()
     {
-        $process = new Process(
-            explode(' ', 'du -sh'),
-            Storage::path(config('packagist.path'))
-        );
+        $du = new Process(explode(' ', 'du -sh'));
+        $du->setWorkingDirectory(Storage::path(config('packagist.path')));
 
-        $process->run();
+        $du->run();
 
-        $size = $process->isSuccessful() ? $process->getOutput() : 'error';
+        $size = $du->isSuccessful() ? $du->getOutput() : 'error';
         $size = rtrim($size, ". \n");
 
         $this->info($size);
@@ -61,18 +59,17 @@ class InfoCommand extends Command
      */
     protected function fileCount()
     {
-        $find = new Process(
-            explode(' ', 'find . -type f'),
-            Storage::path(config('packagist.path'))
-        );
+        $find = new Process(explode(' ', 'find . -type f'));
+        $find->setWorkingDirectory(Storage::path(config('packagist.path')));
+
         $find->run();
         $file = $find->isSuccessful() ? $find->getOutput() : '';
 
-        $process = new Process(explode(' ', 'wc -l'));
-        $process->setInput($file);
-        $process->run();
+        $wc = new Process(explode(' ', 'wc -l'));
+        $wc->setInput($file);
+        $wc->run();
 
-        $count = $process->isSuccessful() ? $process->getOutput() : 0;
+        $count = $wc->isSuccessful() ? $wc->getOutput() : 0;
         $count = trim($count);
 
         $count = number_format($count);
