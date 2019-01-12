@@ -38,16 +38,16 @@ class S3SyncCommand extends Command
             return;
         }
 
-        (new Process(explode(' ', config('packagist.s3.sync'))))
-            ->setWorkingDirectory(Storage::path(config('packagist.path')))
-            ->setTimeout(config('packagist.s3.timeout'))
-            ->run(function ($type, $buffer) {
-                if (Process::ERR === $type) {
-                    $this->error($buffer);
-                } else {
-                    $this->line($buffer);
-                }
-            });
+        Process::fromShellCommandline(config('packagist.s3.sync'))
+               ->setWorkingDirectory(Storage::path(config('packagist.path')))
+               ->setTimeout(config('packagist.s3.timeout'))
+               ->run(function ($type, $buffer) {
+                   if (Process::ERR === $type) {
+                       $this->error($buffer);
+                   } else {
+                       $this->line($buffer);
+                   }
+               });
     }
 
     /**
