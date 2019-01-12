@@ -41,14 +41,14 @@ class InfoCommand extends Command
      */
     protected function fileSize()
     {
-        $size = with(Process::fromShellCommandline('du -sh'), function (Process $process) {
-            $process->setWorkingDirectory(Storage::path(config('packagist.path')))
-                    ->run();
-
-            $size = $process->isSuccessful() ? $process->getOutput() : 'error';
+        $size = rescue(function () {
+            $size = Process::fromShellCommandline('du -sh')
+                           ->setWorkingDirectory(Storage::path(config('packagist.path')))
+                           ->mustRun()
+                           ->getOutput();
 
             return rtrim($size, ". \n");
-        });
+        }, 'error');
 
         $this->info($size);
 
@@ -60,14 +60,14 @@ class InfoCommand extends Command
      */
     protected function fileCount()
     {
-        $count = with(Process::fromShellCommandline('find . -type f | wc -l'), function (Process $process) {
-            $process->setWorkingDirectory(Storage::path(config('packagist.path')))
-                    ->run();
-
-            $count = $process->isSuccessful() ? $process->getOutput() : 0;
+        $count = rescue(function () {
+            $count = Process::fromShellCommandline('find . -type f | wc -l')
+                            ->setWorkingDirectory(Storage::path(config('packagist.path')))
+                            ->mustRun()
+                            ->getOutput();
 
             return number_format(trim($count));
-        });
+        }, 0);
 
         $this->info($count);
 
