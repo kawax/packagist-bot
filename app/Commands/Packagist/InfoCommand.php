@@ -61,6 +61,7 @@ class InfoCommand extends Command
     protected function fileCount()
     {
         $count = count(Storage::allFiles(config('packagist.path')));
+        $count = number_format($count);
 
         $this->info($count);
 
