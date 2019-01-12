@@ -25,21 +25,28 @@ class InfoCommand extends Command
     protected $description = 'Command description';
 
     /**
-     * @var string
-     */
-    protected $path;
-
-    /**
      * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
     {
-        $this->path = Storage::path(config('packagist.path'));
-
         $this->fileSize();
         $this->fileCount();
+    }
+
+    /**
+     * @param string $command
+     *
+     * @return string
+     * @throws
+     */
+    protected function process(string $command)
+    {
+        return Process::fromShellCommandline($command)
+                      ->setWorkingDirectory(Storage::path(config('packagist.path')))
+                      ->mustRun()
+                      ->getOutput();
     }
 
     /**
@@ -72,18 +79,5 @@ class InfoCommand extends Command
         $this->info($count);
 
         cache()->forever('info_count', $count);
-    }
-
-    /**
-     * @param string $command
-     *
-     * @return string
-     */
-    protected function process(string $command)
-    {
-        return Process::fromShellCommandline($command)
-                      ->setWorkingDirectory($this->path)
-                      ->mustRun()
-                      ->getOutput();
     }
 }
