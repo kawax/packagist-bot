@@ -2,7 +2,6 @@
 
 namespace App\Commands\Packagist;
 
-use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
 class IndexCommand extends Command
@@ -35,17 +34,5 @@ class IndexCommand extends Command
                 'last',
             ]))
             ->publish('index.html');
-    }
-
-    /**
-     * Define the command's schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
-     *
-     * @return void
-     */
-    public function schedule(Schedule $schedule): void
-    {
-        // $schedule->command(static::class)->everyMinute();
     }
 }

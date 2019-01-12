@@ -2,7 +2,6 @@
 
 namespace App\Commands\Packagist;
 
-use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
 use Illuminate\Support\Facades\Storage;
@@ -30,37 +29,28 @@ class RootCommand extends Command
     /**
      * Execute the console command.
      *
+     * @param Client $client
+     *
      * @return mixed
      */
-    public function handle()
+    public function handle(Client $client)
     {
-        resolve(Client::class)
-            ->getAsync('packages.json')
-            ->then(function (ResponseInterface $res) {
-                $json = $res->getBody()->getContents();
-                Storage::put(config('packagist.path') . 'packages.json', $json);
+        $client->getAsync('packages.json')
+               ->then(function (ResponseInterface $res) {
+                   $json = $res->getBody()->getContents();
+                   Storage::put(config('packagist.path') . 'packages.json', $json);
 
-                $this->task('packages.json');
+                   $this->task('packages.json');
 
-                $providers = data_get(json_decode($json), 'provider-includes');
+                   $providers = data_get(json_decode($json), 'provider-includes');
 
-                foreach ($providers as $provider => $sha) {
-                    $this->info($provider);
-                }
-            }, function (RequestException $e) {
-                $this->error($e->getMessage());
-            })->wait();
-    }
-
-    /**
-     * Define the command's schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
-     *
-     * @return void
-     */
-    public function schedule(Schedule $schedule): void
-    {
-        // $schedule->command(static::class)->everyMinute();
+                   collect($providers)
+                       ->keys()
+                       ->each(function ($provider) {
+                           $this->info($provider);
+                       });
+               }, function (RequestException $e) {
+                   $this->error($e->getMessage());
+               })->wait();
     }
 }

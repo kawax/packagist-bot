@@ -2,7 +2,6 @@
 
 namespace App\Commands\Packagist;
 
-use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
 use Illuminate\Support\Facades\Storage;
@@ -245,17 +244,5 @@ class GetCommand extends Command
                 File::delete($file);
             }
         }
-    }
-
-    /**
-     * Define the command's schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
-     *
-     * @return void
-     */
-    public function schedule(Schedule $schedule): void
-    {
-        // $schedule->command(static::class)->everyMinute();
     }
 }
