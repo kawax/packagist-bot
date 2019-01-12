@@ -41,13 +41,14 @@ class InfoCommand extends Command
      */
     protected function fileSize()
     {
-        $du = new Process(explode(' ', 'du -sh'));
-        $du->setWorkingDirectory(Storage::path(config('packagist.path')));
+        $size = with(new Process(explode(' ', 'du -sh')), function (Process $du) {
+            $du->setWorkingDirectory(Storage::path(config('packagist.path')))
+               ->run();
 
-        $du->run();
+            $size = $du->isSuccessful() ? $du->getOutput() : 'error';
 
-        $size = $du->isSuccessful() ? $du->getOutput() : 'error';
-        $size = rtrim($size, ". \n");
+            return rtrim($size, ". \n");
+        });
 
         $this->info($size);
 
@@ -59,19 +60,21 @@ class InfoCommand extends Command
      */
     protected function fileCount()
     {
-        $find = new Process(explode(' ', 'find . -type f'));
-        $find->setWorkingDirectory(Storage::path(config('packagist.path')));
+        $file = with(new Process(explode(' ', 'find . -type f')), function (Process $find) {
+            $find->setWorkingDirectory(Storage::path(config('packagist.path')))
+                 ->run();
 
-        $find->run();
-        $file = $find->isSuccessful() ? $find->getOutput() : '';
+            return $find->isSuccessful() ? $find->getOutput() : '';
+        });
 
-        $wc = new Process(explode(' ', 'wc -l'));
-        $wc->setInput($file);
-        $wc->run();
+        $count = with(new Process(explode(' ', 'wc -l')), function (Process $wc) use ($file) {
+            $wc->setInput($file)
+               ->run();
 
-        $count = $wc->isSuccessful() ? $wc->getOutput() : 0;
-        $count = trim($count);
-        $count = number_format($count);
+            $count = $wc->isSuccessful() ? $wc->getOutput() : 0;
+
+            return number_format(trim($count));
+        });
 
         $this->info($count);
 

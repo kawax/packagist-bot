@@ -14,7 +14,7 @@ return [
     'path'        => 'packagist/',
 
     /**
-     * Max connection
+     * Max connections
      */
     'concurrency' => env('CONCURRENCY', 5),
 
@@ -26,7 +26,7 @@ return [
         //aws s3 sync . s3://bucket --delete
         'sync' => env('S3_SYNC'),
 
-        'bucket' => env('S3_BUCKET'),
+        'timeout' => (float)env('S3_SYNC_TIMEOUT', 600),
     ],
 
     /**
@@ -46,5 +46,8 @@ return [
         'dist' => env('AWS_CF_DIST'),
     ],
 
-    'analytics' => env('GOOGLE_ANALYTICS'),
+    /**
+     * Google Analytics
+     */
+    'analytics'   => env('GOOGLE_ANALYTICS'),
 ];
