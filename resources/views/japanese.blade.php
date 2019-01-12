@@ -37,8 +37,8 @@
     <ul>
         <li>1時間に1回の更新。50分開始。CloudFrontのキャッシュは残る。急ぐならDiscordで操作する想定。</li>
         <li>このページ自体キャッシュされてるのでLast-Modifiedは参考にならない。Discord内の通知が正確。ここは普段見ないので優先度は低い。</li>
-        <li>12時にキャッシュ強制削除。12時過ぎから自動composer updateするため。</li>
-        <li>現状は自分で使うためだけの設定。</li>
+        <li>12時にキャッシュ強制削除。12時過ぎから<a href="https://cu.kawax.biz/" target="_blank">自動composer update</a>するため。</li>
+        <li>現状は自分で使うためだけの設定。ユーザーが増えたら調整。</li>
     </ul>
 
 
