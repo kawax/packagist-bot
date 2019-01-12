@@ -4,7 +4,7 @@ return [
      * GuzzleClient options
      */
     'guzzle'      => [
-        'base_uri' => 'https://packagist.org/',
+        'base_uri' => 'https://repo.packagist.org/',
     ],
 
     /**
