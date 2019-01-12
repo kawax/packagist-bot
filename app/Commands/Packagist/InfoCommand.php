@@ -26,12 +26,19 @@ class InfoCommand extends Command
     protected $description = 'Command description';
 
     /**
+     * @var string
+     */
+    protected $path;
+
+    /**
      * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
     {
+        $this->path = Storage::path(config('packagist.path'));
+
         $this->fileSize();
         $this->fileCount();
     }
@@ -43,7 +50,7 @@ class InfoCommand extends Command
     {
         $size = rescue(function () {
             $size = Process::fromShellCommandline('du -sh')
-                           ->setWorkingDirectory(Storage::path(config('packagist.path')))
+                           ->setWorkingDirectory($this->path)
                            ->mustRun()
                            ->getOutput();
 
@@ -62,7 +69,7 @@ class InfoCommand extends Command
     {
         $count = rescue(function () {
             $count = Process::fromShellCommandline('find . -type f | wc -l')
-                            ->setWorkingDirectory(Storage::path(config('packagist.path')))
+                            ->setWorkingDirectory($this->path)
                             ->mustRun()
                             ->getOutput();
 
