@@ -49,10 +49,7 @@ class InfoCommand extends Command
     protected function fileSize()
     {
         $size = rescue(function () {
-            $size = Process::fromShellCommandline('du -sh')
-                           ->setWorkingDirectory($this->path)
-                           ->mustRun()
-                           ->getOutput();
+            $size = $this->process('du -sh');
 
             return rtrim($size, ". \n");
         }, 'error');
@@ -68,10 +65,7 @@ class InfoCommand extends Command
     protected function fileCount()
     {
         $count = rescue(function () {
-            $count = Process::fromShellCommandline('find . -type f -name "*.json" | wc -l')
-                            ->setWorkingDirectory($this->path)
-                            ->mustRun()
-                            ->getOutput();
+            $count = $this->process('find . -type f -name "*.json" | wc -l');
 
             return number_format(trim($count));
         }, 0);
@@ -79,6 +73,19 @@ class InfoCommand extends Command
         $this->info($count);
 
         cache()->forever('info_count', $count);
+    }
+
+    /**
+     * @param string $command
+     *
+     * @return string
+     */
+    protected function process(string $command)
+    {
+        return Process::fromShellCommandline($command)
+                      ->setWorkingDirectory($this->path)
+                      ->mustRun()
+                      ->getOutput();
     }
 
     /**
