@@ -100,7 +100,7 @@ class GetCommand extends Command
     /**
      * @return Collection
      */
-    protected function providerUrls()
+    protected function providerUrls(): Collection
     {
         $providers = json_decode(Storage::get($this->path . 'packages.json'));
 
@@ -204,7 +204,7 @@ class GetCommand extends Command
      *
      * @return Collection
      */
-    protected function packageUrls(string $provider)
+    protected function packageUrls(string $provider): Collection
     {
         $packages = json_decode(Storage::get($this->path . $provider));
 
@@ -230,7 +230,7 @@ class GetCommand extends Command
      */
     protected function packageFile(string $package, $meta): string
     {
-        return 'p/' . $package . '$' . data_get($meta, 'sha256') . '.json';
+        return sprintf('p/%s$%s.json', $package, data_get($meta, 'sha256'));
     }
 
     /**

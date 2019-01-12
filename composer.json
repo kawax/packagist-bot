@@ -1,8 +1,8 @@
 {
-    "name": "revolution/arty",
-    "description": "artisan only application",
+    "name": "revolution/packagist-bot",
+    "description": "Yet Another Packagist Mirror",
     "keywords": [
-        "arty"
+        "packagist"
     ],
     "type": "project",
     "license": "MIT",
@@ -51,5 +51,7 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "bin": ["artisan"]
+    "bin": [
+        "artisan"
+    ]
 }

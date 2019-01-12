@@ -71,7 +71,6 @@ class InfoCommand extends Command
 
         $count = $wc->isSuccessful() ? $wc->getOutput() : 0;
         $count = trim($count);
-
         $count = number_format($count);
 
         $this->info($count);
