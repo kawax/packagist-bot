@@ -43,6 +43,8 @@ class RootCommand extends Command
                    $this->task('packages.json');
                }, function (RequestException $e) {
                    $this->error($e->getMessage());
+
+                   return 1;
                })->wait();
     }
 }

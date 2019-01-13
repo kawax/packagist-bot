@@ -106,8 +106,8 @@ class GetCommand extends Command
         $providers = data_get($providers, 'provider-includes');
 
         return collect($providers)
-            ->when(filled($this->argument('provider')), function (Collection $collect) {
-                return $collect->only($this->argument('provider'));
+            ->when(filled($this->argument('provider')), function (Collection $collection) {
+                return $collection->only($this->argument('provider'));
             })->reject(function ($meta, $provider) {
                 return Storage::exists($this->path . $this->providerFile($provider, $meta));
             })->map(function ($meta, $provider) {
@@ -218,6 +218,8 @@ class GetCommand extends Command
                     'url'     => $this->packageFile($package, $meta),
                     'sha'     => data_get($meta, 'sha256'),
                 ];
+            })->when(app()->environment('development'), function (Collection $collection) {
+                return $collection->take(10);
             })->values();
     }
 

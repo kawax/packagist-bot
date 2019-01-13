@@ -32,13 +32,17 @@ class ReloadCommand extends Command
     public function handle()
     {
         if (cache()->lock('reload', 60 * 30)->get()) {
-            $result = 0;
-            $result = max($this->call('packagist:root'), $result);
-            $result = max($this->call('packagist:get'), $result);
-            $result = max($this->call('packagist:info'), $result);
-            $result = max($this->call('packagist:index'), $result);
-            $result = max($this->call('packagist:sync'), $result);
-            //            $result = max($this->call('packagist:purge'), $result);
+            $result = rescue(function () {
+                $this->call('packagist:root');
+                $this->call('packagist:get');
+                $this->call('packagist:info');
+                $this->call('packagist:index');
+                $this->call('packagist:sync');
+
+                //            $this->call('packagist:purge');
+
+                return 0;
+            }, 1);
 
             if ($result === 0) {
                 $info = implode(' / ', [
@@ -69,6 +73,8 @@ class ReloadCommand extends Command
      */
     public function schedule(Schedule $schedule): void
     {
-        $schedule->command(static::class)->hourlyAt(50);
+        $schedule->command(static::class)
+                 ->hourlyAt(50)
+                 ->skip(app()->environment('development'));
     }
 }

@@ -28,14 +28,15 @@ class S3SyncCommand extends Command
      * Execute the console command.
      *
      * @return mixed
+     * @throws
      */
     public function handle()
     {
-        if (empty(config('packagist.s3.sync'))) {
-            $this->error('S3_SYNC is empty');
-
-            return;
-        }
+        throw_if(
+            empty(config('packagist.s3.sync')),
+            \Exception::class,
+            'S3_SYNC is empty'
+        );
 
         Process::fromShellCommandline(config('packagist.s3.sync'))
                ->setWorkingDirectory(Storage::path(config('packagist.path')))

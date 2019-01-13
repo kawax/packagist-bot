@@ -41,14 +41,14 @@ class PurgeCommand extends Command
         if (empty(config('packagist.cloudfront.dist'))) {
             $this->error('Set CloudFront Distribution ID');
 
-            return;
+            return 1;
         }
 
         if (cache()->lock('purge', 60 * 2)->get() === false) {
             Notification::route('discord', config('services.discord.channel'))
                         ->notify(new SimpleNotification('🔒Purge rate limit!'));
 
-            return;
+            return 1;
         }
 
         $client = new CloudFrontClient([
@@ -87,6 +87,8 @@ class PurgeCommand extends Command
      */
     public function schedule(Schedule $schedule): void
     {
-        $schedule->command(static::class)->dailyAt('12:00');
+        $schedule->command(static::class)
+                 ->dailyAt('12:00')
+                 ->skip(app()->environment('development'));
     }
 }
