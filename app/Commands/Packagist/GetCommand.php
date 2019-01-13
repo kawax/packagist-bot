@@ -12,6 +12,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
 use Psr\Http\Message\ResponseInterface;
 
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\HashErrorNotification;
+
 class GetCommand extends Command
 {
     /**
@@ -49,6 +52,10 @@ class GetCommand extends Command
 
         $this->path = config('packagist.path');
 
+        if (!Storage::exists(config('packagist.path') . 'packages.json')) {
+            $this->call('packagist:root');
+        }
+
         $this->providers();
     }
 
@@ -81,6 +88,7 @@ class GetCommand extends Command
                 $this->package($file);
             } else {
                 $this->error('Hash error: ' . $file);
+                $this->hashError($urls[$index]['provider'], $file);
             }
         };
 
@@ -173,7 +181,8 @@ class GetCommand extends Command
             if (hash('sha256', $content) === $urls[$index]['sha']) {
                 Storage::put($this->path . $urls[$index]['url'], $content);
             } else {
-                $this->error('Hash error: ' . $package);
+                $this->error('Hash error: ' . $urls[$index]['url']);
+                $this->hashError($package, $urls[$index]['url']);
             }
 
             $this->packageDelete($urls[$index]);
@@ -246,5 +255,15 @@ class GetCommand extends Command
                 File::delete($file);
             }
         }
+    }
+
+    /**
+     * @param string $title
+     * @param string $url
+     */
+    protected function hashError(string $title, string $url)
+    {
+        Notification::route('discord', config('services.discord.channel'))
+                    ->notify(new HashErrorNotification($title, $url));
     }
 }

@@ -30,6 +30,7 @@ class PurgeCommand extends Command
      * Execute the console command.
      *
      * @return mixed
+     * @throws \Throwable
      */
     public function handle()
     {
@@ -38,17 +39,17 @@ class PurgeCommand extends Command
             '/packages.json',
         ];
 
-        if (empty(config('packagist.cloudfront.dist'))) {
-            $this->error('Set CloudFront Distribution ID');
-
-            return 1;
-        }
+        throw_if(
+            blank(config('packagist.cloudfront.dist')),
+            \Exception::class,
+            'Set CloudFront Distribution ID'
+        );
 
         if (cache()->lock('purge', 60 * 2)->get() === false) {
             Notification::route('discord', config('services.discord.channel'))
                         ->notify(new SimpleNotification('🔒Purge rate limit!'));
 
-            return 1;
+            return;
         }
 
         $client = new CloudFrontClient([

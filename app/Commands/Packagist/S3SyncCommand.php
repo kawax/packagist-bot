@@ -28,12 +28,12 @@ class S3SyncCommand extends Command
      * Execute the console command.
      *
      * @return mixed
-     * @throws
+     * @throws \Throwable
      */
     public function handle()
     {
         throw_if(
-            empty(config('packagist.s3.sync')),
+            blank(config('packagist.s3.sync')),
             \Exception::class,
             'S3_SYNC is empty'
         );
