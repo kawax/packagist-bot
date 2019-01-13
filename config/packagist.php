@@ -16,7 +16,7 @@ return [
     /**
      * Max connections
      */
-    'concurrency' => env('CONCURRENCY', 5),
+    'concurrency' => env('CONCURRENCY', 25),
 
     /**
      * S3

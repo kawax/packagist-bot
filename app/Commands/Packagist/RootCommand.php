@@ -41,14 +41,6 @@ class RootCommand extends Command
                    Storage::put(config('packagist.path') . 'packages.json', $json);
 
                    $this->task('packages.json');
-
-                   $providers = data_get(json_decode($json), 'provider-includes');
-
-                   collect($providers)
-                       ->keys()
-                       ->each(function ($provider) {
-                           $this->info($provider);
-                       });
                }, function (RequestException $e) {
                    $this->error($e->getMessage());
                })->wait();
