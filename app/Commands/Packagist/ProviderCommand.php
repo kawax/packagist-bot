@@ -6,7 +6,7 @@ use LaravelZero\Framework\Commands\Command;
 
 use Illuminate\Support\Facades\Storage;
 
-class ProvierCommand extends Command
+class ProviderCommand extends Command
 {
     /**
      * The signature of the command.
