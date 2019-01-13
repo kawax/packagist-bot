@@ -49,34 +49,32 @@ class InfoCommand extends Command
                       ->getOutput();
     }
 
-    /**
-     * File Size
-     */
     protected function fileSize()
     {
+        $this->info('file size');
+
         $size = rescue(function () {
             $size = $this->process('du -sh');
 
             return rtrim($size, ". \n");
         }, 'error');
 
-        $this->info($size);
+        $this->line($size);
 
         cache()->forever('info_size', $size);
     }
 
-    /**
-     * File Count
-     */
     protected function fileCount()
     {
+        $this->info('file count');
+
         $count = rescue(function () {
             $count = $this->process('find . -type f -name "*.json" | wc -l');
 
             return number_format(trim($count));
         }, 0);
 
-        $this->info($count);
+        $this->line($count);
 
         cache()->forever('info_count', $count);
     }

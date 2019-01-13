@@ -219,7 +219,9 @@ class GetCommand extends Command
         $packages = data_get($packages, 'providers');
 
         return collect($packages)
-            ->reject(function ($meta, $package) {
+            ->when(app()->environment('development'), function (Collection $collection) {
+                return $collection->take(10);
+            })->reject(function ($meta, $package) {
                 return Storage::exists($this->path . $this->packageFile($package, $meta));
             })->map(function ($meta, $package) {
                 return [
@@ -227,8 +229,6 @@ class GetCommand extends Command
                     'url'     => $this->packageFile($package, $meta),
                     'sha'     => data_get($meta, 'sha256'),
                 ];
-            })->when(app()->environment('development'), function (Collection $collection) {
-                return $collection->take(10);
             })->values();
     }
 
