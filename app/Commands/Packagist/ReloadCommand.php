@@ -64,7 +64,6 @@ class ReloadCommand extends Command
 
             Notification::route('discord', config('services.discord.channel'))
                         ->notify(new SimpleNotification($content));
-
         } else {
             Notification::route('discord', config('services.discord.channel'))
                         ->notify(new SimpleNotification('🔒Reload locked!'));
