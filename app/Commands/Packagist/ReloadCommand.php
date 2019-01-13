@@ -37,12 +37,20 @@ class ReloadCommand extends Command
                 $this->call('packagist:get');
                 $this->call('packagist:info');
                 $this->call('packagist:index');
-                $this->call('packagist:sync');
+                if (app()->environment('production')) {
+                    $this->call('packagist:sync');
+                }
 
                 //            $this->call('packagist:purge');
 
                 return 0;
             }, 1);
+
+            cache()->lock('reload')->release();
+
+            if (app()->environment('development')) {
+                return;
+            }
 
             if ($result === 0) {
                 $info = implode(' / ', [
@@ -57,7 +65,6 @@ class ReloadCommand extends Command
             Notification::route('discord', config('services.discord.channel'))
                         ->notify(new SimpleNotification($content));
 
-            cache()->lock('reload')->release();
         } else {
             Notification::route('discord', config('services.discord.channel'))
                         ->notify(new SimpleNotification('🔒Reload locked!'));
@@ -74,7 +81,6 @@ class ReloadCommand extends Command
     public function schedule(Schedule $schedule): void
     {
         $schedule->command(static::class)
-                 ->hourlyAt(50)
-                 ->skip(app()->environment('development'));
+                 ->hourlyAt(50);
     }
 }

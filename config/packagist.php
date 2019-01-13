@@ -34,9 +34,9 @@ return [
      * S3(read/write), CloudFront(read/write)
      */
     'aws'         => [
-        'key'    => env('AWS_KEY'),
-        'secret' => env('AWS_SECRET'),
-        'region' => env('AWS_REGION', 'ap-northeast-1'),
+        'key'    => env('AWS_ACCESS_KEY_ID'),
+        'secret' => env('AWS_SECRET_ACCESS_KEY'),
+        'region' => env('AWS_DEFAULT_REGION', 'ap-northeast-1'),
     ],
 
     /**

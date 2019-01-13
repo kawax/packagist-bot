@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  app:
+    build: ./docker
+    env_file:
+      - .env
+    volumes:
+      - .:/var/www
+    links:
+      - redis
+
+  serve:
+    build: ./docker
+    command: php artisan discord:serve
+    env_file:
+      - .env
+    volumes:
+      - .:/var/www
+    restart: always
+    links:
+      - redis
+
+  worker:
+    build: ./docker
+    command: supervisord
+    env_file:
+      - .env
+    volumes:
+      - .:/var/www
+    restart: always
+    links:
+      - redis
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - ./storage/redis:/data
+    ports:
+      - "6379:6379"
+    restart: always
