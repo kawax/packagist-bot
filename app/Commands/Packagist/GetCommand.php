@@ -52,7 +52,7 @@ class GetCommand extends Command
 
         $this->path = config('packagist.path');
 
-        if (!Storage::exists(config('packagist.path') . 'packages.json')) {
+        if (!Storage::exists($this->path . 'packages.json')) {
             $this->call('packagist:root');
         }
 
