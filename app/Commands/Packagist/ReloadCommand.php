@@ -32,12 +32,13 @@ class ReloadCommand extends Command
     public function handle()
     {
         if (cache()->lock('reload', 60 * 30)->get()) {
-            $this->call('packagist:root');
-            $this->call('packagist:get');
-            $this->call('packagist:info');
-            $this->call('packagist:index');
-            $result = $this->call('packagist:sync');
-            //            $this->call('packagist:purge');
+            $result = 0;
+            $result = max($this->call('packagist:root'), $result);
+            $result = max($this->call('packagist:get'), $result);
+            $result = max($this->call('packagist:info'), $result);
+            $result = max($this->call('packagist:index'), $result);
+            $result = max($this->call('packagist:sync'), $result);
+            //            $result = max($this->call('packagist:purge'), $result);
 
             if ($result === 0) {
                 $info = implode(' / ', [
