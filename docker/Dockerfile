@@ -2,7 +2,7 @@ FROM chilio/laravel-dusk-ci:stable
 
 RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
-RUN apt install -y python
+RUN apt-get install -yq --fix-missing python
 RUN curl "https://bootstrap.pypa.io/get-pip.py"| python
 RUN pip install awscli
 
