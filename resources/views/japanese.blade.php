@@ -4,7 +4,7 @@
         <a href="https://packagist.jp/" target="_blank">packagist.jp</a>と同じようなミラーサイト。同じなので特に説明はない。
     </p>
 
-    <div class="alert alert-primary" role="alert">
+    <div class="alert alert-secondary" role="alert">
         Last-Modified : {{ $last->tz('Asia/Tokyo')->toIso8601String() }} JST
     </div>
 
@@ -13,11 +13,6 @@
     <p>
         S3+CloudFrontで完全に静的に配信してるので動的な機能はDiscord botを経由して行う。#packagistチャンネルでのみ有効。
     </p>
-
-    <p>
-        <a href="{{ config('services.discord.url') }}" class="btn btn-outline-secondary">Discord</a>
-    </p>
-
 
     <dl class="row mt-3">
         <dt class="col-1">Reload</dt>
@@ -44,8 +39,11 @@
 
     <h3>連絡先</h3>
     <ul>
-        <li>更新が止まってたらDiscordか
-            <a href="https://twitter.com/kawaxbiz" target="_blank">Twitter</a>か
+        <li>更新が止まってたら
+            <a href="{{ config('services.discord.url') }}" target="_blank">Discord</a>
+            か
+            <a href="https://twitter.com/kawaxbiz" target="_blank">Twitter</a>
+            か
             <a href="https://qiitadon.com/@kawax" target="_blank">Qiitadon</a>
             辺りから連絡してもらえれば。
         </li>

@@ -8,10 +8,7 @@
     </div>
 
 
-    <div class="alert alert-primary" role="alert">
+    <div class="alert alert-secondary" role="alert">
         Last-Modified : {{ $last->tz('UTC')->toIso8601String() }} UTC
     </div>
-
-    <a href="{{ config('services.discord.url') }}" class="btn btn-outline-secondary">Discord</a>
-
 </div>

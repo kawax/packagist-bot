@@ -23,6 +23,7 @@
                 Mirrors</a>
             <a href="https://github.com/kawax/packagist-bot" target="_blank"
                class="btn btn-outline-secondary">GitHub</a>
+            <a href="{{ config('services.discord.url') }}" target="_blank" class="btn btn-outline-secondary">Discord</a>
         </div>
     </div>
 
