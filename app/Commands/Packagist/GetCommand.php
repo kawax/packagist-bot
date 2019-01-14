@@ -69,11 +69,9 @@ class GetCommand extends Command
         $requests = function ($urls) {
             foreach ($urls as $url) {
                 yield function () use ($url) {
-                    if ($this->option('quiet')) {
-                        return $this->client->getAsync($url['url']);
-                    } else {
-                        return $this->client->get($url['url']);
-                    }
+                    $method = $this->option('quiet') ? 'getAsync' : 'get';
+
+                    return $this->client->$method($url['url']);
                 };
             }
         };
