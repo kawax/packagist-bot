@@ -35,12 +35,12 @@ class RootCommand extends Command
      */
     public function handle(Client $client)
     {
-        $client->getAsync('packages.json')
+        $client->getAsync(config('packagist.root'))
                ->then(function (ResponseInterface $res) {
                    $json = $res->getBody()->getContents();
-                   Storage::put(config('packagist.path') . 'packages.json', $json);
+                   Storage::put(config('packagist.path') . config('packagist.root'), $json);
 
-                   $this->task('packages.json');
+                   $this->task(config('packagist.root'));
                }, function (RequestException $e) {
                    $this->error($e->getMessage());
 

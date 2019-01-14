@@ -8,6 +8,11 @@ return [
     ],
 
     /**
+     * Root packages.json
+     */
+    'root'        => 'packages.json',
+
+    /**
      * path in storage
      * storage/app/packagist/
      */

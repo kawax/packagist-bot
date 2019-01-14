@@ -36,7 +36,7 @@ class PurgeCommand extends Command
     {
         $paths = [
             '/',
-            '/packages.json',
+            '/' . config('packagist.root'),
         ];
 
         throw_if(

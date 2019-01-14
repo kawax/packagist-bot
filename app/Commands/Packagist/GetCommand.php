@@ -52,7 +52,7 @@ class GetCommand extends Command
 
         $this->path = config('packagist.path');
 
-        if (!Storage::exists($this->path . 'packages.json')) {
+        if (!Storage::exists($this->path . config('packagist.root'))) {
             $this->call('packagist:root');
         }
 
@@ -109,7 +109,7 @@ class GetCommand extends Command
      */
     protected function providerUrls(): Collection
     {
-        $providers = json_decode(Storage::get($this->path . 'packages.json'));
+        $providers = json_decode(Storage::get($this->path . config('packagist.root')));
 
         $providers = data_get($providers, 'provider-includes');
 
