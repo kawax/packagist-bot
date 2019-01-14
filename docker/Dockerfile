@@ -15,3 +15,5 @@ RUN chmod +x /usr/bin/scheduler.sh
 COPY ./supervisor /etc/supervisor/conf.d
 
 WORKDIR /var/www
+
+CMD ["/usr/bin/supervisord"]

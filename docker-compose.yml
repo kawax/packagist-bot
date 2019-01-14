@@ -7,27 +7,6 @@ services:
       - .env
     volumes:
       - .:/var/www
-    links:
-      - redis
-
-  serve:
-    build: ./docker
-    command: php artisan discord:serve
-    env_file:
-      - .env
-    volumes:
-      - .:/var/www
-    restart: always
-    links:
-      - redis
-
-  worker:
-    build: ./docker
-    command: supervisord
-    env_file:
-      - .env
-    volumes:
-      - .:/var/www
     restart: always
     links:
       - redis
