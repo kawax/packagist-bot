@@ -89,7 +89,6 @@ class GetCommand extends Command
                 Storage::put($this->path . $file, $content);
                 $this->package($file);
             } else {
-                $this->error('Hash error: ' . $file);
                 $this->hashError($urls[$index]['provider'], $file);
             }
         };
@@ -98,7 +97,7 @@ class GetCommand extends Command
             'concurrency' => config('packagist.concurrency'),
             'fulfilled'   => $fulfilled,
             'rejected'    => function ($reason, $index) use ($urls) {
-                $this->error('Provider Fail : ' . $urls[$index]['url']);
+                $this->error('Provider rejected: ' . $urls[$index]['url']);
             },
         ]);
 
@@ -150,7 +149,7 @@ class GetCommand extends Command
         foreach (File::glob($pattern) as $file) {
             if ($file !== Storage::path($this->path . $url['url'])) {
                 File::delete($file);
-                $this->line('Delete : ' . basename($file));
+                $this->line('Delete: ' . basename($file));
             }
         }
     }
@@ -183,7 +182,6 @@ class GetCommand extends Command
             if (hash('sha256', $content) === $urls[$index]['sha']) {
                 Storage::put($this->path . $urls[$index]['url'], $content);
             } else {
-                $this->error('Hash error: ' . $urls[$index]['url']);
                 $this->hashError($package, $urls[$index]['url']);
             }
 
@@ -197,7 +195,7 @@ class GetCommand extends Command
             'concurrency' => config('packagist.concurrency'),
             'fulfilled'   => $fulfilled,
             'rejected'    => function ($reason, $index) use ($urls, $bar) {
-                $this->error('Package Fail: ' . $urls[$index]['package']);
+                $this->error('Package rejected: ' . $urls[$index]['package']);
                 $bar->advance();
             },
         ]);
@@ -265,6 +263,8 @@ class GetCommand extends Command
      */
     protected function hashError(string $title, string $url)
     {
+        $this->error('Hash error: ' . $url);
+
         Notification::route('discord', config('services.discord.channel'))
                     ->notify(new HashErrorNotification($title, $url));
     }

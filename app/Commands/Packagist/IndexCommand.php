@@ -29,10 +29,8 @@ class IndexCommand extends Command
     {
         $last = now();
 
-        view('welcome')
-            ->with(compact([
-                'last',
-            ]))
-            ->publish('index.html');
+        view('welcome')->with(compact([
+            'last',
+        ]))->publish('index.html');
     }
 }

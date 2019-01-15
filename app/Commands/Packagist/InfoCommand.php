@@ -39,7 +39,7 @@ class InfoCommand extends Command
      * @param string $command
      *
      * @return string
-     * @throws
+     * @throws \Symfony\Component\Process\Exception\ProcessFailedException
      */
     protected function process(string $command)
     {

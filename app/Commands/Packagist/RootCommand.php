@@ -44,7 +44,7 @@ class RootCommand extends Command
                }, function (RequestException $e) {
                    $this->error($e->getMessage());
 
-                   return 1;
+                   return;
                })->wait();
     }
 }
