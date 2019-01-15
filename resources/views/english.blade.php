@@ -3,7 +3,7 @@
 
     <div class="alert alert-danger" role="alert">
         <a class="alert-link" href="https://github.com/kawax/packagist-bot/blob/master/resources/views/english.blade.php">
-            Improve this document
+            Edit this page
         </a>
     </div>
 
