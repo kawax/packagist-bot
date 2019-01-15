@@ -32,5 +32,7 @@ class IndexCommand extends Command
         view('welcome')->with(compact([
             'last',
         ]))->publish('index.html');
+
+        view('robots')->publish('robots.txt');
     }
 }

@@ -54,6 +54,10 @@
         </div>
     </div>
 
+    <div class="alert alert-danger my-3" role="alert">
+        Don't mirror from this server. Use original packagist.org.
+    </div>
+
     <div class="mt-3">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
