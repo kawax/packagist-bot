@@ -6,16 +6,16 @@ use CharlotteDunois\Yasmin\Models\Message;
 
 use Illuminate\Support\Facades\Artisan;
 
-use Symfony\Component\Console\Input\ArgvInput;
-use Symfony\Component\Console\Input\InputDefinition;
-use Symfony\Component\Console\Input\InputArgument;
+use Revolution\DiscordManager\Traits\Input;
 
 class GetCommand
 {
+    use Input;
+
     /**
      * @var string
      */
-    public $command = 'get';
+    public $command = 'get {provider}';
 
     /**
      * @var bool
@@ -29,19 +29,14 @@ class GetCommand
      */
     public function __invoke(Message $message)
     {
-        $definition = new InputDefinition([
-            new InputArgument('provider', InputArgument::REQUIRED),
-        ]);
+        $argv = explode(' ', str_after($message->content, config('services.discord.prefix')));
 
-        $argv = collect(explode(' ', $message->content));
-        $argv->shift();
-
-        $input = new ArgvInput($argv->toArray(), $definition);
+        $input = $this->input($argv);
 
         Artisan::queue('packagist:get', [
-            'provider' => trim($input->getArgument('provider')),
+            'provider' => $input->getArgument('provider'),
         ]);
 
-        return 'Get start... **' . trim($input->getArgument('provider')) . '**';
+        return 'Get start... **' . $input->getArgument('provider') . '**';
     }
 }
