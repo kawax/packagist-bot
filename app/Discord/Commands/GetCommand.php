@@ -30,11 +30,13 @@ class GetCommand
     public function __invoke(Message $message)
     {
         $definition = new InputDefinition([
-            new InputArgument('command', InputArgument::REQUIRED),
             new InputArgument('provider', InputArgument::REQUIRED),
         ]);
 
-        $input = new ArgvInput(explode(' ', $message->content), $definition);
+        $argv = collect(explode(' ', $message->content));
+        $argv->shift();
+
+        $input = new ArgvInput($argv->toArray(), $definition);
 
         Artisan::queue('packagist:get', [
             'provider' => trim($input->getArgument('provider')),
