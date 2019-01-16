@@ -41,8 +41,8 @@ class ReloadCommand extends Command
 
                 //            $this->call('packagist:purge');
 
-                return 0;
-            }, 1);
+                return true;
+            }, false);
 
             cache()->lock('reload')->release();
 
@@ -50,7 +50,7 @@ class ReloadCommand extends Command
                 return;
             }
 
-            if ($result === 0) {
+            if ($result) {
                 $info = implode(' / ', [
                     cache('info_count'),
                     cache('info_size'),
