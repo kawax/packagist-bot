@@ -32,13 +32,13 @@ class HealthCheckCommand extends Command
      */
     public function handle()
     {
-        $before = cache('root_modified', 0);
+        $before = (int)cache('root_modified', 0);
 
         $last = Storage::lastModified(config('packagist.path') . config('packagist.root'));
 
-        if ($before == $last) {
+        if ($before === $last) {
             Notification::route('discord', config('services.discord.channel'))
-                        ->notifyNow(new HealthCheckNotification($last));
+                        ->notify(new HealthCheckNotification($last));
         }
 
         cache()->forever('root_modified', $last);
