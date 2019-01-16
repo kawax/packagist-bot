@@ -37,9 +37,7 @@ class ReloadCommand extends Command
                 $this->call('packagist:get');
                 $this->call('packagist:info');
                 $this->call('packagist:index');
-                if (app()->environment('production')) {
-                    $this->call('packagist:sync');
-                }
+                $this->call('packagist:sync');
 
                 //            $this->call('packagist:purge');
 

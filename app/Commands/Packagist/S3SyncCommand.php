@@ -38,6 +38,10 @@ class S3SyncCommand extends Command
             'S3_SYNC is empty'
         );
 
+        if (app()->environment('development')) {
+            return;
+        }
+
         Process::fromShellCommandline(config('packagist.s3.sync'))
                ->setWorkingDirectory(Storage::path(config('packagist.path')))
                ->setTimeout(config('packagist.s3.timeout'))
