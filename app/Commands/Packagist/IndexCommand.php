@@ -4,6 +4,9 @@ namespace App\Commands\Packagist;
 
 use LaravelZero\Framework\Commands\Command;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
 class IndexCommand extends Command
 {
     /**
@@ -33,6 +36,6 @@ class IndexCommand extends Command
             'last',
         ]))->publish('index.html');
 
-        view('robots')->publish('robots.txt');
+        File::copyDirectory(resource_path('public'), Storage::path(config('packagist.path')));
     }
 }
