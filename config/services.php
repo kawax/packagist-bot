@@ -15,7 +15,7 @@ return [
     */
 
     'discord' => [
-        'url'       => 'https://discord.gg/XukjEsV',
+        'url'       => 'https://discord.gg/BcChcXD',
         'prefix'    => '/',
         'not_found' => 'Command Not Found!',
         'path'      => [
