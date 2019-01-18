@@ -6,7 +6,7 @@ use CharlotteDunois\Yasmin\Models\Message;
 
 use Illuminate\Support\Facades\Artisan;
 
-use Revolution\DiscordManager\Traits\Input;
+use Revolution\DiscordManager\Concerns\Input;
 
 class GetCommand
 {
