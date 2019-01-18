@@ -58,6 +58,7 @@
         <h3>終了条件</h3>
         <ul>
             <li>運用費用が高くなりすぎたら終了。スポンサーか代わりに運用できる会社を募集する。</li>
+            <li><a href="https://bosyu.me/users/kawaxbiz/wants/10048" target="_blank">bosyu</a></li>
         </ul>
     </div>
 </article>
