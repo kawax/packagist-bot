@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.86.1",
+            "version": "3.86.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "217f783754b803b95eea220308ca7cf046ead832"
+                "reference": "50224232ac7a4e2a6fa4ebbe0281e5b7503acf76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/217f783754b803b95eea220308ca7cf046ead832",
-                "reference": "217f783754b803b95eea220308ca7cf046ead832",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/50224232ac7a4e2a6fa4ebbe0281e5b7503acf76",
+                "reference": "50224232ac7a4e2a6fa4ebbe0281e5b7503acf76",
                 "shasum": ""
             },
             "require": {
@@ -87,7 +87,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-01-17T23:11:37+00:00"
+            "time": "2019-01-18T21:10:44+00:00"
         },
         {
             "name": "beberlei/assert",
@@ -5554,28 +5554,27 @@
         },
         {
             "name": "wyrihaximus/react-child-process-promise",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/reactphp-child-process-promise.git",
-                "reference": "9b6f1bace7af43afc79fa85b91c793cdb3ff199b"
+                "reference": "206fe3d5180c7b6f757e8aaa9fef687f42d43164"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/reactphp-child-process-promise/zipball/9b6f1bace7af43afc79fa85b91c793cdb3ff199b",
-                "reference": "9b6f1bace7af43afc79fa85b91c793cdb3ff199b",
+                "url": "https://api.github.com/repos/WyriHaximus/reactphp-child-process-promise/zipball/206fe3d5180c7b6f757e8aaa9fef687f42d43164",
+                "reference": "206fe3d5180c7b6f757e8aaa9fef687f42d43164",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.4||^7.0",
-                "react/child-process": "^0.5 || ^0.4",
-                "react/promise": "^2.2",
+                "react/child-process": "^0.6 || ^0.5 || ^0.4",
+                "react/promise": "^2.7",
                 "wyrihaximus/ticking-promise": "^1.5.2"
             },
             "require-dev": {
-                "phake/phake": "^2.1",
                 "phpunit/phpunit": "^4.4||^5.0",
-                "squizlabs/php_codesniffer": "^1.5.6",
+                "squizlabs/php_codesniffer": "^3.3.2",
                 "vectorface/dunit": "^2.0"
             },
             "type": "library",
@@ -5599,7 +5598,7 @@
                 }
             ],
             "description": "Wrapping ticks into a promise",
-            "time": "2017-10-17T11:37:15+00:00"
+            "time": "2019-01-18T21:42:17+00:00"
         },
         {
             "name": "wyrihaximus/ticking-promise",
