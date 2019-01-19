@@ -3,6 +3,18 @@ version: '3'
 services:
   app:
     build: ./docker
+    command: /usr/bin/supervisord
+    env_file:
+      - .env
+    volumes:
+      - .:/var/www
+    restart: always
+    links:
+      - redis
+
+  cron:
+    build: ./docker
+    command: cron -f
     env_file:
       - .env
     volumes:

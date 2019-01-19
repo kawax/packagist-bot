@@ -9,11 +9,12 @@ RUN pip install awscli
 RUN composer config -g repos.packagist composer https://packagist.kawax.biz/
 RUN composer global require hirak/prestissimo
 
-COPY ./scheduler/scheduler.sh /usr/bin/scheduler.sh
-RUN chmod +x /usr/bin/scheduler.sh
+RUN apt-get install -yq --fix-missing cron
+COPY scheduler/root /var/spool/cron/crontabs/
+RUN chmod 0600 /var/spool/cron/crontabs/root
+
 
 COPY ./supervisor /etc/supervisor/conf.d
 
-WORKDIR /var/www
 
-CMD ["/usr/bin/supervisord"]
+WORKDIR /var/www
