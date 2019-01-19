@@ -54,7 +54,7 @@
                 <div class="control">
                     <div class="tags has-addons">
                         <span class="tag is-info">size</span>
-                        <span class="tag is-white"> {{ cache('info_size', 0) }}</span>
+                        <span class="tag is-white">{{ cache('info_size', 0) }}</span>
                     </div>
                 </div>
             </div>

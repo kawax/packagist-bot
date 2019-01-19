@@ -4,7 +4,7 @@ cmd = list
 .PHONY: artisan
 
 up:
-	$(DC) up
+	$(DC) up --build
 
 upd:
 	$(DC) up -d

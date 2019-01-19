@@ -56,7 +56,7 @@ class InfoCommand extends Command
         $size = rescue(function () {
             $size = $this->process('du -sh');
 
-            return rtrim($size, ". \n");
+            return rtrim($size, ". \n\t");
         }, 'error');
 
         $this->line($size);
