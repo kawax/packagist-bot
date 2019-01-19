@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Storage;
 
 use GuzzleHttp\Client;
+use Aws\CloudFront\CloudFrontClient;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,6 +33,17 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(Client::class, function ($app) {
             return new Client(config('packagist.guzzle'));
+        });
+
+        $this->app->singleton(CloudFrontClient::class, function ($app) {
+            return new CloudFrontClient([
+                'credentials' => [
+                    'key'    => config('packagist.aws.key'),
+                    'secret' => config('packagist.aws.secret'),
+                ],
+                'region'      => 'us-east-1',
+                'version'     => 'latest',
+            ]);
         });
     }
 }

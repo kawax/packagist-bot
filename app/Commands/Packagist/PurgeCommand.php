@@ -52,14 +52,7 @@ class PurgeCommand extends Command
             return;
         }
 
-        $client = new CloudFrontClient([
-            'credentials' => [
-                'key'    => config('packagist.aws.key'),
-                'secret' => config('packagist.aws.secret'),
-            ],
-            'region'      => 'us-east-1',
-            'version'     => 'latest',
-        ]);
+        $client = resolve(CloudFrontClient::class);
 
         $result = $client->createInvalidation([
             'DistributionId'    => config('packagist.cloudfront.dist'),
