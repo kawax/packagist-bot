@@ -15,6 +15,9 @@ down:
 build:
 	$(DC) build
 
+sh:
+	$(DC) exec app /bin/bash
+
 artisan:
 	$(DC) run --rm app php artisan $(cmd)
 
