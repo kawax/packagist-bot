@@ -4,13 +4,15 @@ services:
   app:
     build: ./docker
     command: /usr/bin/supervisord
-    volumes:
-      - .:/var/www
+    env_file:
+      - .env.docker
     environment:
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
       - AWS_DEFAULT_REGION
       - AWS_DEFAULT_OUTPUT
+    volumes:
+      - .:/var/www
     restart: always
     links:
       - redis
@@ -18,13 +20,15 @@ services:
   cron:
     build: ./docker
     command: cron -f
-    volumes:
-      - .:/var/www
+    env_file:
+      - .env.docker
     environment:
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
       - AWS_DEFAULT_REGION
       - AWS_DEFAULT_OUTPUT
+    volumes:
+      - .:/var/www
     restart: always
     links:
       - redis
