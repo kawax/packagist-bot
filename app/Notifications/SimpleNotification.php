@@ -13,7 +13,7 @@ class SimpleNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    protected $content;
+    public $content;
 
     /**
      * Create a new notification instance.

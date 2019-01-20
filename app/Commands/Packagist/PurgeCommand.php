@@ -39,17 +39,17 @@ class PurgeCommand extends Command
             '/' . config('packagist.root'),
         ];
 
-        throw_if(
-            blank(config('packagist.cloudfront.dist')),
-            \Exception::class,
-            'Set CloudFront Distribution ID'
-        );
+        if (blank(config('packagist.cloudfront.dist'))) {
+            $this->error('Set CloudFront Distribution ID');
+
+            return 1;
+        }
 
         if (cache()->lock('purge', 60 * 2)->get() === false) {
             Notification::route('discord', config('services.discord.channel'))
                         ->notify(new SimpleNotification('🔒Purge rate limit!'));
 
-            return;
+            return 1;
         }
 
         $client = resolve(CloudFrontClient::class);

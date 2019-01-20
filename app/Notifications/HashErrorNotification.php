@@ -16,12 +16,12 @@ class HashErrorNotification extends Notification implements ShouldQueue
     /**
      * @var string
      */
-    protected $title;
+    public $title;
 
     /**
      * @var string
      */
-    protected $url;
+    public $url;
 
     /**
      * Create a new notification instance.

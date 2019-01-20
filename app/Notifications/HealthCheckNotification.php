@@ -18,7 +18,7 @@ class HealthCheckNotification extends Notification implements ShouldQueue
     /**
      * @var integer
      */
-    protected $last;
+    public $last;
 
     /**
      * Create a new notification instance.
