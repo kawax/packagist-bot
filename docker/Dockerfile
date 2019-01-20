@@ -2,8 +2,6 @@ FROM php:7.3-fpm
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
-
 RUN apt-get update \
     && apt-get install -yq zlib1g-dev libzip-dev unzip \
     && docker-php-ext-install zip

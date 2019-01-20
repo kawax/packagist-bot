@@ -26,3 +26,16 @@ ci:
 
 cu:
 	$(DC) run --rm app composer update
+
+reload:
+	$(DC) run --rm app php artisan packagist:reload
+
+index:
+	$(DC) run --rm app php artisan packagist:index
+
+info:
+	$(DC) run --rm app php artisan packagist:info
+
+serve:
+	@echo "Caution!! Can't ^C"
+	$(DC) run --rm app php artisan discord:serve
