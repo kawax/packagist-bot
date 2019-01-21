@@ -4,8 +4,6 @@ services:
   app:
     build: ./docker
     command: /usr/bin/supervisord
-    env_file:
-      - .env.docker
     environment:
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
@@ -20,8 +18,6 @@ services:
   cron:
     build: ./docker
     command: cron -f
-    env_file:
-      - .env.docker
     environment:
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
@@ -38,5 +34,5 @@ services:
     volumes:
       - ./docker/storage/redis:/data
     ports:
-      - "6379:6379"
+      - "63790:6379"
     restart: always
