@@ -2,7 +2,7 @@ sudo: false
 language: php
 
 php:
-- 7.3
+  - 7.3
 
 before_script:
   - travis_retry composer install --no-interaction --prefer-dist --no-progress --no-suggest
@@ -16,7 +16,7 @@ cache:
     - vendor
 
 script:
-- vendor/bin/phpunit
+  - vendor/bin/phpunit
 
 after_success:
-   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then curl -s "$FORGE"; fi'
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then curl -s "$FORGE"; fi'
