@@ -21,6 +21,9 @@ sh:
 artisan:
 	$(DC) run --rm app php artisan $(cmd)
 
+test:
+	$(DC) run --rm app vendor/bin/phpunit
+
 ci:
 	$(DC) run --rm app composer install
 
