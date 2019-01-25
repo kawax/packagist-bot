@@ -27,5 +27,6 @@
         <env name="CACHE_DRIVER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="AWS_CF_DIST" value="TEST"/>
+        <env name="DISCORD_BOT_TOKEN" value="TEST"/>
     </php>
 </phpunit>
