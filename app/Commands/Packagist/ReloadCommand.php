@@ -32,40 +32,47 @@ class ReloadCommand extends Command
     public function handle()
     {
         if (cache()->lock('reload', 60 * 30)->get()) {
-            $result = rescue(function () {
-                $this->call('packagist:root');
-                $this->call('packagist:get');
-                $this->call('packagist:info');
-                $this->call('packagist:index');
-                $this->call('packagist:sync');
-
-                //            $this->call('packagist:purge');
-
-                return true;
-            }, false);
+            $this->reload();
 
             cache()->lock('reload')->release();
-
-            if (app()->environment('development')) {
-                return;
-            }
-
-            if ($result) {
-                $info = implode(' / ', [
-                    cache('info_count'),
-                    cache('info_size'),
-                ]);
-                $content = '🎉Reload completed! **' . $info . '**';
-            } else {
-                $content = '☠️Reload failed?';
-            }
-
-            Notification::route('discord', config('services.discord.channel'))
-                        ->notify(new SimpleNotification($content));
         } else {
             Notification::route('discord', config('services.discord.channel'))
                         ->notify(new SimpleNotification('🔒Reload locked!'));
+
+            return 1;
         }
+    }
+
+    protected function reload()
+    {
+        $result = rescue(function () {
+            $this->call('packagist:root');
+            $this->call('packagist:get');
+            $this->call('packagist:info');
+            $this->call('packagist:index');
+            $this->call('packagist:sync');
+
+            //            $this->call('packagist:purge');
+
+            return true;
+        }, false);
+
+        if (app()->environment('development')) {
+            return;
+        }
+
+        if ($result) {
+            $info = implode(' / ', [
+                cache('info_count'),
+                cache('info_size'),
+            ]);
+            $content = '🎉Reload completed! **' . $info . '**';
+        } else {
+            $content = '☠️Reload failed?';
+        }
+
+        Notification::route('discord', config('services.discord.channel'))
+                    ->notify(new SimpleNotification($content));
     }
 
     /**
