@@ -34,11 +34,11 @@ class S3SyncCommand extends Command
     {
         throw_if(
             blank(config('packagist.s3.sync')),
-            \Exception::class,
+            \RuntimeException::class,
             'S3_SYNC is empty'
         );
 
-        if (app()->environment('development')) {
+        if (!app()->environment('production')) {
             return;
         }
 

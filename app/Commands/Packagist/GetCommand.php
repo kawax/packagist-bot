@@ -214,7 +214,7 @@ class GetCommand extends Command
         $packages = data_get($packages, 'providers');
 
         return collect($packages)
-            ->when(app()->environment('development'), function (Collection $collection) {
+            ->unless(app()->environment('production'), function (Collection $collection) {
                 return $collection->take(10);
             })->reject(function ($meta, $package) {
                 return Storage::exists($this->path . $this->packageFile($package, $meta));

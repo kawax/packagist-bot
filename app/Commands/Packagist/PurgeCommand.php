@@ -101,6 +101,6 @@ class PurgeCommand extends Command
     {
         $schedule->command(static::class)
                  ->dailyAt('12:00')
-                 ->skip(app()->environment('development'));
+                 ->when(app()->environment('production'));
     }
 }
