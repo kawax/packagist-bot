@@ -24,7 +24,7 @@ class RootCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Download root packages';
 
     /**
      * Execute the console command.

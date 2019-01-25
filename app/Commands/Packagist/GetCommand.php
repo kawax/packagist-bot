@@ -29,7 +29,7 @@ class GetCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Download package files';
 
     /**
      * @var Client

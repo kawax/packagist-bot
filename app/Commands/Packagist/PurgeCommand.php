@@ -24,7 +24,7 @@ class PurgeCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Purge CloudFront Cache';
 
     /**
      * Execute the console command.

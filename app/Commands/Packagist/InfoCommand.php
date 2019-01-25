@@ -22,7 +22,7 @@ class InfoCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Update info';
 
     /**
      * Execute the console command.

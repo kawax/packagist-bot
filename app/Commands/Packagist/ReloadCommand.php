@@ -22,7 +22,7 @@ class ReloadCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'main';
 
     /**
      * Execute the console command.

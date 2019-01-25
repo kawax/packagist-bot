@@ -21,7 +21,7 @@ class IndexCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Create index';
 
     /**
      * Execute the console command.

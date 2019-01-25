@@ -20,7 +20,7 @@ class ProviderCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Download selected provider';
 
     /**
      * Execute the console command.

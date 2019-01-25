@@ -22,7 +22,7 @@ class S3SyncCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Syncing data with S3';
 
     /**
      * Execute the console command.
