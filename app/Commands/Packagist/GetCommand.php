@@ -4,6 +4,8 @@ namespace App\Commands\Packagist;
 
 use LaravelZero\Framework\Commands\Command;
 
+use Closure;
+
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Collection;
@@ -14,6 +16,8 @@ use Psr\Http\Message\ResponseInterface;
 
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\HashErrorNotification;
+
+use Symfony\Component\Console\Helper\ProgressBar;
 
 class GetCommand extends Command
 {
@@ -71,31 +75,14 @@ class GetCommand extends Command
                 yield function () use ($url) {
                     $method = $this->option('quiet') ? 'getAsync' : 'get';
 
-                    return $this->client->$method($url['url']);
+                    return $this->client->{$method}($url['url']);
                 };
-            }
-        };
-
-        $fulfilled = function (ResponseInterface $res, $index) use ($urls) {
-            $file = $urls[$index]['url'];
-
-            $this->task('<info>Provider: </info>' . basename($file));
-
-            $this->providerDelete($urls[$index]);
-
-            $content = $res->getBody()->getContents();
-
-            if (hash('sha256', $content) === $urls[$index]['sha']) {
-                Storage::put($this->path . $file, $content);
-                $this->package($file);
-            } else {
-                $this->hashError($urls[$index]['provider'], $file);
             }
         };
 
         $pool = new Pool($this->client, $requests($urls), [
             'concurrency' => config('packagist.concurrency'),
-            'fulfilled'   => $fulfilled,
+            'fulfilled'   => $this->providerFulfilled($urls),
             'rejected'    => function ($reason, $index) use ($urls) {
                 $this->error('Provider rejected: ' . $urls[$index]['url']);
             },
@@ -126,6 +113,31 @@ class GetCommand extends Command
                     'sha'      => data_get($meta, 'sha256'),
                 ];
             })->values();
+    }
+
+    /**
+     * @param Collection $urls
+     *
+     * @return Closure
+     */
+    protected function providerFulfilled(Collection $urls): Closure
+    {
+        return function (ResponseInterface $res, $index) use ($urls) {
+            $file = $urls[$index]['url'];
+
+            $this->task('<info>Provider: </info>' . basename($file));
+
+            $this->providerDelete($urls[$index]);
+
+            $content = $res->getBody()->getContents();
+
+            if (hash_equals(hash('sha256', $content), $urls[$index]['sha'])) {
+                Storage::put($this->path . $file, $content);
+                $this->package($file);
+            } else {
+                $this->hashError($urls[$index]['provider'], $file);
+            }
+        };
     }
 
     /**
@@ -174,26 +186,9 @@ class GetCommand extends Command
             }
         };
 
-        $fulfilled = function (ResponseInterface $res, $index) use ($urls, $bar) {
-            $package = $urls[$index]['package'];
-
-            $content = $res->getBody()->getContents();
-
-            if (hash('sha256', $content) === $urls[$index]['sha']) {
-                Storage::put($this->path . $urls[$index]['url'], $content);
-            } else {
-                $this->hashError($package, $urls[$index]['url']);
-            }
-
-            $this->packageDelete($urls[$index]);
-
-            $bar->advance();
-            $bar->setMessage($package);
-        };
-
         $pool = new Pool($this->client, $requests($urls), [
             'concurrency' => config('packagist.concurrency'),
-            'fulfilled'   => $fulfilled,
+            'fulfilled'   => $this->packageFulfilled($urls, $bar),
             'rejected'    => function ($reason, $index) use ($urls, $bar) {
                 $this->error('Package rejected: ' . $urls[$index]['package']);
                 $bar->advance();
@@ -230,6 +225,32 @@ class GetCommand extends Command
                     'sha'     => data_get($meta, 'sha256'),
                 ];
             })->values();
+    }
+
+    /**
+     * @param Collection  $urls
+     * @param ProgressBar $bar
+     *
+     * @return Closure
+     */
+    protected function packageFulfilled(Collection $urls, ProgressBar $bar): Closure
+    {
+        return function (ResponseInterface $res, $index) use ($urls, $bar) {
+            $package = $urls[$index]['package'];
+
+            $content = $res->getBody()->getContents();
+
+            if (hash_equals(hash('sha256', $content), $urls[$index]['sha'])) {
+                Storage::put($this->path . $urls[$index]['url'], $content);
+            } else {
+                $this->hashError($package, $urls[$index]['url']);
+            }
+
+            $this->packageDelete($urls[$index]);
+
+            $bar->advance();
+            $bar->setMessage($package);
+        };
     }
 
     /**
