@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 
-use Mockery as m;
+use Mockery;
 
 use Aws\CloudFront\CloudFrontClient;
 
@@ -24,7 +24,7 @@ class PurgeCommandTest extends TestCase
     {
         parent::setUp();
 
-        $this->client = m::mock(CloudFrontClient::class);
+        $this->client = Mockery::mock(CloudFrontClient::class);
 
         app()->instance(CloudFrontClient::class, $this->client);
     }
