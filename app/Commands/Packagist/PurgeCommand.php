@@ -27,6 +27,24 @@ class PurgeCommand extends Command
     protected $description = 'Purge CloudFront Cache';
 
     /**
+     * @var array
+     */
+    protected $paths;
+
+    /**
+     * PurgeCommand constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->paths = [
+            '/',
+            '/' . config('packagist.root'),
+        ];
+    }
+
+    /**
      * Execute the console command.
      *
      * @return mixed
@@ -34,11 +52,6 @@ class PurgeCommand extends Command
      */
     public function handle()
     {
-        $paths = [
-            '/',
-            '/' . config('packagist.root'),
-        ];
-
         if (blank(config('packagist.cloudfront.dist'))) {
             $this->error('Set CloudFront Distribution ID');
 
@@ -52,14 +65,19 @@ class PurgeCommand extends Command
             return 1;
         }
 
+        $this->purge();
+    }
+
+    protected function purge()
+    {
         $client = resolve(CloudFrontClient::class);
 
         $result = $client->createInvalidation([
             'DistributionId'    => config('packagist.cloudfront.dist'),
             'InvalidationBatch' => [
                 'Paths'           => [
-                    'Quantity' => count($paths),
-                    'Items'    => $paths,
+                    'Quantity' => count($this->paths),
+                    'Items'    => $this->paths,
                 ],
                 'CallerReference' => now()->timestamp,
             ],
