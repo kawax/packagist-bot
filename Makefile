@@ -7,7 +7,7 @@ up:
 	$(DC) up --build
 
 upd:
-	$(DC) up -d
+	$(DC) up -d --build
 
 down:
 	$(DC) down
@@ -20,6 +20,15 @@ sh:
 
 artisan:
 	$(DC) run --rm app php artisan $(cmd)
+
+provider:
+	$(DC) run --rm app php artisan packagist:provider
+
+sync:
+	$(DC) run --rm app php artisan packagist:sync
+
+setup:
+	$(DC) run --rm app php artisan discord:setup
 
 test:
 	$(DC) run --rm app vendor/bin/phpunit
