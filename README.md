@@ -19,4 +19,4 @@ composer config -g --unset repos.packagist
 ```
 
 ## LICENSE
-MIT
+AGPL
