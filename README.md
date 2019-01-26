@@ -19,4 +19,6 @@ composer config -g --unset repos.packagist
 ```
 
 ## LICENSE
+Copyright (C) 2018 kawax
+
 AGPL
