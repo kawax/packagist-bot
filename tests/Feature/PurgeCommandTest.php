@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Notifications\AnonymousNotifiable;
 use App\Notifications\SimpleNotification;
 
+use Illuminate\Support\Str;
+
 class PurgeCommandTest extends TestCase
 {
     /**
@@ -54,7 +56,7 @@ class PurgeCommandTest extends TestCase
             new AnonymousNotifiable,
             SimpleNotification::class,
             function ($notification, $channels) {
-                return str_contains($notification->content, 'InProgress');
+                return Str::contains($notification->content, 'InProgress');
             }
         );
     }
@@ -75,7 +77,7 @@ class PurgeCommandTest extends TestCase
             new AnonymousNotifiable,
             SimpleNotification::class,
             function ($notification, $channels) {
-                return str_contains($notification->content, 'Purge rate limit');
+                return Str::contains($notification->content, 'Purge rate limit');
             }
         );
     }
