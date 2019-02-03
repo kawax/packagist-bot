@@ -4,13 +4,13 @@
             <div class="container">
                 <div class="navbar-end">
                     <div class="navbar-brand">
-                        <a href="https://packagist.org/mirrors" target="_blank" class="navbar-item">
+                        <a href="https://packagist.org/mirrors" target="_blank" rel="noopener noreferrer" class="navbar-item">
                             Packagist Mirrors
                         </a>
-                        <a href="https://github.com/kawax/packagist-bot" target="_blank" class="navbar-item">
+                        <a href="https://github.com/kawax/packagist-bot" target="_blank" rel="noopener noreferrer" class="navbar-item">
                             GitHub
                         </a>
-                        <a href="{{ config('services.discord.url') }}" target="_blank" class="navbar-item">
+                        <a href="{{ config('services.discord.url') }}" target="_blank" rel="noopener noreferrer" class="navbar-item">
                             Discord
                         </a>
                     </div>

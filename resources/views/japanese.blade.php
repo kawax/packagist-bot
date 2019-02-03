@@ -4,7 +4,7 @@
     </div>
     <div class="message-body content">
         <p>
-            <a href="https://packagist.jp/" target="_blank">packagist.jp</a>と同じようなミラーサイト。同じなので特に説明はない。
+            <a href="https://packagist.jp/" target="_blank" rel="noopener noreferrer">packagist.jp</a>と同じようなミラーサイト。同じなので特に説明はない。
         </p>
 
         <article class="message">
@@ -46,20 +46,24 @@
         <h3>連絡先</h3>
         <ul>
             <li>更新が止まってたら
-                <a href="{{ config('services.discord.url') }}" target="_blank">Discord</a>
+                <a href="{{ config('services.discord.url') }}" target="_blank" rel="noopener noreferrer">Discord</a>
                 か
-                <a href="https://twitter.com/kawaxbiz" target="_blank">Twitter</a>
+                <a href="https://twitter.com/kawaxbiz" target="_blank" rel="noopener noreferrer">Twitter</a>
                 か
-                <a href="https://qiitadon.com/@kawax" target="_blank">Qiitadon</a>
+                <a href="https://qiitadon.com/@kawax" target="_blank" rel="noopener noreferrer">Qiitadon</a>
                 辺りから連絡してもらえれば。
             </li>
         </ul>
 
         <h3>終了条件</h3>
         <ul>
-            <li>運用費用が高くなりすぎたら終了。スポンサーか代わりに運用できる会社を募集する。</li>
-            <li><a href="https://bosyu.me/users/kawaxbiz/wants/10048" target="_blank">bosyu</a></li>
-            <li><a href="https://www.pixiv.net/fanbox/creator/762638/post/268311" target="_blank">packagist-botの動かし方</a></li>
+            <li>運用費用が高くなりすぎたら終了。スポンサーか代わりに運用できる会社を募集する。(現状はかなり安いので問題なさそう)</li>
+            <li><a href="https://bosyu.me/users/kawaxbiz/wants/10048"
+                   target="_blank"
+                   rel="noopener noreferrer">bosyu</a></li>
+            <li><a href="https://www.pixiv.net/fanbox/creator/762638/post/268311"
+                   target="_blank"
+                   rel="noopener noreferrer">packagist-botの動かし方</a></li>
         </ul>
     </div>
 </article>
