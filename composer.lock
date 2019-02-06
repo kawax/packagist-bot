@@ -8,23 +8,22 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.87.3",
+            "version": "3.87.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "5f9caa48b7871ff24231898c01f51580a83f59b9"
+                "reference": "3435ed9535f83ca8f485ac8a78a7f3d99216af03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/5f9caa48b7871ff24231898c01f51580a83f59b9",
-                "reference": "5f9caa48b7871ff24231898c01f51580a83f59b9",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3435ed9535f83ca8f485ac8a78a7f3d99216af03",
+                "reference": "3435ed9535f83ca8f485ac8a78a7f3d99216af03",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-pcre": "*",
                 "ext-simplexml": "*",
-                "ext-spl": "*",
                 "guzzlehttp/guzzle": "^5.3.3|^6.2.1",
                 "guzzlehttp/promises": "~1.0",
                 "guzzlehttp/psr7": "^1.4.1",
@@ -87,7 +86,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-02-04T22:38:14+00:00"
+            "time": "2019-02-05T22:07:42+00:00"
         },
         {
             "name": "beberlei/assert",
