@@ -37,14 +37,14 @@ class RootCommand extends Command
     {
         $client->getAsync(config('packagist.root'))
                ->then(function (ResponseInterface $res) {
-                   $json = $res->getBody()->getContents();
-                   Storage::put(config('packagist.path') . config('packagist.root'), $json);
-
                    $this->task(config('packagist.root'));
+
+                   Storage::put(
+                       config('packagist.path') . config('packagist.root'),
+                       $res->getBody()->getContents()
+                   );
                }, function (RequestException $e) {
                    $this->error($e->getMessage());
-
-                   return;
                })->wait();
     }
 }
