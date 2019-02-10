@@ -31,7 +31,7 @@ class ProviderCommand extends Command
     {
         $this->call('packagist:root');
 
-        $providers = json_decode(Storage::get(config('packagist.path') . config('packagist.root')));
+        $providers = json_decode(Storage::get(config('packagist.root')));
 
         $providers = data_get($providers, 'provider-includes');
 

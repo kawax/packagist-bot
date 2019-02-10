@@ -41,11 +41,6 @@ class PackageCommand extends Command
     protected $client;
 
     /**
-     * @var string
-     */
-    protected $path;
-
-    /**
      * Execute the console command.
      *
      * @return mixed
@@ -53,8 +48,6 @@ class PackageCommand extends Command
     public function handle()
     {
         $this->client = resolve(Client::class);
-
-        $this->path = config('packagist.path');
 
         $this->package($this->argument('provider'));
     }
@@ -102,7 +95,7 @@ class PackageCommand extends Command
      */
     protected function packageUrls(string $provider): Collection
     {
-        $packages = json_decode(Storage::get($this->path . $provider));
+        $packages = json_decode(Storage::get($provider));
 
         $packages = data_get($packages, 'providers');
 
@@ -110,7 +103,7 @@ class PackageCommand extends Command
             ->unless(app()->environment('production'), function (Collection $collection) {
                 return $collection->take(10);
             })->reject(function ($meta, $package) {
-                return Storage::exists($this->path . $this->packageFile($package, $meta));
+                return Storage::exists($this->packageFile($package, $meta));
             })->map(function ($meta, $package) {
                 return [
                     'package' => $package,
@@ -134,7 +127,7 @@ class PackageCommand extends Command
             $content = $res->getBody()->getContents();
 
             if (hash_equals(hash('sha256', $content), $urls[$index]['sha'])) {
-                Storage::put($this->path . $urls[$index]['url'], $content);
+                Storage::put($urls[$index]['url'], $content);
             } else {
                 $this->hashError($package, $urls[$index]['url']);
             }
@@ -162,10 +155,10 @@ class PackageCommand extends Command
      */
     protected function packageDelete(array $url)
     {
-        $pattern = Storage::path($this->path . 'p/' . $url['package']) . '$*';
+        $pattern = Storage::path('p/' . $url['package']) . '$*';
 
         foreach (File::glob($pattern) as $file) {
-            if ($file !== Storage::path($this->path . $url['url'])) {
+            if ($file !== Storage::path($url['url'])) {
                 File::delete($file);
             }
         }

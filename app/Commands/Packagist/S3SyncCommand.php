@@ -43,7 +43,7 @@ class S3SyncCommand extends Command
         }
 
         Process::fromShellCommandline(config('packagist.s3.sync'))
-               ->setWorkingDirectory(Storage::path(config('packagist.path')))
+               ->setWorkingDirectory(Storage::path(''))
                ->setTimeout(config('packagist.s3.timeout'))
                ->run(function ($type, $buffer) {
                    if (Process::ERR === $type) {

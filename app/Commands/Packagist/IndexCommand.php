@@ -36,6 +36,6 @@ class IndexCommand extends Command
             'last',
         ]))->publish('index.html');
 
-        File::copyDirectory(resource_path('public'), Storage::path(config('packagist.path')));
+        File::copyDirectory(resource_path('public'), Storage::path(''));
     }
 }

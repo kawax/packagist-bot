@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::macro('publish', function (string $file = 'index.html') {
-            Storage::put(config('packagist.path') . $file, $this->render());
+            Storage::put($file, $this->render());
         });
     }
 

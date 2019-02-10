@@ -44,7 +44,7 @@ class InfoCommand extends Command
     protected function process(string $command)
     {
         return Process::fromShellCommandline($command)
-                      ->setWorkingDirectory(Storage::path(config('packagist.path')))
+                      ->setWorkingDirectory(Storage::path(''))
                       ->mustRun()
                       ->getOutput();
     }

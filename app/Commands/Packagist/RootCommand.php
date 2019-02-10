@@ -40,7 +40,7 @@ class RootCommand extends Command
                    $this->task(config('packagist.root'));
 
                    Storage::put(
-                       config('packagist.path') . config('packagist.root'),
+                       config('packagist.root'),
                        $res->getBody()->getContents()
                    );
                }, function (RequestException $e) {

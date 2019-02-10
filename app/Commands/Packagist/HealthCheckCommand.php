@@ -34,7 +34,7 @@ class HealthCheckCommand extends Command
     {
         $before = (int)cache('root_modified', 0);
 
-        $last = Storage::lastModified(config('packagist.path') . config('packagist.root'));
+        $last = Storage::lastModified(config('packagist.root'));
 
         if ($before === $last) {
             Notification::route('discord', config('services.discord.channel'))

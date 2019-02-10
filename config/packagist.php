@@ -13,12 +13,6 @@ return [
     'root'        => 'packages.json',
 
     /**
-     * path in storage
-     * storage/app/packagist/
-     */
-    'path'        => 'packagist/',
-
-    /**
      * Max connections
      */
     'concurrency' => env('CONCURRENCY', 25),

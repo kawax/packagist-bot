@@ -39,11 +39,6 @@ class GetCommand extends Command
     protected $client;
 
     /**
-     * @var string
-     */
-    protected $path;
-
-    /**
      * Execute the console command.
      *
      * @return mixed
@@ -52,9 +47,7 @@ class GetCommand extends Command
     {
         $this->client = resolve(Client::class);
 
-        $this->path = config('packagist.path');
-
-        if (!Storage::exists($this->path . config('packagist.root'))) {
+        if (!Storage::exists(config('packagist.root'))) {
             $this->call('packagist:root');
         }
 
@@ -95,7 +88,7 @@ class GetCommand extends Command
      */
     protected function providerUrls(): Collection
     {
-        $providers = json_decode(Storage::get($this->path . config('packagist.root')));
+        $providers = json_decode(Storage::get(config('packagist.root')));
 
         $providers = data_get($providers, 'provider-includes');
 
@@ -103,7 +96,7 @@ class GetCommand extends Command
             ->when(filled($this->argument('provider')), function (Collection $collection) {
                 return $collection->only($this->argument('provider'));
             })->reject(function ($meta, $provider) {
-                return Storage::exists($this->path . $this->providerFile($provider, $meta));
+                return Storage::exists($this->providerFile($provider, $meta));
             })->map(function ($meta, $provider) {
                 return [
                     'provider' => $provider,
@@ -136,7 +129,7 @@ class GetCommand extends Command
                 return;
             }
 
-            Storage::put($this->path . $file, $content);
+            Storage::put($file, $content);
 
             $this->call('packagist:package', [
                 'provider' => $file,
@@ -160,10 +153,10 @@ class GetCommand extends Command
      */
     protected function providerDelete(array $url)
     {
-        $pattern = str_replace('%hash%.json', '*', Storage::path($this->path . $url['provider']));
+        $pattern = str_replace('%hash%.json', '*', Storage::path($url['provider']));
 
         foreach (File::glob($pattern) as $file) {
-            if ($file !== Storage::path($this->path . $url['url'])) {
+            if ($file !== Storage::path($url['url'])) {
                 File::delete($file);
                 $this->line('Delete: ' . basename($file));
             }
