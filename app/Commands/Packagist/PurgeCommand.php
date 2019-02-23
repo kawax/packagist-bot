@@ -89,7 +89,6 @@ class PurgeCommand extends Command
         $content = "🧹Purge start... **{$status}**";
 
         NotifyJob::dispatchNow(new SimpleNotification($content));
-
     }
 
     /**
