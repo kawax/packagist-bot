@@ -72,7 +72,6 @@ class ReloadCommand extends Command
         }
 
         NotifyJob::dispatchNow(new SimpleNotification($content));
-
     }
 
     /**
