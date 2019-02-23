@@ -29,6 +29,7 @@ class ReloadCommand extends Command
      * Execute the console command.
      *
      * @return mixed
+     * @throws \Exception
      */
     public function handle()
     {
@@ -43,6 +44,9 @@ class ReloadCommand extends Command
         }
     }
 
+    /**
+     * @throws \Exception
+     */
     protected function reload()
     {
         $result = rescue(function () {
