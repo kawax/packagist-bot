@@ -5,8 +5,9 @@ namespace App\Commands\Packagist;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
-use Illuminate\Support\Facades\Notification;
 use App\Notifications\SimpleNotification;
+
+use App\Jobs\NotifyJob;
 
 class ReloadCommand extends Command
 {
@@ -36,8 +37,7 @@ class ReloadCommand extends Command
 
             cache()->lock('reload')->release();
         } else {
-            Notification::route('discord', config('services.discord.channel'))
-                        ->notify(new SimpleNotification('🔒Reload locked!'));
+            NotifyJob::dispatchNow(new SimpleNotification('🔒Reload locked!'));
 
             return 1;
         }
@@ -71,8 +71,8 @@ class ReloadCommand extends Command
             $content = '☠️Reload failed?';
         }
 
-        Notification::route('discord', config('services.discord.channel'))
-                    ->notify(new SimpleNotification($content));
+        NotifyJob::dispatchNow(new SimpleNotification($content));
+
     }
 
     /**

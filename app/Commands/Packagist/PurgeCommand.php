@@ -7,8 +7,9 @@ use LaravelZero\Framework\Commands\Command;
 
 use Aws\CloudFront\CloudFrontClient;
 
-use Illuminate\Support\Facades\Notification;
 use App\Notifications\SimpleNotification;
+
+use App\Jobs\NotifyJob;
 
 class PurgeCommand extends Command
 {
@@ -58,9 +59,10 @@ class PurgeCommand extends Command
             return 1;
         }
 
-        if (cache()->lock('purge', 60 * 2)->get() === false) {
-            Notification::route('discord', config('services.discord.channel'))
-                        ->notify(new SimpleNotification('🔒Purge rate limit!'));
+        $lock = cache()->lock('purge', 60 * 2)->get();
+
+        if ($lock === false) {
+            NotifyJob::dispatchNow(new SimpleNotification('🔒Purge rate limit!'));
 
             return 1;
         }
@@ -86,8 +88,8 @@ class PurgeCommand extends Command
         $status = data_get($result, 'Invalidation.Status', 'Error?');
         $content = "🧹Purge start... **{$status}**";
 
-        Notification::route('discord', config('services.discord.channel'))
-                    ->notify(new SimpleNotification($content));
+        NotifyJob::dispatchNow(new SimpleNotification($content));
+
     }
 
     /**

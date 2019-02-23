@@ -6,8 +6,9 @@ use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Notification;
 use App\Notifications\HealthCheckNotification;
+
+use App\Jobs\NotifyJob;
 
 class HealthCheckCommand extends Command
 {
@@ -37,8 +38,7 @@ class HealthCheckCommand extends Command
         $last = Storage::lastModified(config('packagist.root'));
 
         if ($before === $last) {
-            Notification::route('discord', config('services.discord.channel'))
-                        ->notify(new HealthCheckNotification($last));
+            NotifyJob::dispatchNow(new HealthCheckNotification($last));
         }
 
         cache()->forever('root_modified', $last);

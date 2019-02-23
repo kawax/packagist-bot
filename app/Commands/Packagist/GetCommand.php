@@ -14,8 +14,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
 use Psr\Http\Message\ResponseInterface;
 
-use Illuminate\Support\Facades\Notification;
 use App\Notifications\HashErrorNotification;
+
+use App\Jobs\NotifyJob;
 
 class GetCommand extends Command
 {
@@ -123,8 +124,7 @@ class GetCommand extends Command
             $content = $res->getBody()->getContents();
 
             if (!hash_equals(hash('sha256', $content), $urls[$index]['sha'])) {
-                Notification::route('discord', config('services.discord.channel'))
-                            ->notify(new HashErrorNotification($urls[$index]['provider'], $file));
+                NotifyJob::dispatchNow(new HashErrorNotification($urls[$index]['provider'], $file));
 
                 return;
             }

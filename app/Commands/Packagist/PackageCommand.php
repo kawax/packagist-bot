@@ -14,8 +14,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
 use Psr\Http\Message\ResponseInterface;
 
-use Illuminate\Support\Facades\Notification;
 use App\Notifications\HashErrorNotification;
+
+use App\Jobs\NotifyJob;
 
 use Symfony\Component\Console\Helper\ProgressBar;
 
@@ -172,7 +173,6 @@ class PackageCommand extends Command
     {
         $this->error('Hash error: ' . $url);
 
-        Notification::route('discord', config('services.discord.channel'))
-                    ->notify(new HashErrorNotification($title, $url));
+        NotifyJob::dispatchNow(new HashErrorNotification($title, $url));
     }
 }
