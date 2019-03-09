@@ -58,9 +58,6 @@
         <h3>終了条件</h3>
         <ul>
             <li>運用費用が高くなりすぎたら終了。スポンサーか代わりに運用できる会社を募集する。(現状はかなり安いので問題なさそう)</li>
-            <li><a href="https://bosyu.me/users/kawaxbiz/wants/10048"
-                   target="_blank"
-                   rel="noopener noreferrer">bosyu</a></li>
             <li><a href="https://www.pixiv.net/fanbox/creator/762638/post/268311"
                    target="_blank"
                    rel="noopener noreferrer">packagist-botの動かし方</a></li>
