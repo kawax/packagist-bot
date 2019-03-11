@@ -48,7 +48,7 @@ class GetCommand extends Command
     {
         $this->client = resolve(Client::class);
 
-        if (!Storage::exists(config('packagist.root'))) {
+        if (! Storage::exists(config('packagist.root'))) {
             $this->call('packagist:root');
         }
 
@@ -123,7 +123,7 @@ class GetCommand extends Command
 
             $content = $res->getBody()->getContents();
 
-            if (!hash_equals(hash('sha256', $content), $urls[$index]['sha'])) {
+            if (! hash_equals(hash('sha256', $content), $urls[$index]['sha'])) {
                 NotifyJob::dispatchNow(new HashErrorNotification($urls[$index]['provider'], $file));
 
                 return;

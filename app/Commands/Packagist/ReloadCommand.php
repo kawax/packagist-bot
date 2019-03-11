@@ -63,7 +63,7 @@ class ReloadCommand extends Command
             return true;
         }, false);
 
-        if (!app()->environment('production')) {
+        if (! app()->environment('production')) {
             return;
         }
 
