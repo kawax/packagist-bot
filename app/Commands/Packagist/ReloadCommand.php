@@ -33,10 +33,12 @@ class ReloadCommand extends Command
      */
     public function handle()
     {
-        if (cache()->lock('reload', 60 * 30)->get()) {
+        $lock = cache()->lock('reload', 60 * 30);
+
+        if ($lock->get()) {
             $this->reload();
 
-            cache()->lock('reload')->release();
+            $lock->release();
         } else {
             NotifyJob::dispatchNow(new SimpleNotification('🔒Reload locked!'));
 
