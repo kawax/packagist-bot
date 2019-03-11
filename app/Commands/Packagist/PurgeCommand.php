@@ -59,9 +59,9 @@ class PurgeCommand extends Command
             return 1;
         }
 
-        $lock = cache()->lock('purge', 60 * 2)->get();
+        $lock = cache()->lock('purge', 60 * 2);
 
-        if (!$lock) {
+        if (!$lock->get()) {
             NotifyJob::dispatchNow(new SimpleNotification('🔒Purge rate limit!'));
 
             return 1;
