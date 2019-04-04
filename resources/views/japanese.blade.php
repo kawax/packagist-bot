@@ -46,11 +46,13 @@
         <h3>連絡先</h3>
         <ul>
             <li>更新が止まってたら
-                <a href="{{ config('services.discord.url') }}" target="_blank" rel="noopener noreferrer">Discord</a>
+                <a href="{{ config('services.discord.url') }}"
+                   target="_blank"
+                   rel="noopener noreferrer">Discord</a>
                 か
-                <a href="https://twitter.com/kawaxbiz" target="_blank" rel="noopener noreferrer">Twitter</a>
-                か
-                <a href="https://qiitadon.com/@kawax" target="_blank" rel="noopener noreferrer">Qiitadon</a>
+                <a href="https://twitter.com/kawaxbiz"
+                   target="_blank"
+                   rel="noopener noreferrer">Twitter</a>
                 辺りから連絡してもらえれば。
             </li>
         </ul>
@@ -58,9 +60,11 @@
         <h3>終了条件</h3>
         <ul>
             <li>運用費用が高くなりすぎたら終了。スポンサーか代わりに運用できる会社を募集する。(現状はかなり安いので問題なさそう)</li>
-            <li><a href="https://www.pixiv.net/fanbox/creator/762638/post/268311"
+            <li>
+                <a href="https://www.pixiv.net/fanbox/creator/762638/post/268311"
                    target="_blank"
-                   rel="noopener noreferrer">packagist-botの動かし方</a></li>
+                   rel="noopener noreferrer">packagist-botの動かし方</a>
+            </li>
         </ul>
     </div>
 </article>
