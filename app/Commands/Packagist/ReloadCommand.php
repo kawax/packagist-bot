@@ -72,7 +72,7 @@ class ReloadCommand extends Command
                 cache('info_count'),
                 cache('info_size'),
             ]);
-            $content = '🎉Reload completed! **' . $info . '**';
+            $content = 'Reload completed! **' . $info . '**';
         } else {
             $content = '☠️Reload failed?';
         }
