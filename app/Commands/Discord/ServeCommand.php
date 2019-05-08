@@ -8,6 +8,7 @@ use Revolution\DiscordManager\Facades\DiscordManager;
 
 use Revolution\DiscordManager\Facades\Yasmin;
 use CharlotteDunois\Yasmin\Models\Message;
+use CharlotteDunois\Yasmin\Interfaces\TextChannelInterface;
 
 class ServeCommand extends Command
 {
@@ -47,24 +48,20 @@ class ServeCommand extends Command
         });
 
         Yasmin::on('ready', function () {
-            $this->info('Logged in as ' . Yasmin::user()->tag . ' created on ' . Yasmin::user()->createdAt->format('d.m.Y H:i:s'));
+            $this->info('Logged in as '.Yasmin::user()->tag.' created on '.Yasmin::user()->createdAt->format('d.m.Y H:i:s'));
         });
 
         Yasmin::on('message', function (Message $message) {
-            $this->line('Received Message from ' . $message->author->tag . ' in ' . ($message->channel->type === 'text' ? 'channel #' . $message->channel->name : 'DM') . ' with ' . $message->attachments->count() . ' attachment(s) and ' . count($message->embeds) . ' embed(s)');
+            $this->line('Received Message from '.$message->author->tag.' in '.($message->channel instanceOf TextChannelInterface ? 'channel #'.$message->channel->name : 'DM').' with '.$message->attachments->count().' attachment(s) and '.count($message->embeds).' embed(s)');
 
             if ($message->author->bot) {
                 return;
             }
 
             try {
-                if ($message->channel->type === 'text') {
+                if ($message->channel instanceOf TextChannelInterface) {
                     $this->channel($message);
                 }
-
-                //                if ($message->channel->type === 'dm') {
-                //                    $this->direct($message);
-                //                }
             } catch (\Exception $error) {
                 $this->error($error->getMessage());
             }
@@ -75,7 +72,7 @@ class ServeCommand extends Command
     }
 
     /**
-     * @param Message $message
+     * @param  Message  $message
      */
     protected function channel(Message $message)
     {
@@ -83,7 +80,7 @@ class ServeCommand extends Command
             return;
         }
 
-        if (!$message->mentions->members->has(config('services.discord.bot'))) {
+        if (! $message->mentions->members->has(config('services.discord.bot'))) {
             return;
         }
 
@@ -99,7 +96,7 @@ class ServeCommand extends Command
     }
 
     /**
-     * @param Message $message
+     * @param  Message  $message
      */
     protected function direct(Message $message)
     {
