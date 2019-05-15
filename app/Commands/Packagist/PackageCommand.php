@@ -54,7 +54,7 @@ class PackageCommand extends Command
     }
 
     /**
-     * @param string $provider
+     * @param  string  $provider
      */
     protected function package(string $provider)
     {
@@ -73,24 +73,29 @@ class PackageCommand extends Command
             }
         };
 
-        $pool = new Pool($this->client, $requests($urls), [
+        $config = [
             'concurrency' => config('packagist.concurrency'),
             'fulfilled'   => $this->packageFulfilled($urls, $bar),
             'rejected'    => function ($reason, $index) use ($urls, $bar) {
-                $this->error('Package rejected: ' . $urls[$index]['package']);
+                $this->error('Package rejected: '.$urls[$index]['package']);
                 $bar->advance();
             },
+        ];
+
+        $pool = app(Pool::class, [
+            'client'   => $this->client,
+            'requests' => $requests($urls),
+            'config'   => $config,
         ]);
 
-        $promise = $pool->promise();
-        $promise->wait();
+        $pool->promise()->wait();
 
         $bar->finish();
         $this->line('');
     }
 
     /**
-     * @param string $provider
+     * @param  string  $provider
      *
      * @return Collection
      */
@@ -115,8 +120,8 @@ class PackageCommand extends Command
     }
 
     /**
-     * @param Collection  $urls
-     * @param ProgressBar $bar
+     * @param  Collection  $urls
+     * @param  ProgressBar  $bar
      *
      * @return Closure
      */
@@ -141,8 +146,8 @@ class PackageCommand extends Command
     }
 
     /**
-     * @param string $package
-     * @param object $meta
+     * @param  string  $package
+     * @param  object  $meta
      *
      * @return string
      */
@@ -152,11 +157,11 @@ class PackageCommand extends Command
     }
 
     /**
-     * @param array $url
+     * @param  array  $url
      */
     protected function packageDelete(array $url)
     {
-        $pattern = Storage::path('p/' . $url['package']) . '$*';
+        $pattern = Storage::path('p/'.$url['package']).'$*';
 
         foreach (File::glob($pattern) as $file) {
             if ($file !== Storage::path($url['url'])) {
@@ -166,12 +171,12 @@ class PackageCommand extends Command
     }
 
     /**
-     * @param string $title
-     * @param string $url
+     * @param  string  $title
+     * @param  string  $url
      */
     protected function hashError(string $title, string $url)
     {
-        $this->error('Hash error: ' . $url);
+        $this->error('Hash error: '.$url);
 
         NotifyJob::dispatchNow(new HashErrorNotification($title, $url));
     }

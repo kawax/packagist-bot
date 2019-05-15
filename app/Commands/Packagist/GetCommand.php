@@ -72,16 +72,21 @@ class GetCommand extends Command
             }
         };
 
-        $pool = new Pool($this->client, $requests($urls), [
+        $config = [
             'concurrency' => config('packagist.concurrency'),
             'fulfilled'   => $this->providerFulfilled($urls),
             'rejected'    => function ($reason, $index) use ($urls) {
-                $this->error('Provider rejected: ' . $urls[$index]['url']);
+                $this->error('Provider rejected: '.$urls[$index]['url']);
             },
+        ];
+
+        $pool = app(Pool::class, [
+            'client'   => $this->client,
+            'requests' => $requests($urls),
+            'config'   => $config,
         ]);
 
-        $promise = $pool->promise();
-        $promise->wait();
+        $pool->promise()->wait();
     }
 
     /**
@@ -108,7 +113,7 @@ class GetCommand extends Command
     }
 
     /**
-     * @param Collection $urls
+     * @param  Collection  $urls
      *
      * @return Closure
      */
@@ -117,7 +122,7 @@ class GetCommand extends Command
         return function (ResponseInterface $res, $index) use ($urls) {
             $file = $urls[$index]['url'];
 
-            $this->task('<info>Provider: </info>' . basename($file));
+            $this->task('<info>Provider: </info>'.basename($file));
 
             $this->providerDelete($urls[$index]);
 
@@ -138,8 +143,8 @@ class GetCommand extends Command
     }
 
     /**
-     * @param string $provider
-     * @param object $meta
+     * @param  string  $provider
+     * @param  object  $meta
      *
      * @return string
      */
@@ -149,7 +154,7 @@ class GetCommand extends Command
     }
 
     /**
-     * @param array $url
+     * @param  array  $url
      */
     protected function providerDelete(array $url)
     {
@@ -158,7 +163,7 @@ class GetCommand extends Command
         foreach (File::glob($pattern) as $file) {
             if ($file !== Storage::path($url['url'])) {
                 File::delete($file);
-                $this->line('Delete: ' . basename($file));
+                $this->line('Delete: '.basename($file));
             }
         }
     }
