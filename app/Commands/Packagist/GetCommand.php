@@ -80,7 +80,7 @@ class GetCommand extends Command
             },
         ];
 
-        $pool = app(Pool::class, [
+        $pool = resolve(Pool::class, [
             'client'   => $this->client,
             'requests' => $requests($urls),
             'config'   => $config,
