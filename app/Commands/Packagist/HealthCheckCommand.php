@@ -33,7 +33,7 @@ class HealthCheckCommand extends Command
      */
     public function handle()
     {
-        $before = (int)cache('root_modified', 0);
+        $before = (int) cache('root_modified', 0);
 
         $last = Storage::lastModified(config('packagist.root'));
 
@@ -47,7 +47,7 @@ class HealthCheckCommand extends Command
     /**
      * Define the command's schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
+     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      *
      * @return void
      */

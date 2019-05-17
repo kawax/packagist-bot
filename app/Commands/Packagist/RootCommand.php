@@ -29,7 +29,7 @@ class RootCommand extends Command
     /**
      * Execute the console command.
      *
-     * @param Client $client
+     * @param  Client  $client
      *
      * @return mixed
      */

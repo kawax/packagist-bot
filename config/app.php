@@ -87,6 +87,7 @@ return [
         NotificationChannels\Discord\DiscordServiceProvider::class,
 
         Revolution\DiscordManager\Providers\DiscordManagerServiceProvider::class,
+        NunoMaduro\PhpInsights\Application\Adapters\Laravel\InsightsServiceProvider::class,
 
         App\Providers\AppServiceProvider::class,
     ],

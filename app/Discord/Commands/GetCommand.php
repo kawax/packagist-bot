@@ -24,7 +24,7 @@ class GetCommand
     public $hidden = true;
 
     /**
-     * @param Message $message
+     * @param  Message  $message
      *
      * @return string
      */
@@ -38,6 +38,6 @@ class GetCommand
             'provider' => $input->getArgument('provider'),
         ]);
 
-        return 'Get start... **' . $input->getArgument('provider') . '**';
+        return 'Get start... **'.$input->getArgument('provider').'**';
     }
 }

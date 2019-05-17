@@ -14,7 +14,7 @@ class Reload
     public $command = 'reload';
 
     /**
-     * @param Message $message
+     * @param  Message  $message
      *
      * @return string
      */

@@ -34,13 +34,13 @@ class HashErrorNotification extends Notification implements ShouldQueue
     public function __construct(string $title, string $url)
     {
         $this->title = $title;
-        $this->url = config('packagist.guzzle.base_uri') . $url;
+        $this->url = config('packagist.guzzle.base_uri').$url;
     }
 
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed $notifiable
+     * @param  mixed  $notifiable
      *
      * @return array
      */

@@ -14,7 +14,7 @@ class Purge
     public $command = 'purge';
 
     /**
-     * @param Message $message
+     * @param  Message  $message
      *
      * @return string
      */

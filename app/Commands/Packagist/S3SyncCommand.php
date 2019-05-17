@@ -38,7 +38,7 @@ class S3SyncCommand extends Command
             'S3_SYNC is empty'
         );
 
-        if (!app()->environment('production')) {
+        if (! app()->environment('production')) {
             return;
         }
 
@@ -46,7 +46,7 @@ class S3SyncCommand extends Command
                ->setWorkingDirectory(Storage::path(''))
                ->setTimeout(config('packagist.s3.timeout'))
                ->run(function ($type, $buffer) {
-                   if (Process::ERR === $type) {
+                   if ($type === Process::ERR) {
                        $this->error($buffer);
                    } else {
                        $this->line($buffer);

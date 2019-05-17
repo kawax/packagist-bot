@@ -16,14 +16,14 @@ class HealthCheckNotification extends Notification implements ShouldQueue
     use Queueable;
 
     /**
-     * @var integer
+     * @var int
      */
     public $last;
 
     /**
      * Create a new notification instance.
      *
-     * @param int $last
+     * @param  int  $last
      *
      * @return void
      */
@@ -35,7 +35,7 @@ class HealthCheckNotification extends Notification implements ShouldQueue
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed $notifiable
+     * @param  mixed  $notifiable
      *
      * @return array
      */
@@ -46,7 +46,7 @@ class HealthCheckNotification extends Notification implements ShouldQueue
 
     public function toDiscord($notifiable)
     {
-        $content = '☠️Health Check Error' . PHP_EOL;
+        $content = '☠️Health Check Error'.PHP_EOL;
         $content .= sprintf('```Last-Modified: %s```', Carbon::createFromTimestamp($this->last)->toIso8601String());
 
         return DiscordMessage::create($content);

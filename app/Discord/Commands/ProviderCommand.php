@@ -15,7 +15,7 @@ class ProviderCommand
     public $command = 'provider';
 
     /**
-     * @param Message $message
+     * @param  Message  $message
      *
      * @return string
      */
@@ -29,6 +29,6 @@ class ProviderCommand
 
         $providers = collect($providers)->keys()->implode(PHP_EOL);
 
-        return PHP_EOL . $providers;
+        return PHP_EOL.$providers;
     }
 }

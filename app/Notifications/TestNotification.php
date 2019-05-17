@@ -21,7 +21,7 @@ class TestNotification extends Notification
     /**
      * Create a new notification instance.
      *
-     * @param string $body
+     * @param  string  $body
      *
      * @return void
      */
@@ -33,7 +33,7 @@ class TestNotification extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed $notifiable
+     * @param  mixed  $notifiable
      *
      * @return array
      */

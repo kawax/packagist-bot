@@ -55,9 +55,6 @@ class GetCommand extends Command
         $this->providers();
     }
 
-    /**
-     *
-     */
     protected function providers()
     {
         $urls = $this->providerUrls();

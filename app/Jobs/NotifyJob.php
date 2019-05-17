@@ -22,7 +22,7 @@ class NotifyJob
     /**
      * Create a new job instance.
      *
-     * @param \Illuminate\Notifications\Notification
+     * @param  \Illuminate\Notifications\Notification
      *
      * @return void
      */
