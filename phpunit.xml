@@ -29,4 +29,7 @@
         <env name="AWS_CF_DIST" value="TEST"/>
         <env name="DISCORD_BOT_TOKEN" value="TEST"/>
     </php>
+    <logging>
+        <log type="coverage-clover" target="build/logs/clover.xml"/>
+    </logging>
 </phpunit>
