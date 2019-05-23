@@ -20,6 +20,11 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./app</directory>
+            <exclude>
+                <directory suffix=".php">./app/Discord/</directory>
+                <directory suffix=".php">./app/Providers/</directory>
+                <directory suffix=".php">./app/Notifications/</directory>
+            </exclude>
         </whitelist>
     </filter>
     <php>

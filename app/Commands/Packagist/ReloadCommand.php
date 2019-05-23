@@ -9,6 +9,9 @@ use App\Notifications\SimpleNotification;
 
 use App\Jobs\NotifyJob;
 
+/**
+ * @codeCoverageIgnore
+ */
 class ReloadCommand extends Command
 {
     /**

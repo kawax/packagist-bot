@@ -10,6 +10,9 @@ use Revolution\DiscordManager\Facades\Yasmin;
 use CharlotteDunois\Yasmin\Models\Message;
 use CharlotteDunois\Yasmin\Interfaces\TextChannelInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 class ServeCommand extends Command
 {
     /**

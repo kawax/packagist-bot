@@ -10,6 +10,9 @@ use App\Notifications\HealthCheckNotification;
 
 use App\Jobs\NotifyJob;
 
+/**
+ * @codeCoverageIgnore
+ */
 class HealthCheckCommand extends Command
 {
     /**

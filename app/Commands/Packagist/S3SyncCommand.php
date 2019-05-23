@@ -29,6 +29,8 @@ class S3SyncCommand extends Command
      *
      * @return mixed
      * @throws \Throwable
+     *
+     * @codeCoverageIgnore
      */
     public function handle()
     {
