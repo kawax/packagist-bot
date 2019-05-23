@@ -42,6 +42,11 @@ class PackageCommand extends Command
     protected $client;
 
     /**
+     * @var ProgressBar
+     */
+    protected $bar;
+
+    /**
      * Execute the console command.
      *
      * @return mixed
@@ -60,10 +65,7 @@ class PackageCommand extends Command
     {
         $urls = $this->packageUrls($provider);
 
-        $bar = $this->output->createProgressBar($urls->count());
-        $bar->setFormat(' %current%/%max% [%bar%] %percent:3s%% %message%');
-        $bar->setMessage('');
-        $bar->start();
+        $this->barStart($urls->count());
 
         $requests = function ($urls) {
             foreach ($urls as $url) {
@@ -75,10 +77,10 @@ class PackageCommand extends Command
 
         $config = [
             'concurrency' => config('packagist.concurrency'),
-            'fulfilled'   => $this->packageFulfilled($urls, $bar),
-            'rejected'    => function ($reason, $index) use ($urls, $bar) {
+            'fulfilled'   => $this->packageFulfilled($urls),
+            'rejected'    => function ($reason, $index) use ($urls) {
                 $this->error('Package rejected: '.$urls[$index]['package']);
-                $bar->advance();
+                $this->bar->advance();
             },
         ];
 
@@ -90,8 +92,19 @@ class PackageCommand extends Command
 
         $pool->promise()->wait();
 
-        $bar->finish();
+        $this->bar->finish();
         $this->line('');
+    }
+
+    /**
+     * @param  int  $count
+     */
+    protected function barStart(int $count)
+    {
+        $this->bar = $this->output->createProgressBar($count);
+        $this->bar->setFormat(' %current%/%max% [%bar%] %percent:3s%% %message%');
+        $this->bar->setMessage('');
+        $this->bar->start();
     }
 
     /**
@@ -121,13 +134,12 @@ class PackageCommand extends Command
 
     /**
      * @param  Collection  $urls
-     * @param  ProgressBar  $bar
      *
      * @return Closure
      */
-    protected function packageFulfilled(Collection $urls, ProgressBar $bar): Closure
+    protected function packageFulfilled(Collection $urls): Closure
     {
-        return function (ResponseInterface $res, $index) use ($urls, $bar) {
+        return function (ResponseInterface $res, $index) use ($urls) {
             $package = $urls[$index]['package'];
 
             $content = $res->getBody()->getContents();
@@ -140,8 +152,8 @@ class PackageCommand extends Command
 
             $this->packageDelete($urls[$index]);
 
-            $bar->advance();
-            $bar->setMessage($package);
+            $this->bar->advance();
+            $this->bar->setMessage($package);
         };
     }
 
