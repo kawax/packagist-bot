@@ -54,13 +54,13 @@ class ReloadCommand extends Command
      */
     protected function reload()
     {
-        cache()->forever('info_size', '-');
-        cache()->forever('info_count', '-');
+        //        cache()->forever('info_size', '-');
+        //        cache()->forever('info_count', '-');
 
         $result = rescue(function () {
             $this->call('packagist:root');
             $this->call('packagist:get');
-            //$this->call('packagist:info');
+            $this->call('packagist:info');
             $this->call('packagist:index');
             $this->call('packagist:sync');
 
@@ -96,6 +96,6 @@ class ReloadCommand extends Command
     public function schedule(Schedule $schedule): void
     {
         $schedule->command(static::class, ['--quiet'])
-                 ->hourlyAt(50);
+                 ->hourlyAt(45);
     }
 }
