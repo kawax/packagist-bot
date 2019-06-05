@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.99.0",
+            "version": "3.99.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "0a212802416698b1a452ca317c16cb909a2dd1ca"
+                "reference": "455e93cc4feb99847f88f4229659da2c79aa6371"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/0a212802416698b1a452ca317c16cb909a2dd1ca",
-                "reference": "0a212802416698b1a452ca317c16cb909a2dd1ca",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/455e93cc4feb99847f88f4229659da2c79aa6371",
+                "reference": "455e93cc4feb99847f88f4229659da2c79aa6371",
                 "shasum": ""
             },
             "require": {
@@ -87,7 +87,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-06-03T18:16:19+00:00"
+            "time": "2019-06-04T18:08:27+00:00"
         },
         {
             "name": "cakephp/utility",
@@ -1123,7 +1123,7 @@
         },
         {
             "name": "illuminate/broadcasting",
-            "version": "v5.8.19",
+            "version": "v5.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/broadcasting.git",
@@ -1174,7 +1174,7 @@
         },
         {
             "name": "illuminate/bus",
-            "version": "v5.8.19",
+            "version": "v5.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/bus.git",
@@ -1219,7 +1219,7 @@
         },
         {
             "name": "illuminate/cache",
-            "version": "v5.8.19",
+            "version": "v5.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/cache.git",
@@ -1268,7 +1268,7 @@
         },
         {
             "name": "illuminate/config",
-            "version": "v5.8.19",
+            "version": "v5.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/config.git",
@@ -1312,7 +1312,7 @@
         },
         {
             "name": "illuminate/console",
-            "version": "v5.8.19",
+            "version": "v5.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/console.git",
@@ -1363,7 +1363,7 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v5.8.19",
+            "version": "v5.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
@@ -1408,16 +1408,16 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v5.8.19",
+            "version": "v5.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "8e2466437516edaa30201a8b5d4eaa56fa99eacd"
+                "reference": "c4aedc2d440a22a798f8b060a4ee52d3ee8881d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/8e2466437516edaa30201a8b5d4eaa56fa99eacd",
-                "reference": "8e2466437516edaa30201a8b5d4eaa56fa99eacd",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/c4aedc2d440a22a798f8b060a4ee52d3ee8881d2",
+                "reference": "c4aedc2d440a22a798f8b060a4ee52d3ee8881d2",
                 "shasum": ""
             },
             "require": {
@@ -1448,20 +1448,20 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
-            "time": "2019-05-15T00:29:13+00:00"
+            "time": "2019-06-02T04:52:04+00:00"
         },
         {
             "name": "illuminate/database",
-            "version": "v5.8.19",
+            "version": "v5.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "44740cedfbd90c5fc9710ab572adf40ab0b4c11c"
+                "reference": "0912ab85c15a56a9b2d917592c14daa34330d70c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/44740cedfbd90c5fc9710ab572adf40ab0b4c11c",
-                "reference": "44740cedfbd90c5fc9710ab572adf40ab0b4c11c",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/0912ab85c15a56a9b2d917592c14daa34330d70c",
+                "reference": "0912ab85c15a56a9b2d917592c14daa34330d70c",
                 "shasum": ""
             },
             "require": {
@@ -1508,11 +1508,11 @@
                 "orm",
                 "sql"
             ],
-            "time": "2019-05-27T13:28:29+00:00"
+            "time": "2019-06-04T13:01:08+00:00"
         },
         {
             "name": "illuminate/events",
-            "version": "v5.8.19",
+            "version": "v5.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/events.git",
@@ -1557,7 +1557,7 @@
         },
         {
             "name": "illuminate/filesystem",
-            "version": "v5.8.19",
+            "version": "v5.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/filesystem.git",
@@ -1609,7 +1609,7 @@
         },
         {
             "name": "illuminate/mail",
-            "version": "v5.8.19",
+            "version": "v5.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/mail.git",
@@ -1664,7 +1664,7 @@
         },
         {
             "name": "illuminate/notifications",
-            "version": "v5.8.19",
+            "version": "v5.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/notifications.git",
@@ -1717,7 +1717,7 @@
         },
         {
             "name": "illuminate/pipeline",
-            "version": "v5.8.19",
+            "version": "v5.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/pipeline.git",
@@ -1761,7 +1761,7 @@
         },
         {
             "name": "illuminate/queue",
-            "version": "v5.8.19",
+            "version": "v5.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/queue.git",
@@ -1820,16 +1820,16 @@
         },
         {
             "name": "illuminate/redis",
-            "version": "v5.8.19",
+            "version": "v5.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/redis.git",
-                "reference": "843682cb6809167e841708d0a758cbb72c0dcf0e"
+                "reference": "2a10948e9b7fe121b8c32d22474bc58048c16916"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/redis/zipball/843682cb6809167e841708d0a758cbb72c0dcf0e",
-                "reference": "843682cb6809167e841708d0a758cbb72c0dcf0e",
+                "url": "https://api.github.com/repos/illuminate/redis/zipball/2a10948e9b7fe121b8c32d22474bc58048c16916",
+                "reference": "2a10948e9b7fe121b8c32d22474bc58048c16916",
                 "shasum": ""
             },
             "require": {
@@ -1861,20 +1861,20 @@
             ],
             "description": "The Illuminate Redis package.",
             "homepage": "https://laravel.com",
-            "time": "2019-05-27T13:28:29+00:00"
+            "time": "2019-06-03T11:18:42+00:00"
         },
         {
             "name": "illuminate/support",
-            "version": "v5.8.19",
+            "version": "v5.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "5283f273d0bc67964cc7f6373573273de7676c77"
+                "reference": "318bea0200dc61888d55f52b8d5d029434684e31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/5283f273d0bc67964cc7f6373573273de7676c77",
-                "reference": "5283f273d0bc67964cc7f6373573273de7676c77",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/318bea0200dc61888d55f52b8d5d029434684e31",
+                "reference": "318bea0200dc61888d55f52b8d5d029434684e31",
                 "shasum": ""
             },
             "require": {
@@ -1922,11 +1922,11 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2019-05-27T17:33:34+00:00"
+            "time": "2019-05-31T06:33:24+00:00"
         },
         {
             "name": "illuminate/view",
-            "version": "v5.8.19",
+            "version": "v5.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/view.git",
@@ -2574,16 +2574,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.19.0",
+            "version": "2.19.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "c3545b39197d314205226ac3c33cb4db99aa54ab"
+                "reference": "5cf102d1476fdf92f1f991bd1a1a0d93c65755ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/c3545b39197d314205226ac3c33cb4db99aa54ab",
-                "reference": "c3545b39197d314205226ac3c33cb4db99aa54ab",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/5cf102d1476fdf92f1f991bd1a1a0d93c65755ca",
+                "reference": "5cf102d1476fdf92f1f991bd1a1a0d93c65755ca",
                 "shasum": ""
             },
             "require": {
@@ -2630,7 +2630,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-05-30T10:15:05+00:00"
+            "time": "2019-06-04T20:07:46+00:00"
         },
         {
             "name": "netresearch/jsonmapper",
@@ -9261,16 +9261,16 @@
         },
         {
             "name": "symplify/coding-standard",
-            "version": "v6.0.1",
+            "version": "v6.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Symplify/CodingStandard.git",
-                "reference": "0bed4fb56fdd2af771b5bb2fcc432f35bbb04aea"
+                "reference": "c9bdf6fefbbc18638379a1233c97cd75b8a094b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Symplify/CodingStandard/zipball/0bed4fb56fdd2af771b5bb2fcc432f35bbb04aea",
-                "reference": "0bed4fb56fdd2af771b5bb2fcc432f35bbb04aea",
+                "url": "https://api.github.com/repos/Symplify/CodingStandard/zipball/c9bdf6fefbbc18638379a1233c97cd75b8a094b1",
+                "reference": "c9bdf6fefbbc18638379a1233c97cd75b8a094b1",
                 "shasum": ""
             },
             "require": {
@@ -9280,13 +9280,13 @@
                 "php": "^7.1",
                 "phpstan/phpdoc-parser": "^0.3.4",
                 "squizlabs/php_codesniffer": "^3.4",
-                "symplify/package-builder": "^6.0.1"
+                "symplify/package-builder": "^6.0.2"
             },
             "require-dev": {
                 "nette/application": "^2.4|^3.0",
                 "phpunit/phpunit": "^7.5|^8.0",
-                "symplify/easy-coding-standard-tester": "^6.0.1",
-                "symplify/package-builder": "^6.0.1"
+                "symplify/easy-coding-standard-tester": "^6.0.2",
+                "symplify/package-builder": "^6.0.2"
             },
             "type": "library",
             "extra": {
@@ -9305,20 +9305,20 @@
                 "MIT"
             ],
             "description": "Set of Symplify rules for PHP_CodeSniffer and PHP CS Fixer.",
-            "time": "2019-05-30T13:59:05+00:00"
+            "time": "2019-06-04T10:53:05+00:00"
         },
         {
             "name": "symplify/easy-coding-standard",
-            "version": "v6.0.1",
+            "version": "v6.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Symplify/EasyCodingStandard.git",
-                "reference": "faaab285ffece6ee8ce4814acd3cd209b059acbf"
+                "reference": "23a619a857a5743de0f60edb8cce88e2c9a89378"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Symplify/EasyCodingStandard/zipball/faaab285ffece6ee8ce4814acd3cd209b059acbf",
-                "reference": "faaab285ffece6ee8ce4814acd3cd209b059acbf",
+                "url": "https://api.github.com/repos/Symplify/EasyCodingStandard/zipball/23a619a857a5743de0f60edb8cce88e2c9a89378",
+                "reference": "23a619a857a5743de0f60edb8cce88e2c9a89378",
                 "shasum": ""
             },
             "require": {
@@ -9339,12 +9339,12 @@
                 "symfony/finder": "^3.4|^4.2",
                 "symfony/http-kernel": "^3.4|^4.2",
                 "symfony/yaml": "^3.4|^4.2",
-                "symplify/coding-standard": "^6.0.1",
-                "symplify/package-builder": "^6.0.1"
+                "symplify/coding-standard": "^6.0.2",
+                "symplify/package-builder": "^6.0.2"
             },
             "require-dev": {
                 "phpunit/phpunit": "^7.5|^8.0",
-                "symplify/easy-coding-standard-tester": "^6.0.1"
+                "symplify/easy-coding-standard-tester": "^6.0.2"
             },
             "bin": [
                 "bin/ecs"
@@ -9369,11 +9369,11 @@
                 "MIT"
             ],
             "description": "Use Coding Standard with 0-knowledge of PHP-CS-Fixer and PHP_CodeSniffer.",
-            "time": "2019-05-30T13:59:05+00:00"
+            "time": "2019-06-04T10:53:05+00:00"
         },
         {
             "name": "symplify/package-builder",
-            "version": "v6.0.1",
+            "version": "v6.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Symplify/PackageBuilder.git",
