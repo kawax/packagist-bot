@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.100.8",
+            "version": "3.100.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "d4abc59e6fb3407fc66e241886092251a23423e0"
+                "reference": "858a3566f6bce79bb6449a9faff45ab3d8f75a3a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/d4abc59e6fb3407fc66e241886092251a23423e0",
-                "reference": "d4abc59e6fb3407fc66e241886092251a23423e0",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/858a3566f6bce79bb6449a9faff45ab3d8f75a3a",
+                "reference": "858a3566f6bce79bb6449a9faff45ab3d8f75a3a",
                 "shasum": ""
             },
             "require": {
@@ -87,7 +87,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-06-20T18:11:43+00:00"
+            "time": "2019-06-21T18:12:55+00:00"
         },
         {
             "name": "cakephp/utility",
@@ -324,6 +324,7 @@
                 }
             ],
             "description": "Yasmin is a Discord API library for PHP.",
+            "abandoned": true,
             "time": "2019-05-24T14:59:24+00:00"
         },
         {
@@ -772,16 +773,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.3.1",
+            "version": "2.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "bc0fd11bc455cc20ee4b5edabc63ebbf859324c7"
+                "reference": "a28d5cef33627c069a2bd8fbb35ebe1a54881d35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/bc0fd11bc455cc20ee4b5edabc63ebbf859324c7",
-                "reference": "bc0fd11bc455cc20ee4b5edabc63ebbf859324c7",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/a28d5cef33627c069a2bd8fbb35ebe1a54881d35",
+                "reference": "a28d5cef33627c069a2bd8fbb35ebe1a54881d35",
                 "shasum": ""
             },
             "require": {
@@ -829,7 +830,7 @@
                 "throwable",
                 "whoops"
             ],
-            "time": "2018-10-23T09:00:00+00:00"
+            "time": "2019-06-21T09:00:00+00:00"
         },
         {
             "name": "guzzlehttp/command",
