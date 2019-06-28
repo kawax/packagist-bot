@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.102.1",
+            "version": "3.103.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "0fe11c62b118f3362a030e9994e3fe1eeea56172"
+                "reference": "77ed156cc323efcc7912941440c622d5f12ffbce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/0fe11c62b118f3362a030e9994e3fe1eeea56172",
-                "reference": "0fe11c62b118f3362a030e9994e3fe1eeea56172",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/77ed156cc323efcc7912941440c622d5f12ffbce",
+                "reference": "77ed156cc323efcc7912941440c622d5f12ffbce",
                 "shasum": ""
             },
             "require": {
@@ -87,7 +87,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-06-27T00:22:45+00:00"
+            "time": "2019-06-27T18:15:25+00:00"
         },
         {
             "name": "cakephp/utility",
