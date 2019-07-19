@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.107.2",
+            "version": "3.107.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "7a89f7cac726990d563627c542cd030a3203304d"
+                "reference": "2ea91e93b9b1d9b01055896ac5e4f2e8448d141f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/7a89f7cac726990d563627c542cd030a3203304d",
-                "reference": "7a89f7cac726990d563627c542cd030a3203304d",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2ea91e93b9b1d9b01055896ac5e4f2e8448d141f",
+                "reference": "2ea91e93b9b1d9b01055896ac5e4f2e8448d141f",
                 "shasum": ""
             },
             "require": {
@@ -87,7 +87,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-07-17T18:11:12+00:00"
+            "time": "2019-07-18T19:28:55+00:00"
         },
         {
             "name": "cakephp/utility",
@@ -2584,16 +2584,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.21.2",
+            "version": "2.21.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "a8bfb6631e3bc982427406d13ad817fc45d47b61"
+                "reference": "58bdbbfab17ccd2ec7347b99e997f18232def4dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/a8bfb6631e3bc982427406d13ad817fc45d47b61",
-                "reference": "a8bfb6631e3bc982427406d13ad817fc45d47b61",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/58bdbbfab17ccd2ec7347b99e997f18232def4dc",
+                "reference": "58bdbbfab17ccd2ec7347b99e997f18232def4dc",
                 "shasum": ""
             },
             "require": {
@@ -2647,7 +2647,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-07-17T07:49:05+00:00"
+            "time": "2019-07-18T18:47:28+00:00"
         },
         {
             "name": "netresearch/jsonmapper",
@@ -3639,16 +3639,16 @@
         },
         {
             "name": "react/dns",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp/dns.git",
-                "reference": "26c3e7b86f139217b6acc1bc160e2019787555fb"
+                "reference": "a04f6f23ee40afec2e5814ddfbdf71b9e88bbc1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/dns/zipball/26c3e7b86f139217b6acc1bc160e2019787555fb",
-                "reference": "26c3e7b86f139217b6acc1bc160e2019787555fb",
+                "url": "https://api.github.com/repos/reactphp/dns/zipball/a04f6f23ee40afec2e5814ddfbdf71b9e88bbc1f",
+                "reference": "a04f6f23ee40afec2e5814ddfbdf71b9e88bbc1f",
                 "shasum": ""
             },
             "require": {
@@ -3656,8 +3656,7 @@
                 "react/cache": "^1.0 || ^0.6 || ^0.5",
                 "react/event-loop": "^1.0 || ^0.5 || ^0.4 || ^0.3.5",
                 "react/promise": "^2.1 || ^1.2.1",
-                "react/promise-timer": "^1.2",
-                "react/stream": "^1.0 || ^0.7 || ^0.6 || ^0.5 || ^0.4.5"
+                "react/promise-timer": "^1.2"
             },
             "require-dev": {
                 "clue/block-react": "^1.2",
@@ -3680,7 +3679,7 @@
                 "dns-resolver",
                 "reactphp"
             ],
-            "time": "2019-07-11T14:58:39+00:00"
+            "time": "2019-07-18T09:47:47+00:00"
         },
         {
             "name": "react/event-loop",
