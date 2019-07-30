@@ -98,6 +98,7 @@ class ReloadCommand extends Command
     public function schedule(Schedule $schedule): void
     {
         $schedule->command(static::class, ['--quiet'])
-                 ->hourlyAt(50);
+                 ->hourlyAt(50)
+                 ->unlessBetween('12:00', '17:00');
     }
 }
