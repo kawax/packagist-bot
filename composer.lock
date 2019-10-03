@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.112.12",
+            "version": "3.112.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "b8c1e71eaefe44342283ef7240efabcc87197dd4"
+                "reference": "0326ba62f6ee0bb075f2b875631ec4abee93bee1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/b8c1e71eaefe44342283ef7240efabcc87197dd4",
-                "reference": "b8c1e71eaefe44342283ef7240efabcc87197dd4",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/0326ba62f6ee0bb075f2b875631ec4abee93bee1",
+                "reference": "0326ba62f6ee0bb075f2b875631ec4abee93bee1",
                 "shasum": ""
             },
             "require": {
@@ -87,7 +87,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-10-01T18:07:57+00:00"
+            "time": "2019-10-02T18:39:21+00:00"
         },
         {
             "name": "cakephp/utility",
@@ -269,16 +269,16 @@
         },
         {
             "name": "charlottedunois/yasmin",
-            "version": "v0.6.1",
+            "version": "v0.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CharlotteDunois/Yasmin.git",
-                "reference": "c09ee8e773cbfe6bbc100970169104d66bbb8fa5"
+                "reference": "a0a6fa8fb923d349ed798e8cb8d52366b28c63a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CharlotteDunois/Yasmin/zipball/c09ee8e773cbfe6bbc100970169104d66bbb8fa5",
-                "reference": "c09ee8e773cbfe6bbc100970169104d66bbb8fa5",
+                "url": "https://api.github.com/repos/CharlotteDunois/Yasmin/zipball/a0a6fa8fb923d349ed798e8cb8d52366b28c63a4",
+                "reference": "a0a6fa8fb923d349ed798e8cb8d52366b28c63a4",
                 "shasum": ""
             },
             "require": {
@@ -287,9 +287,12 @@
                 "charlottedunois/validator": "^0.3.0",
                 "clue/buzz-react": "^2.6.0",
                 "ext-bcmath": "*",
-                "ext-curl": "*",
+                "ext-date": "*",
+                "ext-filter": "*",
                 "ext-json": "*",
                 "ext-mbstring": "*",
+                "ext-openssl": "*",
+                "ext-pcre": "*",
                 "ext-zlib": "*",
                 "php": ">=7.1",
                 "psr/http-message": "^1.0",
@@ -324,7 +327,7 @@
                 }
             ],
             "description": "Yasmin is a Discord API library for PHP.",
-            "time": "2019-05-24T14:59:24+00:00"
+            "time": "2019-10-02T19:42:22+00:00"
         },
         {
             "name": "clue/buzz-react",
