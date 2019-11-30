@@ -40,9 +40,12 @@ class ProviderCommand extends Command
         $this->info($provider);
 
         if (filled($provider)) {
-            $this->call('packagist:get', [
-                'provider' => $provider,
-            ]);
+            $this->call(
+                'packagist:get',
+                [
+                    'provider' => $provider,
+                ]
+            );
         }
     }
 }

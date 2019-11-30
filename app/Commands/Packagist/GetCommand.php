@@ -37,7 +37,7 @@ class GetCommand extends Command
     /**
      * @var Client
      */
-    protected $client;
+    protected Client $client;
 
     /**
      * Execute the console command.
@@ -77,11 +77,14 @@ class GetCommand extends Command
             },
         ];
 
-        $pool = resolve(Pool::class, [
-            'client'   => $this->client,
-            'requests' => $requests($urls),
-            'config'   => $config,
-        ]);
+        $pool = resolve(
+            Pool::class,
+            [
+                'client'   => $this->client,
+                'requests' => $requests($urls),
+                'config'   => $config,
+            ]
+        );
 
         $pool->promise()->wait();
     }
@@ -96,17 +99,18 @@ class GetCommand extends Command
         $providers = data_get($providers, 'provider-includes');
 
         return collect($providers)
-            ->when(filled($this->argument('provider')), function (Collection $collection) {
-                return $collection->only($this->argument('provider'));
-            })->reject(function ($meta, $provider) {
-                return Storage::exists($this->providerFile($provider, $meta));
-            })->map(function ($meta, $provider) {
-                return [
+            ->when(
+                filled($this->argument('provider')),
+                fn(Collection $collection) => $collection->only($this->argument('provider'))
+            )->reject(
+                fn($meta, $provider) => Storage::exists($this->providerFile($provider, $meta))
+            )->map(
+                fn($meta, $provider) => [
                     'provider' => $provider,
                     'url'      => $this->providerFile($provider, $meta),
                     'sha'      => data_get($meta, 'sha256'),
-                ];
-            })->values();
+                ]
+            )->values();
     }
 
     /**
@@ -133,9 +137,12 @@ class GetCommand extends Command
 
             Storage::put($file, $content);
 
-            $this->call('packagist:package', [
-                'provider' => $file,
-            ]);
+            $this->call(
+                'packagist:package',
+                [
+                    'provider' => $file,
+                ]
+            );
         };
     }
 

@@ -54,11 +54,14 @@ class InfoCommand extends Command
     {
         $this->info('file size');
 
-        $size = rescue(function () {
-            $size = $this->process('du -sh');
+        $size = rescue(
+            function () {
+                $size = $this->process('du -sh');
 
-            return rtrim($size, ". \n\t");
-        }, 'error');
+                return rtrim($size, ". \n\t");
+            },
+            'error'
+        );
 
         $this->line($size);
 
@@ -69,11 +72,14 @@ class InfoCommand extends Command
     {
         $this->info('file count');
 
-        $count = rescue(function () {
-            $count = $this->process('find . -type f -name "*.json" | wc -l');
+        $count = rescue(
+            function () {
+                $count = $this->process('find . -type f -name "*.json" | wc -l');
 
-            return number_format(trim($count));
-        }, 0);
+                return number_format(trim($count));
+            },
+            0
+        );
 
         $this->line($count);
 

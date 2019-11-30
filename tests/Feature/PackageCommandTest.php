@@ -4,16 +4,18 @@ namespace Tests\Feature;
 
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
-use Mockery;
-
 use GuzzleHttp\Pool;
 
 class PackageCommandTest extends TestCase
 {
     public function testGetCommand()
     {
-        $pool = Mockery::mock(Pool::class);
-        $pool->shouldReceive('promise->wait');
+        $this->mock(
+            Pool::class,
+            function ($mock) {
+                $mock->shouldReceive('promise->wait');
+            }
+        );
 
         Storage::shouldReceive('get')->andReturn('{"providers":{"test/test":{"sha256":"aaa"}}}');
 

@@ -30,7 +30,7 @@ class PurgeCommand extends Command
     /**
      * @var array
      */
-    protected $paths;
+    protected array $paths;
 
     /**
      * PurgeCommand constructor.
@@ -74,16 +74,18 @@ class PurgeCommand extends Command
     {
         $client = resolve(CloudFrontClient::class);
 
-        $result = $client->createInvalidation([
-            'DistributionId'    => config('packagist.cloudfront.dist'),
-            'InvalidationBatch' => [
-                'Paths'           => [
-                    'Quantity' => count($this->paths),
-                    'Items'    => $this->paths,
+        $result = $client->createInvalidation(
+            [
+                'DistributionId'    => config('packagist.cloudfront.dist'),
+                'InvalidationBatch' => [
+                    'Paths'           => [
+                        'Quantity' => count($this->paths),
+                        'Items'    => $this->paths,
+                    ],
+                    'CallerReference' => now()->timestamp,
                 ],
-                'CallerReference' => now()->timestamp,
-            ],
-        ]);
+            ]
+        );
 
         $status = data_get($result, 'Invalidation.Status', 'Error?');
         $content = "🧹Purge start... **{$status}**";
