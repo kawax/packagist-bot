@@ -37,7 +37,7 @@ class GetCommand extends Command
     /**
      * @var Client
      */
-    protected $client;
+    protected Client $client;
 
     /**
      * Execute the console command.
