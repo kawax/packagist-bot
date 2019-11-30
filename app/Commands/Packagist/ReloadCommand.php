@@ -57,29 +57,35 @@ class ReloadCommand extends Command
         cache()->forever('info_size', '-');
         cache()->forever('info_count', '-');
 
-        $result = rescue(function () {
-            $this->call('packagist:root');
-            $this->call('packagist:get');
-            if (! cache('suspend_info', false)) {
-                $this->call('packagist:info');
-            }
-            $this->call('packagist:index');
-            $this->call('packagist:sync');
+        $result = rescue(
+            function () {
+                $this->call('packagist:root');
+                $this->call('packagist:get');
+                if (! cache('suspend_info', false)) {
+                    $this->call('packagist:info');
+                }
+                $this->call('packagist:index');
+                $this->call('packagist:sync');
 
-            //            $this->call('packagist:purge');
+                //            $this->call('packagist:purge');
 
-            return true;
-        }, false);
+                return true;
+            },
+            false
+        );
 
-        if (! app()->environment('production')) {
+        if (! app()->isProduction()) {
             return;
         }
 
         if ($result) {
-            $info = implode(' / ', [
-                cache('info_count'),
-                cache('info_size'),
-            ]);
+            $info = implode(
+                ' / ',
+                [
+                    cache('info_count'),
+                    cache('info_size'),
+                ]
+            );
             $content = 'Reload completed! **'.$info.'**';
         } else {
             $content = '☠️Reload failed?';
@@ -93,6 +99,7 @@ class ReloadCommand extends Command
      * Define the command's schedule.
      *
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     *
      * @return void
      */
     public function schedule(Schedule $schedule): void

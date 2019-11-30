@@ -2,7 +2,7 @@ sudo: false
 language: php
 
 php:
-  - '7.3'
+  - 7.4snapshot
 
 before_script:
   - travis_retry composer install --no-interaction --prefer-dist --no-progress --no-suggest

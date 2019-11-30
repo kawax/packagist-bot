@@ -39,12 +39,12 @@ class PackageCommand extends Command
     /**
      * @var Client
      */
-    protected $client;
+    protected Client $client;
 
     /**
      * @var ProgressBar
      */
-    protected $bar;
+    protected ProgressBar $bar;
 
     /**
      * Execute the console command.
@@ -84,11 +84,14 @@ class PackageCommand extends Command
             },
         ];
 
-        $pool = resolve(Pool::class, [
-            'client'   => $this->client,
-            'requests' => $requests($urls),
-            'config'   => $config,
-        ]);
+        $pool = resolve(
+            Pool::class,
+            [
+                'client'   => $this->client,
+                'requests' => $requests($urls),
+                'config'   => $config,
+            ]
+        );
 
         $pool->promise()->wait();
 
@@ -119,17 +122,18 @@ class PackageCommand extends Command
         $packages = data_get($packages, 'providers');
 
         return collect($packages)
-            ->unless(app()->environment('production'), function (Collection $collection) {
-                return $collection->take(10);
-            })->reject(function ($meta, $package) {
-                return Storage::exists($this->packageFile($package, $meta));
-            })->map(function ($meta, $package) {
-                return [
+            ->unless(
+                app()->environment('production'),
+                fn(Collection $collection) => $collection->take(10)
+            )->reject(
+                fn($meta, $package) => Storage::exists($this->packageFile($package, $meta))
+            )->map(
+                fn($meta, $package) => [
                     'package' => $package,
                     'url'     => $this->packageFile($package, $meta),
                     'sha'     => data_get($meta, 'sha256'),
-                ];
-            })->values();
+                ]
+            )->values();
     }
 
     /**

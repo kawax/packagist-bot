@@ -36,7 +36,6 @@ class TestCommand extends Command
 
         Notification::route('discord', config('services.discord.channel'))
                     ->notify(new TestNotification($body));
-
         //Storage::put('test.txt', $body);
     }
 

@@ -46,29 +46,43 @@ class ServeCommand extends Command
      */
     public function handle()
     {
-        Yasmin::on('error', function ($error) {
-            $this->error($error);
-        });
-
-        Yasmin::on('ready', function () {
-            $this->info('Logged in as '.Yasmin::user()->tag.' created on '.Yasmin::user()->createdAt->format('d.m.Y H:i:s'));
-        });
-
-        Yasmin::on('message', function (Message $message) {
-            $this->line('Received Message from '.$message->author->tag.' in '.($message->channel instanceof TextChannelInterface ? 'channel #'.$message->channel->name : 'DM').' with '.$message->attachments->count().' attachment(s) and '.count($message->embeds).' embed(s)');
-
-            if ($message->author->bot) {
-                return;
+        Yasmin::on(
+            'error',
+            function ($error) {
+                $this->error($error);
             }
+        );
 
-            try {
-                if ($message->channel instanceof TextChannelInterface) {
-                    $this->channel($message);
+        Yasmin::on(
+            'ready',
+            function () {
+                $this->info(
+                    'Logged in as '.Yasmin::user()->tag.' created on '.Yasmin::user()->createdAt->format('d.m.Y H:i:s')
+                );
+            }
+        );
+
+        Yasmin::on(
+            'message',
+            function (Message $message) {
+                $this->line(
+                    'Received Message from '.$message->author->tag.' in '.($message->channel instanceof TextChannelInterface ? 'channel #'.$message->channel->name : 'DM').' with '.$message->attachments->count(
+                    ).' attachment(s) and '.count($message->embeds).' embed(s)'
+                );
+
+                if ($message->author->bot) {
+                    return;
                 }
-            } catch (\Exception $error) {
-                $this->error($error->getMessage());
+
+                try {
+                    if ($message->channel instanceof TextChannelInterface) {
+                        $this->channel($message);
+                    }
+                } catch (\Exception $error) {
+                    $this->error($error->getMessage());
+                }
             }
-        });
+        );
 
         Yasmin::login(config('services.discord.token'));
         Yasmin::getLoop()->run();
@@ -93,9 +107,12 @@ class ServeCommand extends Command
             return;
         }
 
-        $message->reply($reply)->done(null, function ($error) {
-            $this->error($error);
-        });
+        $message->reply($reply)->done(
+            null,
+            function ($error) {
+                $this->error($error);
+            }
+        );
     }
 
     /**
@@ -109,8 +126,11 @@ class ServeCommand extends Command
             return;
         }
 
-        $message->reply($reply)->done(null, function ($error) {
-            $this->error($error);
-        });
+        $message->reply($reply)->done(
+            null,
+            function ($error) {
+                $this->error($error);
+            }
+        );
     }
 }

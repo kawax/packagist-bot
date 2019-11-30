@@ -36,15 +36,18 @@ class RootCommand extends Command
     public function handle(Client $client)
     {
         $client->getAsync(config('packagist.root'))
-               ->then(function (ResponseInterface $res) {
-                   $this->task(config('packagist.root'));
+               ->then(
+                   function (ResponseInterface $res) {
+                       $this->task(config('packagist.root'));
 
-                   Storage::put(
-                       config('packagist.root'),
-                       $res->getBody()->getContents()
-                   );
-               }, function (RequestException $e) {
-                   $this->error($e->getMessage());
-               })->wait();
+                       Storage::put(
+                           config('packagist.root'),
+                           $res->getBody()->getContents()
+                       );
+                   },
+                   function (RequestException $e) {
+                       $this->error($e->getMessage());
+                   }
+               )->wait();
     }
 }
