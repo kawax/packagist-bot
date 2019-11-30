@@ -39,12 +39,12 @@ class PackageCommand extends Command
     /**
      * @var Client
      */
-    protected Client $client;
+    protected $client;
 
     /**
      * @var ProgressBar
      */
-    protected ProgressBar $bar;
+    protected $bar;
 
     /**
      * Execute the console command.
