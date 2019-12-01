@@ -30,7 +30,7 @@ class PurgeCommand extends Command
     /**
      * @var array
      */
-    protected array $paths;
+    protected $paths;
 
     /**
      * PurgeCommand constructor.
