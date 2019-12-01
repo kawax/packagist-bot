@@ -37,7 +37,7 @@ class GetCommand extends Command
     /**
      * @var Client
      */
-    protected Client $client;
+    protected $client;
 
     /**
      * Execute the console command.
@@ -101,15 +101,21 @@ class GetCommand extends Command
         return collect($providers)
             ->when(
                 filled($this->argument('provider')),
-                fn(Collection $collection) => $collection->only($this->argument('provider'))
+                function (Collection $collection) {
+                    return $collection->only($this->argument('provider'));
+                }
             )->reject(
-                fn($meta, $provider) => Storage::exists($this->providerFile($provider, $meta))
+                function ($meta, $provider) {
+                    return Storage::exists($this->providerFile($provider, $meta));
+                }
             )->map(
-                fn($meta, $provider) => [
-                    'provider' => $provider,
-                    'url'      => $this->providerFile($provider, $meta),
-                    'sha'      => data_get($meta, 'sha256'),
-                ]
+                function ($meta, $provider) {
+                    return [
+                        'provider' => $provider,
+                        'url'      => $this->providerFile($provider, $meta),
+                        'sha'      => data_get($meta, 'sha256'),
+                    ];
+                }
             )->values();
     }
 

@@ -39,12 +39,12 @@ class PackageCommand extends Command
     /**
      * @var Client
      */
-    protected Client $client;
+    protected $client;
 
     /**
      * @var ProgressBar
      */
-    protected ProgressBar $bar;
+    protected $bar;
 
     /**
      * Execute the console command.
@@ -124,15 +124,21 @@ class PackageCommand extends Command
         return collect($packages)
             ->unless(
                 app()->environment('production'),
-                fn(Collection $collection) => $collection->take(10)
+                function (Collection $collection) {
+                    return $collection->take(10);
+                }
             )->reject(
-                fn($meta, $package) => Storage::exists($this->packageFile($package, $meta))
+                function ($meta, $package) {
+                    return Storage::exists($this->packageFile($package, $meta));
+                }
             )->map(
-                fn($meta, $package) => [
-                    'package' => $package,
-                    'url'     => $this->packageFile($package, $meta),
-                    'sha'     => data_get($meta, 'sha256'),
-                ]
+                function ($meta, $package) {
+                    return [
+                        'package' => $package,
+                        'url'     => $this->packageFile($package, $meta),
+                        'sha'     => data_get($meta, 'sha256'),
+                    ];
+                }
             )->values();
     }
 
