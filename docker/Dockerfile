@@ -8,6 +8,8 @@ RUN apt-get update \
 
 RUN docker-php-ext-install pdo_mysql bcmath pcntl
 
+RUN pecl install redis && docker-php-ext-enable redis
+
 # composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
