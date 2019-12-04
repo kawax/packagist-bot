@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.125.0",
+            "version": "3.127.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "d9ffe7cf9cc93d3c49f4f6d2db6cf0c469686f9c"
+                "reference": "c7f8c962ad2bb1430e673f14505870d8573a55d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/d9ffe7cf9cc93d3c49f4f6d2db6cf0c469686f9c",
-                "reference": "d9ffe7cf9cc93d3c49f4f6d2db6cf0c469686f9c",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c7f8c962ad2bb1430e673f14505870d8573a55d6",
+                "reference": "c7f8c962ad2bb1430e673f14505870d8573a55d6",
                 "shasum": ""
             },
             "require": {
@@ -42,7 +42,8 @@
                 "nette/neon": "^2.3",
                 "phpunit/phpunit": "^4.8.35|^5.4.3",
                 "psr/cache": "^1.0",
-                "psr/simple-cache": "^1.0"
+                "psr/simple-cache": "^1.0",
+                "sebastian/comparator": "^1.2.3"
             },
             "suggest": {
                 "aws/aws-php-sns-message-validator": "To validate incoming SNS notifications",
@@ -87,7 +88,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-12-02T23:15:42+00:00"
+            "time": "2019-12-04T01:40:14+00:00"
         },
         {
             "name": "cakephp/utility",
@@ -1144,7 +1145,7 @@
         },
         {
             "name": "illuminate/broadcasting",
-            "version": "v6.6.0",
+            "version": "v6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/broadcasting.git",
@@ -1195,7 +1196,7 @@
         },
         {
             "name": "illuminate/bus",
-            "version": "v6.6.0",
+            "version": "v6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/bus.git",
@@ -1240,7 +1241,7 @@
         },
         {
             "name": "illuminate/cache",
-            "version": "v6.6.0",
+            "version": "v6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/cache.git",
@@ -1291,7 +1292,7 @@
         },
         {
             "name": "illuminate/config",
-            "version": "v6.6.0",
+            "version": "v6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/config.git",
@@ -1335,16 +1336,16 @@
         },
         {
             "name": "illuminate/console",
-            "version": "v6.6.0",
+            "version": "v6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/console.git",
-                "reference": "f494593315fdbbc052d532a4d662fd09dc699f33"
+                "reference": "8e5977541aeb98f8d04b62ecea7f8246f399d97b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/console/zipball/f494593315fdbbc052d532a4d662fd09dc699f33",
-                "reference": "f494593315fdbbc052d532a4d662fd09dc699f33",
+                "url": "https://api.github.com/repos/illuminate/console/zipball/8e5977541aeb98f8d04b62ecea7f8246f399d97b",
+                "reference": "8e5977541aeb98f8d04b62ecea7f8246f399d97b",
                 "shasum": ""
             },
             "require": {
@@ -1382,11 +1383,11 @@
             ],
             "description": "The Illuminate Console package.",
             "homepage": "https://laravel.com",
-            "time": "2019-11-18T16:17:36+00:00"
+            "time": "2019-11-29T13:41:50+00:00"
         },
         {
             "name": "illuminate/container",
-            "version": "v6.6.0",
+            "version": "v6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
@@ -1430,7 +1431,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v6.6.0",
+            "version": "v6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -1474,16 +1475,16 @@
         },
         {
             "name": "illuminate/database",
-            "version": "v6.6.0",
+            "version": "v6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "f9c14f2d44f440501b87d87388fef119e351931a"
+                "reference": "eef682f66b9a1d44c93121129a8b8412ac653460"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/f9c14f2d44f440501b87d87388fef119e351931a",
-                "reference": "f9c14f2d44f440501b87d87388fef119e351931a",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/eef682f66b9a1d44c93121129a8b8412ac653460",
+                "reference": "eef682f66b9a1d44c93121129a8b8412ac653460",
                 "shasum": ""
             },
             "require": {
@@ -1530,11 +1531,11 @@
                 "orm",
                 "sql"
             ],
-            "time": "2019-11-25T14:33:12+00:00"
+            "time": "2019-11-29T13:48:54+00:00"
         },
         {
             "name": "illuminate/events",
-            "version": "v6.6.0",
+            "version": "v6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/events.git",
@@ -1579,7 +1580,7 @@
         },
         {
             "name": "illuminate/filesystem",
-            "version": "v6.6.0",
+            "version": "v6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/filesystem.git",
@@ -1631,16 +1632,16 @@
         },
         {
             "name": "illuminate/mail",
-            "version": "v6.6.0",
+            "version": "v6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/mail.git",
-                "reference": "6152d814717d0d4f9bb6f5f629a55fe817f4f748"
+                "reference": "ee44bc3ad05695efacb3ba374efe23570ce80d13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/mail/zipball/6152d814717d0d4f9bb6f5f629a55fe817f4f748",
-                "reference": "6152d814717d0d4f9bb6f5f629a55fe817f4f748",
+                "url": "https://api.github.com/repos/illuminate/mail/zipball/ee44bc3ad05695efacb3ba374efe23570ce80d13",
+                "reference": "ee44bc3ad05695efacb3ba374efe23570ce80d13",
                 "shasum": ""
             },
             "require": {
@@ -1682,11 +1683,11 @@
             ],
             "description": "The Illuminate Mail package.",
             "homepage": "https://laravel.com",
-            "time": "2019-11-12T14:47:12+00:00"
+            "time": "2019-11-28T17:07:22+00:00"
         },
         {
             "name": "illuminate/notifications",
-            "version": "v6.6.0",
+            "version": "v6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/notifications.git",
@@ -1739,7 +1740,7 @@
         },
         {
             "name": "illuminate/pipeline",
-            "version": "v6.6.0",
+            "version": "v6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/pipeline.git",
@@ -1784,7 +1785,7 @@
         },
         {
             "name": "illuminate/queue",
-            "version": "v6.6.0",
+            "version": "v6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/queue.git",
@@ -1844,7 +1845,7 @@
         },
         {
             "name": "illuminate/redis",
-            "version": "v6.6.0",
+            "version": "v6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/redis.git",
@@ -1892,16 +1893,16 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v6.6.0",
+            "version": "v6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "7e4c94d4a3a6422d5138051f24772e181b927d73"
+                "reference": "ee905d0fe7a5f956d2d611f7d7c633c24a4e3cae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/7e4c94d4a3a6422d5138051f24772e181b927d73",
-                "reference": "7e4c94d4a3a6422d5138051f24772e181b927d73",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/ee905d0fe7a5f956d2d611f7d7c633c24a4e3cae",
+                "reference": "ee905d0fe7a5f956d2d611f7d7c633c24a4e3cae",
                 "shasum": ""
             },
             "require": {
@@ -1949,11 +1950,11 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2019-11-22T20:00:39+00:00"
+            "time": "2019-11-29T13:39:31+00:00"
         },
         {
             "name": "illuminate/view",
-            "version": "v6.6.0",
+            "version": "v6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/view.git",
@@ -8411,16 +8412,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.5.2",
+            "version": "3.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "65b12cdeaaa6cd276d4c3033a95b9b88b12701e7"
+                "reference": "557a1fc7ac702c66b0bbfe16ab3d55839ef724cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/65b12cdeaaa6cd276d4c3033a95b9b88b12701e7",
-                "reference": "65b12cdeaaa6cd276d4c3033a95b9b88b12701e7",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/557a1fc7ac702c66b0bbfe16ab3d55839ef724cb",
+                "reference": "557a1fc7ac702c66b0bbfe16ab3d55839ef724cb",
                 "shasum": ""
             },
             "require": {
@@ -8458,7 +8459,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2019-10-28T04:36:32+00:00"
+            "time": "2019-12-04T04:46:47+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
