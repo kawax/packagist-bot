@@ -36,7 +36,7 @@
 
         <h3>設定</h3>
         <ul>
-            <li>1時間に1回の更新。50分開始。CloudFrontのキャッシュは残る。急ぐならDiscordで操作する想定。</li>
+            <li>1時間に1回の更新。30分開始。CloudFrontのキャッシュは残る。急ぐならDiscordで操作する想定。</li>
             <li>このページ自体キャッシュされてるのでLast-Modifiedは参考にならない。Discord内の通知が正確。ここは普段見ないので優先度は低い。</li>
             <li>12時にキャッシュ強制削除。</li>
             <li>数ヶ月稼働させた結果、困ることはなかったのでしばらくはこの設定。</li>
@@ -59,11 +59,6 @@
         <h3>終了条件</h3>
         <ul>
             <li>運用費用が高くなりすぎたら終了。スポンサーか代わりに運用できる会社を募集する。(現状はかなり安いので問題なさそう)</li>
-            <li>
-                <a href="https://www.pixiv.net/fanbox/creator/762638/post/268311"
-                   target="_blank"
-                   rel="noopener noreferrer">packagist-botの動かし方</a>
-            </li>
         </ul>
     </div>
 </article>
