@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.128.2",
+            "version": "3.128.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "a81485e12b2545aff17134bbf29442037f3fcadb"
+                "reference": "eea8dbe60b23cbefdb3de7b635a0971a12067c6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/a81485e12b2545aff17134bbf29442037f3fcadb",
-                "reference": "a81485e12b2545aff17134bbf29442037f3fcadb",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/eea8dbe60b23cbefdb3de7b635a0971a12067c6f",
+                "reference": "eea8dbe60b23cbefdb3de7b635a0971a12067c6f",
                 "shasum": ""
             },
             "require": {
@@ -88,7 +88,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-12-10T19:12:09+00:00"
+            "time": "2019-12-12T19:15:28+00:00"
         },
         {
             "name": "cakephp/utility",
@@ -2263,16 +2263,16 @@
         },
         {
             "name": "laravel-zero/foundation",
-            "version": "v6.0.5",
+            "version": "v6.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-zero/foundation.git",
-                "reference": "fdda20b890e21ded358f18702e2070151a530600"
+                "reference": "1a734e4df3e8d38cd2ca39cb092b7622615eb165"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-zero/foundation/zipball/fdda20b890e21ded358f18702e2070151a530600",
-                "reference": "fdda20b890e21ded358f18702e2070151a530600",
+                "url": "https://api.github.com/repos/laravel-zero/foundation/zipball/1a734e4df3e8d38cd2ca39cb092b7622615eb165",
+                "reference": "1a734e4df3e8d38cd2ca39cb092b7622615eb165",
                 "shasum": ""
             },
             "require": {
@@ -2299,7 +2299,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-10-03T20:37:25+00:00"
+            "time": "2019-12-12T12:35:20+00:00"
         },
         {
             "name": "laravel-zero/framework",
@@ -3067,28 +3067,29 @@
         },
         {
             "name": "phpoption/phpoption",
-            "version": "1.6.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/php-option.git",
-                "reference": "f4e7a6a1382183412246f0d361078c29fb85089e"
+                "reference": "318ad673ba36e53e10ca510aec1c54b4f2a5f2ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/f4e7a6a1382183412246f0d361078c29fb85089e",
-                "reference": "f4e7a6a1382183412246f0d361078c29fb85089e",
+                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/318ad673ba36e53e10ca510aec1c54b4f2a5f2ae",
+                "reference": "318ad673ba36e53e10ca510aec1c54b4f2a5f2ae",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.5.9 || ^7.0"
             },
             "require-dev": {
+                "bamarni/composer-bin-plugin": "^1.3",
                 "phpunit/phpunit": "^4.8.35 || ^5.0 || ^6.0 || ^7.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.6-dev"
+                    "dev-master": "1.7-dev"
                 }
             },
             "autoload": {
@@ -3117,7 +3118,7 @@
                 "php",
                 "type"
             ],
-            "time": "2019-11-30T20:20:49+00:00"
+            "time": "2019-12-13T00:10:22+00:00"
         },
         {
             "name": "psr/container",
@@ -5827,16 +5828,16 @@
     "packages-dev": [
         {
             "name": "composer/ca-bundle",
-            "version": "1.2.4",
+            "version": "1.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "10bb96592168a0f8e8f6dcde3532d9fa50b0b527"
+                "reference": "62e8fc2dc550e5d6d8c9360c7721662670f58149"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/10bb96592168a0f8e8f6dcde3532d9fa50b0b527",
-                "reference": "10bb96592168a0f8e8f6dcde3532d9fa50b0b527",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/62e8fc2dc550e5d6d8c9360c7721662670f58149",
+                "reference": "62e8fc2dc550e5d6d8c9360c7721662670f58149",
                 "shasum": ""
             },
             "require": {
@@ -5847,7 +5848,7 @@
             "require-dev": {
                 "phpunit/phpunit": "^4.8.35 || ^5.7 || 6.5 - 8",
                 "psr/log": "^1.0",
-                "symfony/process": "^2.5 || ^3.0 || ^4.0"
+                "symfony/process": "^2.5 || ^3.0 || ^4.0 || ^5.0"
             },
             "type": "library",
             "extra": {
@@ -5879,7 +5880,7 @@
                 "ssl",
                 "tls"
             ],
-            "time": "2019-08-30T08:44:50+00:00"
+            "time": "2019-12-11T14:44:42+00:00"
         },
         {
             "name": "composer/composer",
@@ -6741,32 +6742,32 @@
         },
         {
             "name": "object-calisthenics/phpcs-calisthenics-rules",
-            "version": "v3.6.0",
+            "version": "v3.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/object-calisthenics/phpcs-calisthenics-rules.git",
-                "reference": "2af78d048e1c9cabccafb209adc03499e954ffcd"
+                "reference": "f7bca2448514a9c36f244994aa05fc9e41182246"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/object-calisthenics/phpcs-calisthenics-rules/zipball/2af78d048e1c9cabccafb209adc03499e954ffcd",
-                "reference": "2af78d048e1c9cabccafb209adc03499e954ffcd",
+                "url": "https://api.github.com/repos/object-calisthenics/phpcs-calisthenics-rules/zipball/f7bca2448514a9c36f244994aa05fc9e41182246",
+                "reference": "f7bca2448514a9c36f244994aa05fc9e41182246",
                 "shasum": ""
             },
             "require": {
                 "nette/utils": "^3.0",
                 "php": "^7.2",
-                "slevomat/coding-standard": "^5.0.4",
+                "slevomat/coding-standard": "^5.0.4|^6.0",
                 "squizlabs/php_codesniffer": "^3.5"
             },
             "require-dev": {
-                "phpstan/phpstan": "^0.11.19",
-                "phpunit/phpunit": "^8.4",
-                "rector/rector": "^0.5.21",
-                "symplify/changelog-linker": "^6.1",
-                "symplify/coding-standard": "^6.1",
-                "symplify/easy-coding-standard-tester": "^6.1",
-                "symplify/phpstan-extensions": "^6.1",
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": "^8.5",
+                "rector/rector": "^0.6",
+                "symplify/changelog-linker": "^7.1",
+                "symplify/coding-standard": "^7.1",
+                "symplify/easy-coding-standard-tester": "^7.1",
+                "symplify/phpstan-extensions": "^7.1",
                 "tracy/tracy": "^2.7"
             },
             "type": "phpcodesniffer-standard",
@@ -6780,7 +6781,7 @@
                 "MIT"
             ],
             "description": "PHP CodeSniffer Object Calisthenics rules/sniffs",
-            "time": "2019-11-10T13:20:07+00:00"
+            "time": "2019-12-11T15:46:58+00:00"
         },
         {
             "name": "phar-io/manifest",
