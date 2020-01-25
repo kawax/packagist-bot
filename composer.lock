@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.133.5",
+            "version": "3.133.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "99ea2386f68ba29acd8e91c515e0fc19b2845378"
+                "reference": "cd7bd2fdd159146ef6c7eeb90b73fae4fd11da57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/99ea2386f68ba29acd8e91c515e0fc19b2845378",
-                "reference": "99ea2386f68ba29acd8e91c515e0fc19b2845378",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/cd7bd2fdd159146ef6c7eeb90b73fae4fd11da57",
+                "reference": "cd7bd2fdd159146ef6c7eeb90b73fae4fd11da57",
                 "shasum": ""
             },
             "require": {
@@ -88,7 +88,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2020-01-23T19:15:25+00:00"
+            "time": "2020-01-24T19:11:35+00:00"
         },
         {
             "name": "cakephp/utility",
@@ -2098,25 +2098,26 @@
         },
         {
             "name": "jolicode/jolinotif",
-            "version": "v2.0.2",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jolicode/JoliNotif.git",
-                "reference": "0b5f786c5f181b3916df616ca191892713257662"
+                "reference": "b1a7ccfeb13f1daa12a5188531863b739e388e13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jolicode/JoliNotif/zipball/0b5f786c5f181b3916df616ca191892713257662",
-                "reference": "0b5f786c5f181b3916df616ca191892713257662",
+                "url": "https://api.github.com/repos/jolicode/JoliNotif/zipball/b1a7ccfeb13f1daa12a5188531863b739e388e13",
+                "reference": "b1a7ccfeb13f1daa12a5188531863b739e388e13",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.0",
-                "symfony/process": "~3.3|~4.0"
+                "symfony/process": "^3.3|^4.0|^5.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "~2.0",
-                "symfony/phpunit-bridge": "^3.3"
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "symfony/finder": "^3.3|^4.0|^5.0",
+                "symfony/phpunit-bridge": "^3.4.26|^4.0|^5.0"
             },
             "bin": [
                 "jolinotif"
@@ -2124,7 +2125,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "2.1.x-dev"
                 }
             },
             "autoload": {
@@ -2150,7 +2151,7 @@
                 "notification",
                 "windows"
             ],
-            "time": "2019-02-26T18:10:50+00:00"
+            "time": "2020-01-10T15:37:00+00:00"
         },
         {
             "name": "laravel-notification-channels/discord",
