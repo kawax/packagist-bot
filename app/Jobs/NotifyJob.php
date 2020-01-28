@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Notification;
 
 class NotifyJob
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * @var \Illuminate\Notifications\Notification
