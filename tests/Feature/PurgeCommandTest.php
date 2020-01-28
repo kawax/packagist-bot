@@ -53,7 +53,7 @@ class PurgeCommandTest extends TestCase
              ->assertExitCode(0);
 
         Notification::assertSentTo(
-            new AnonymousNotifiable,
+            new AnonymousNotifiable(),
             SimpleNotification::class,
             function ($notification, $channels) {
                 return Str::contains($notification->content, 'InProgress');
@@ -74,7 +74,7 @@ class PurgeCommandTest extends TestCase
              ->assertExitCode(1);
 
         Notification::assertSentTo(
-            new AnonymousNotifiable,
+            new AnonymousNotifiable(),
             SimpleNotification::class,
             function ($notification, $channels) {
                 return Str::contains($notification->content, 'Purge rate limit');
