@@ -124,11 +124,11 @@ class PackageCommand extends Command
         return collect($packages)
             ->unless(
                 app()->environment('production'),
-                fn(Collection $collection) => $collection->take(10)
+                fn (Collection $collection) => $collection->take(10)
             )->reject(
-                fn($meta, $package) => Storage::exists($this->packageFile($package, $meta))
+                fn ($meta, $package) => Storage::exists($this->packageFile($package, $meta))
             )->map(
-                fn($meta, $package) => [
+                fn ($meta, $package) => [
                     'package' => $package,
                     'url'     => $this->packageFile($package, $meta),
                     'sha'     => data_get($meta, 'sha256'),
