@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use GuzzleHttp\Pool;
+use Tests\TestCase;
 
 class GetCommandTest extends TestCase
 {

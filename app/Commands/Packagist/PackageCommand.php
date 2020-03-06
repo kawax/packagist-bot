@@ -2,22 +2,16 @@
 
 namespace App\Commands\Packagist;
 
-use LaravelZero\Framework\Commands\Command;
-
+use App\Jobs\NotifyJob;
+use App\Notifications\HashErrorNotification;
 use Closure;
-
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Collection;
-
 use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use LaravelZero\Framework\Commands\Command;
 use Psr\Http\Message\ResponseInterface;
-
-use App\Notifications\HashErrorNotification;
-
-use App\Jobs\NotifyJob;
-
 use Symfony\Component\Console\Helper\ProgressBar;
 
 class PackageCommand extends Command

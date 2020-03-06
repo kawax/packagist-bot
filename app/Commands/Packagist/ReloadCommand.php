@@ -2,12 +2,10 @@
 
 namespace App\Commands\Packagist;
 
+use App\Jobs\NotifyJob;
+use App\Notifications\SimpleNotification;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
-
-use App\Notifications\SimpleNotification;
-
-use App\Jobs\NotifyJob;
 
 /**
  * @codeCoverageIgnore

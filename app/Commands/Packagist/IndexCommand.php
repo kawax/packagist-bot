@@ -2,10 +2,9 @@
 
 namespace App\Commands\Packagist;
 
-use LaravelZero\Framework\Commands\Command;
-
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use LaravelZero\Framework\Commands\Command;
 
 class IndexCommand extends Command
 {

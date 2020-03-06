@@ -2,18 +2,14 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-
-use Mockery;
-
+use App\Notifications\SimpleNotification;
 use Aws\CloudFront\CloudFrontClient;
-
+use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Notifications\AnonymousNotifiable;
-use App\Notifications\SimpleNotification;
-
 use Illuminate\Support\Str;
+use Mockery;
+use Tests\TestCase;
 
 class PurgeCommandTest extends TestCase
 {

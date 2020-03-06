@@ -2,10 +2,8 @@
 
 namespace App\Commands\Packagist;
 
-use LaravelZero\Framework\Commands\Command;
-
 use Illuminate\Support\Facades\Storage;
-
+use LaravelZero\Framework\Commands\Command;
 use Symfony\Component\Process\Process;
 
 class InfoCommand extends Command

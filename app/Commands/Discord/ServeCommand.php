@@ -2,13 +2,11 @@
 
 namespace App\Commands\Discord;
 
-use LaravelZero\Framework\Commands\Command;
-
-use Revolution\DiscordManager\Facades\DiscordManager;
-
-use Revolution\DiscordManager\Facades\Yasmin;
-use CharlotteDunois\Yasmin\Models\Message;
 use CharlotteDunois\Yasmin\Interfaces\TextChannelInterface;
+use CharlotteDunois\Yasmin\Models\Message;
+use LaravelZero\Framework\Commands\Command;
+use Revolution\DiscordManager\Facades\DiscordManager;
+use Revolution\DiscordManager\Facades\Yasmin;
 
 /**
  * @codeCoverageIgnore

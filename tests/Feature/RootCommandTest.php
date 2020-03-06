@@ -2,10 +2,9 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Mockery;
-
 use GuzzleHttp\Client;
+use Mockery;
+use Tests\TestCase;
 
 class RootCommandTest extends TestCase
 {

@@ -3,7 +3,6 @@
 namespace App\Discord\Commands;
 
 use CharlotteDunois\Yasmin\Models\Message;
-
 use Illuminate\Support\Facades\Artisan;
 
 class Purge
