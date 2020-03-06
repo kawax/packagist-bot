@@ -2,10 +2,9 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
+use Tests\TestCase;
 
 class IndexCommandTest extends TestCase
 {

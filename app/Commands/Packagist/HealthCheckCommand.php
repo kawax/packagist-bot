@@ -2,13 +2,11 @@
 
 namespace App\Commands\Packagist;
 
-use Illuminate\Console\Scheduling\Schedule;
-use LaravelZero\Framework\Commands\Command;
-
-use Illuminate\Support\Facades\Storage;
-use App\Notifications\HealthCheckNotification;
-
 use App\Jobs\NotifyJob;
+use App\Notifications\HealthCheckNotification;
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Facades\Storage;
+use LaravelZero\Framework\Commands\Command;
 
 /**
  * @codeCoverageIgnore
@@ -36,7 +34,7 @@ class HealthCheckCommand extends Command
      */
     public function handle()
     {
-        $before = (int)cache('root_modified', 0);
+        $before = (int) cache('root_modified', 0);
 
         $last = Storage::lastModified(config('packagist.root'));
 

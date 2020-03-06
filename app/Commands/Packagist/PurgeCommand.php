@@ -2,14 +2,11 @@
 
 namespace App\Commands\Packagist;
 
+use App\Jobs\NotifyJob;
+use App\Notifications\SimpleNotification;
+use Aws\CloudFront\CloudFrontClient;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
-
-use Aws\CloudFront\CloudFrontClient;
-
-use App\Notifications\SimpleNotification;
-
-use App\Jobs\NotifyJob;
 
 class PurgeCommand extends Command
 {

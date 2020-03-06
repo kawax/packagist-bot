@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
+use GuzzleHttp\Pool;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
-use GuzzleHttp\Pool;
 
 class PackageCommandTest extends TestCase
 {

@@ -2,9 +2,8 @@
 
 namespace App\Commands\Packagist;
 
-use LaravelZero\Framework\Commands\Command;
-
 use Illuminate\Support\Facades\Storage;
+use LaravelZero\Framework\Commands\Command;
 
 class ProviderCommand extends Command
 {

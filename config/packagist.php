@@ -2,36 +2,36 @@
 
 return [
     /**
-     * GuzzleClient options
+     * GuzzleClient options.
      */
     'guzzle'      => [
         'base_uri' => 'https://repo.packagist.org/',
     ],
 
     /**
-     * Root packages.json
+     * Root packages.json.
      */
     'root'        => 'packages.json',
 
     /**
-     * Max connections
+     * Max connections.
      */
     'concurrency' => env('CONCURRENCY', 25),
 
     /**
-     * S3
+     * S3.
      */
     's3'          => [
         //Sync command
         //aws s3 sync . s3://bucket --delete
         'sync' => env('S3_SYNC'),
 
-        'timeout' => (float)env('S3_SYNC_TIMEOUT', 600),
+        'timeout' => (float) env('S3_SYNC_TIMEOUT', 600),
     ],
 
     /**
      * AWS IAM User
-     * S3(read/write), CloudFront(read/write)
+     * S3(read/write), CloudFront(read/write).
      */
     'aws'         => [
         'key'    => env('AWS_ACCESS_KEY_ID'),
@@ -40,14 +40,14 @@ return [
     ],
 
     /**
-     * CloudFront Distribution ID
+     * CloudFront Distribution ID.
      */
     'cloudfront'  => [
         'dist' => env('AWS_CF_DIST'),
     ],
 
     /**
-     * Google Analytics
+     * Google Analytics.
      */
     'analytics'   => env('GOOGLE_ANALYTICS'),
 ];

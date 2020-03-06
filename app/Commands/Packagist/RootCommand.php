@@ -2,13 +2,11 @@
 
 namespace App\Commands\Packagist;
 
-use LaravelZero\Framework\Commands\Command;
-
-use Illuminate\Support\Facades\Storage;
-
 use GuzzleHttp\Client;
-use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Facades\Storage;
+use LaravelZero\Framework\Commands\Command;
+use Psr\Http\Message\ResponseInterface;
 
 class RootCommand extends Command
 {

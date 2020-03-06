@@ -2,13 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-
-use Illuminate\View\View;
-use Illuminate\Support\Facades\Storage;
-
-use GuzzleHttp\Client;
 use Aws\CloudFront\CloudFrontClient;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View;
 
 class AppServiceProvider extends ServiceProvider
 {
