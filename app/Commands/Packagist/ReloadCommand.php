@@ -104,6 +104,6 @@ class ReloadCommand extends Command
     {
         $schedule->command(static::class, ['--quiet'])
                  ->hourlyAt(30)
-                 ->unlessBetween('16:00', '23:00');
+                 ->unlessBetween('16:00', '19:00');
     }
 }
