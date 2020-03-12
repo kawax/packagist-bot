@@ -1,7 +1,5 @@
 FROM php:7.4-fpm
 
-ENV DEBIAN_FRONTEND noninteractive
-
 RUN apt-get update \
     && apt-get install -yq zlib1g-dev libzip-dev unzip \
     && docker-php-ext-install zip
@@ -12,10 +10,9 @@ RUN pecl install redis && docker-php-ext-enable redis
 
 # composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-ENV COMPOSER_ALLOW_SUPERUSER 1
 
 RUN composer config -g repos.packagist composer https://packagist.kawax.biz/
-RUN composer global require hirak/prestissimo
+RUN composer global require hirak/prestissimo --no-progress
 
 # aws cli
 RUN apt-get install -yq --fix-missing python \
