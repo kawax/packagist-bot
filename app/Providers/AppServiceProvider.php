@@ -6,6 +6,7 @@ use Aws\CloudFront\CloudFrontClient;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->macro('publish', function (string $file = 'index.html') {
+        View::macro('publish', function (string $file = 'index.html') {
             Storage::put($file, $this->render());
         });
     }
