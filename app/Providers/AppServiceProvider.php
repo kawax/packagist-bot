@@ -6,22 +6,9 @@ use Aws\CloudFront\CloudFrontClient;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\View\View;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        View::macro('publish', function (string $file = 'index.html') {
-            Storage::put($file, $this->render());
-        });
-    }
-
     /**
      * Register any application services.
      *
@@ -42,6 +29,18 @@ class AppServiceProvider extends ServiceProvider
                 'region'      => 'us-east-1',
                 'version'     => 'latest',
             ]);
+        });
+    }
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        view()->macro('publish', function (string $file = 'index.html') {
+            Storage::put($file, $this->render());
         });
     }
 }

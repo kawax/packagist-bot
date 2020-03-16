@@ -117,7 +117,7 @@ class PackageCommand extends Command
 
         return collect($packages)
             ->unless(
-                app()->environment('production'),
+                app()->isProduction(),
                 fn (Collection $collection) => $collection->take(10)
             )->reject(
                 fn ($meta, $package) => Storage::exists($this->packageFile($package, $meta))
