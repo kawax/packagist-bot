@@ -29,15 +29,9 @@ class IndexCommand extends Command
      */
     public function handle()
     {
-        $last = now();
-
-        view('welcome')->with(
-            compact(
-                [
-                    'last',
-                ]
-            )
-        )->publish('index.html');
+        view('welcome')
+            ->with(['last' => now()])
+            ->publish();
 
         File::copyDirectory(resource_path('public'), Storage::path(''));
     }
