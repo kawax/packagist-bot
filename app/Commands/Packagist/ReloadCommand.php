@@ -52,20 +52,12 @@ class ReloadCommand extends Command
      */
     protected function reload()
     {
-        cache()->forever('info_size', '-');
-        cache()->forever('info_count', '-');
-
         $result = rescue(
             function () {
                 $this->call('packagist:root');
                 $this->call('packagist:get');
-                if (! cache('suspend_info', false)) {
-                    $this->call('packagist:info');
-                }
                 $this->call('packagist:index');
                 $this->call('packagist:sync');
-
-                //            $this->call('packagist:purge');
 
                 return true;
             },
@@ -87,7 +79,6 @@ class ReloadCommand extends Command
             $content = 'Reload completed! **'.$info.'**';
         } else {
             $content = '☠️Reload failed?';
-            cache(['suspend_info' => true], now()->addHours(12));
         }
 
         NotifyJob::dispatchNow(new SimpleNotification($content));
@@ -103,7 +94,6 @@ class ReloadCommand extends Command
     public function schedule(Schedule $schedule): void
     {
         $schedule->command(static::class, ['--quiet'])
-                 ->hourlyAt(30)
-                 ->unlessBetween('16:00', '19:00');
+                 ->hourlyAt(30);
     }
 }

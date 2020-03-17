@@ -2,6 +2,7 @@
 
 namespace App\Commands\Packagist;
 
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\Storage;
 use LaravelZero\Framework\Commands\Command;
 use Symfony\Component\Process\Process;
@@ -29,6 +30,9 @@ class InfoCommand extends Command
      */
     public function handle()
     {
+        cache()->forever('info_size', '-');
+        cache()->forever('info_count', '-');
+
         $this->fileSize();
         $this->fileCount();
     }
@@ -43,7 +47,7 @@ class InfoCommand extends Command
     {
         return Process::fromShellCommandline($command)
                       ->setWorkingDirectory(Storage::path(''))
-                      ->setTimeout(120)
+                      ->setTimeout(300)
                       ->mustRun()
                       ->getOutput();
     }
@@ -82,5 +86,18 @@ class InfoCommand extends Command
         $this->line($count);
 
         cache()->forever('info_count', $count);
+    }
+
+    /**
+     * Define the command's schedule.
+     *
+     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     *
+     * @return void
+     */
+    public function schedule(Schedule $schedule): void
+    {
+        $schedule->command(static::class, ['--quiet'])
+                 ->hourlyAt(10);
     }
 }
