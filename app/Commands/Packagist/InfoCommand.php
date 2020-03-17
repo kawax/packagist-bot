@@ -26,7 +26,8 @@ class InfoCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
+     * @throws \Exception
      */
     public function handle()
     {
@@ -52,16 +53,18 @@ class InfoCommand extends Command
                       ->getOutput();
     }
 
-    protected function fileSize()
+    /**
+     * @return void
+     * @throws \Exception
+     */
+    protected function fileSize(): void
     {
         $this->info('file size');
 
-        $size = rescue(
-            function () {
-                $size = $this->process('du -sh');
+        $command = 'du -sh';
 
-                return rtrim($size, ". \n\t");
-            },
+        $size = rescue(
+            fn () => rtrim($this->process($command), ". \n\t"),
             'error'
         );
 
@@ -70,16 +73,18 @@ class InfoCommand extends Command
         cache()->forever('info_size', $size);
     }
 
-    protected function fileCount()
+    /**
+     * @return void
+     * @throws \Exception
+     */
+    protected function fileCount(): void
     {
         $this->info('file count');
 
-        $count = rescue(
-            function () {
-                $count = $this->process('find . -type f -name "*.json" | wc -l');
+        $command = 'find . -type f -name "*.json" | wc -l';
 
-                return number_format(trim($count));
-            },
+        $count = rescue(
+            fn () => number_format(trim($this->process($command))),
             0
         );
 
@@ -91,7 +96,7 @@ class InfoCommand extends Command
     /**
      * Define the command's schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param  Schedule  $schedule
      *
      * @return void
      */
