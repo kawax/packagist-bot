@@ -34,6 +34,9 @@ class ReloadCommand extends Command
      */
     public function handle()
     {
+        cache()->forever('info_size', '-');
+        cache()->forever('info_count', '-');
+
         $lock = cache()->lock('reload', 60 * 30);
 
         if ($lock->get()) {

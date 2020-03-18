@@ -102,7 +102,7 @@ class InfoCommand extends Command
      */
     public function schedule(Schedule $schedule): void
     {
-        $schedule->command(static::class, ['--quiet'])
-                 ->hourlyAt(10);
+        //        $schedule->command(static::class, ['--quiet'])
+        //                 ->hourlyAt(10);
     }
 }
