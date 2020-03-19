@@ -59,8 +59,8 @@ class ReloadCommand extends Command
             function () {
                 $this->call('packagist:root');
                 $this->call('packagist:get');
+                $this->call('packagist:info');
                 $this->call('packagist:index');
-                //$this->call('packagist:sync');
 
                 return true;
             },

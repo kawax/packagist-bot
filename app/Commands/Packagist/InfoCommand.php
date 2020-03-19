@@ -31,9 +31,6 @@ class InfoCommand extends Command
      */
     public function handle()
     {
-        cache()->forever('info_size', '-');
-        cache()->forever('info_count', '-');
-
         $this->fileSize();
         $this->fileCount();
     }
@@ -48,7 +45,7 @@ class InfoCommand extends Command
     {
         return Process::fromShellCommandline($command)
                       ->setWorkingDirectory(Storage::path(''))
-                      ->setTimeout(300)
+                      ->setTimeout(120)
                       ->mustRun()
                       ->getOutput();
     }
