@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Packagist Mirror @ CloudFront</title>
+    <title>Packagist Mirror</title>
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@kawaxbiz">
