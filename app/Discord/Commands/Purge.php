@@ -13,6 +13,11 @@ class Purge
     public $command = 'purge';
 
     /**
+     * @var bool
+     */
+    public $hidden = true;
+
+    /**
      * @param  Message  $message
      *
      * @return string
