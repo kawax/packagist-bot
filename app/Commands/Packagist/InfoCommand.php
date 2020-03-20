@@ -45,7 +45,7 @@ class InfoCommand extends Command
     {
         return Process::fromShellCommandline($command)
                       ->setWorkingDirectory(Storage::path(''))
-                      ->setTimeout(120)
+                      ->setTimeout(300)
                       ->mustRun()
                       ->getOutput();
     }
