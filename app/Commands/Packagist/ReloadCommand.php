@@ -72,14 +72,14 @@ class ReloadCommand extends Command
         }
 
         if ($result) {
-            $info = implode(
-                ' / ',
+            $info = collect(
                 [
                     cache('info_count'),
                     cache('info_size'),
                 ]
-            );
-            $content = 'Reload completed! **'.$info.'**';
+            )->implode(' / ');
+
+            $content = "Reload completed! **{$info}**";
         } else {
             $content = '☠️Reload failed?';
         }
@@ -97,6 +97,6 @@ class ReloadCommand extends Command
     public function schedule(Schedule $schedule): void
     {
         $schedule->command(static::class, ['--quiet'])
-                 ->hourlyAt(30);
+                 ->everyTenMinutes();
     }
 }
