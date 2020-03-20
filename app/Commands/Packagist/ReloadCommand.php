@@ -62,7 +62,7 @@ class ReloadCommand extends Command
                 $this->call('packagist:info');
                 $this->call('packagist:index');
 
-                return true;
+                return cache('info_size') !== 'error';
             },
             false
         );
