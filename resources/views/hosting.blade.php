@@ -3,7 +3,7 @@
         <p>Hosting</p>
     </div>
     <div class="message-body">
-        AWS Lightsail(Tokyo)
+        AWS CloudFront
     </div>
 </article>
 

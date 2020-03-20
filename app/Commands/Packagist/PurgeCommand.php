@@ -99,8 +99,8 @@ class PurgeCommand extends Command
      */
     public function schedule(Schedule $schedule): void
     {
-        //        $schedule->command(static::class)
-        //                 ->dailyAt('12:00')
-        //                 ->when(app()->isProduction());
+        $schedule->command(static::class)
+                 ->dailyAt('18:50')
+                 ->when(app()->isProduction());
     }
 }
