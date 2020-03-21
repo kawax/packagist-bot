@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Notifications\SimpleNotification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -41,8 +42,8 @@ class InfoCountJob implements ShouldQueue
             0
         );
 
-        info($count);
-
         cache()->forever('info_count', $count);
+
+        NotifyJob::dispatchNow(new SimpleNotification('count: '.$count));
     }
 }

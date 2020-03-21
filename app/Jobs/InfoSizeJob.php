@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Notifications\SimpleNotification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -41,8 +42,8 @@ class InfoSizeJob implements ShouldQueue
             'error'
         );
 
-        info($size);
-
         cache()->forever('info_size', $size);
+
+        NotifyJob::dispatchNow(new SimpleNotification('size: '.$size));
     }
 }

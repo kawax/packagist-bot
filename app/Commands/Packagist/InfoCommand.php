@@ -33,21 +33,8 @@ class InfoCommand extends Command
      */
     public function handle()
     {
-        NotifyJob::withChain(
-            [
-                new InfoCountJob(),
-                new InfoSizeJob(),
-            ]
-        )->dispatch(
-            new SimpleNotification(
-                collect(
-                    [
-                        'count: '.cache('info_count'),
-                        'size: '.cache('info_size'),
-                    ]
-                )->implode(' / ')
-            )
-        );
+        InfoCountJob::dispatch();
+        InfoSizeJob::dispatch();
     }
 
     /**
