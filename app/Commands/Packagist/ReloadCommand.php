@@ -34,9 +34,6 @@ class ReloadCommand extends Command
      */
     public function handle()
     {
-        cache()->forever('info_size', '-');
-        cache()->forever('info_count', '-');
-
         $lock = cache()->lock('reload', 60 * 30);
 
         if ($lock->get()) {
@@ -59,10 +56,9 @@ class ReloadCommand extends Command
             function () {
                 $this->call('packagist:root');
                 $this->call('packagist:get');
-                //$this->call('packagist:info');
                 $this->call('packagist:index');
 
-                return cache('info_size') !== 'error';
+                return true;
             },
             false
         );
@@ -71,16 +67,7 @@ class ReloadCommand extends Command
             return;
         }
 
-        if ($result) {
-            $info = collect(
-                [
-                    cache('info_count'),
-                    cache('info_size'),
-                ]
-            )->implode(' / ');
-
-            $content = "Reload completed! **{$info}**";
-        } else {
+        if (! $result) {
             $content = '☠️Reload failed?';
             NotifyJob::dispatchNow(new SimpleNotification($content));
         }
