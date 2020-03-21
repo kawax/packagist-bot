@@ -2,10 +2,12 @@
 
 namespace App\Commands\Packagist;
 
+use App\Jobs\InfoCountJob;
+use App\Jobs\InfoSizeJob;
+use App\Jobs\NotifyJob;
+use App\Notifications\SimpleNotification;
 use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Support\Facades\Storage;
 use LaravelZero\Framework\Commands\Command;
-use Symfony\Component\Process\Process;
 
 class InfoCommand extends Command
 {
@@ -31,63 +33,21 @@ class InfoCommand extends Command
      */
     public function handle()
     {
-        $this->fileSize();
-        $this->fileCount();
-    }
-
-    /**
-     * @param  string  $command
-     *
-     * @return string
-     * @throws \Symfony\Component\Process\Exception\ProcessFailedException
-     */
-    protected function process(string $command)
-    {
-        return Process::fromShellCommandline($command)
-                      ->setWorkingDirectory(Storage::path(''))
-                      ->setTimeout(300)
-                      ->mustRun()
-                      ->getOutput();
-    }
-
-    /**
-     * @return void
-     * @throws \Exception
-     */
-    protected function fileSize(): void
-    {
-        $this->info('file size');
-
-        $command = 'du -sh';
-
-        $size = rescue(
-            fn () => rtrim($this->process($command), ". \n\t"),
-            'error'
+        NotifyJob::withChain(
+            [
+                new InfoCountJob(),
+                new InfoSizeJob(),
+            ]
+        )->dispatch(
+            new SimpleNotification(
+                collect(
+                    [
+                        'count: '.cache('info_count'),
+                        'size: '.cache('info_size'),
+                    ]
+                )->implode(' / ')
+            )
         );
-
-        $this->line($size);
-
-        cache()->forever('info_size', $size);
-    }
-
-    /**
-     * @return void
-     * @throws \Exception
-     */
-    protected function fileCount(): void
-    {
-        $this->info('file count');
-
-        $command = 'find . -type f -name "*.json" | wc -l';
-
-        $count = rescue(
-            fn () => number_format(trim($this->process($command))),
-            0
-        );
-
-        $this->line($count);
-
-        cache()->forever('info_count', $count);
     }
 
     /**
@@ -99,7 +59,7 @@ class InfoCommand extends Command
      */
     public function schedule(Schedule $schedule): void
     {
-        //        $schedule->command(static::class, ['--quiet'])
-        //                 ->hourlyAt(10);
+        $schedule->command(static::class, ['--quiet'])
+                 ->hourlyAt(5);
     }
 }
