@@ -82,9 +82,8 @@ class ReloadCommand extends Command
             $content = "Reload completed! **{$info}**";
         } else {
             $content = '☠️Reload failed?';
+            NotifyJob::dispatchNow(new SimpleNotification($content));
         }
-
-        NotifyJob::dispatchNow(new SimpleNotification($content));
     }
 
     /**

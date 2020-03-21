@@ -4,8 +4,6 @@ namespace App\Commands\Packagist;
 
 use App\Jobs\InfoCountJob;
 use App\Jobs\InfoSizeJob;
-use App\Jobs\NotifyJob;
-use App\Notifications\SimpleNotification;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
