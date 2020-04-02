@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.134.0",
+            "version": "3.134.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "480d4df4b7974666fa7c5e3df564d01f4f29663f"
+                "reference": "aefab57896b558634d24342bdc3c6814e8e533f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/480d4df4b7974666fa7c5e3df564d01f4f29663f",
-                "reference": "480d4df4b7974666fa7c5e3df564d01f4f29663f",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/aefab57896b558634d24342bdc3c6814e8e533f6",
+                "reference": "aefab57896b558634d24342bdc3c6814e8e533f6",
                 "shasum": ""
             },
             "require": {
@@ -88,7 +88,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2020-03-31T18:12:13+00:00"
+            "time": "2020-04-01T18:14:23+00:00"
         },
         {
             "name": "cakephp/utility",
@@ -2309,16 +2309,16 @@
         },
         {
             "name": "laravel-zero/foundation",
-            "version": "v7.3.0",
+            "version": "v7.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-zero/foundation.git",
-                "reference": "cea8b883badcf9fc9b13c36c13de8007eea566f8"
+                "reference": "99b7b78ceb78252249478e1cde228e5e48e3fd64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-zero/foundation/zipball/cea8b883badcf9fc9b13c36c13de8007eea566f8",
-                "reference": "cea8b883badcf9fc9b13c36c13de8007eea566f8",
+                "url": "https://api.github.com/repos/laravel-zero/foundation/zipball/99b7b78ceb78252249478e1cde228e5e48e3fd64",
+                "reference": "99b7b78ceb78252249478e1cde228e5e48e3fd64",
                 "shasum": ""
             },
             "require": {
@@ -2347,7 +2347,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-03-30T12:08:26+00:00"
+            "time": "2020-04-01T08:40:16+00:00"
         },
         {
             "name": "laravel-zero/framework",
