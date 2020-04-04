@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.134.2",
+            "version": "3.134.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "4fe0b03a2eefb677ce4ca47b7e3c3705f04516c8"
+                "reference": "3de2711a47e7c3f5e93a5c83f019188fd23f852f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/4fe0b03a2eefb677ce4ca47b7e3c3705f04516c8",
-                "reference": "4fe0b03a2eefb677ce4ca47b7e3c3705f04516c8",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3de2711a47e7c3f5e93a5c83f019188fd23f852f",
+                "reference": "3de2711a47e7c3f5e93a5c83f019188fd23f852f",
                 "shasum": ""
             },
             "require": {
@@ -88,7 +88,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2020-04-02T18:13:41+00:00"
+            "time": "2020-04-03T18:11:51+00:00"
         },
         {
             "name": "cakephp/utility",
@@ -1957,6 +1957,7 @@
                     "email": "jakub.onderka@gmail.com"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-color",
             "time": "2018-09-29T17:23:10+00:00"
         },
         {
@@ -2003,6 +2004,7 @@
                 }
             ],
             "description": "Highlight PHP code in terminal",
+            "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
@@ -8040,16 +8042,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.0.2",
+            "version": "9.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c0ecbfb898ab8b24d8a59a23520f7b2a73e27b5b"
+                "reference": "848f6521c906500e66229668768576d35de0227e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c0ecbfb898ab8b24d8a59a23520f7b2a73e27b5b",
-                "reference": "c0ecbfb898ab8b24d8a59a23520f7b2a73e27b5b",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/848f6521c906500e66229668768576d35de0227e",
+                "reference": "848f6521c906500e66229668768576d35de0227e",
                 "shasum": ""
             },
             "require": {
@@ -8070,6 +8072,7 @@
                 "phpunit/php-invoker": "^3.0",
                 "phpunit/php-text-template": "^2.0",
                 "phpunit/php-timer": "^3.0",
+                "sebastian/code-unit": "^1.0",
                 "sebastian/comparator": "^4.0",
                 "sebastian/diff": "^4.0",
                 "sebastian/environment": "^5.0.1",
@@ -8093,7 +8096,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "9.0-dev"
+                    "dev-master": "9.1-dev"
                 }
             },
             "autoload": {
@@ -8132,7 +8135,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-03-31T08:57:51+00:00"
+            "time": "2020-04-03T14:40:04+00:00"
         },
         {
             "name": "psr/event-dispatcher",
@@ -8179,6 +8182,58 @@
                 "psr-14"
             ],
             "time": "2019-01-08T18:20:26+00:00"
+        },
+        {
+            "name": "sebastian/code-unit",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/code-unit.git",
+                "reference": "8d8f09bd47c75159921e6e84fdef146343962866"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/code-unit/zipball/8d8f09bd47c75159921e6e84fdef146343962866",
+                "reference": "8d8f09bd47c75159921e6e84fdef146343962866",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
+                }
+            ],
+            "description": "Collection of value objects that represent the PHP code units",
+            "homepage": "https://github.com/sebastianbergmann/code-unit",
+            "funding": [
+                {
+                    "url": "https://github.com/sebastianbergmann",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-03-30T11:59:20+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
