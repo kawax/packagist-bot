@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.134.7",
+            "version": "3.134.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "346cafeec89fc2f2e2cfe54eb5326a943a65bcc2"
+                "reference": "8a9b598a0ede2165be5988899dcebead6fcc4d41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/346cafeec89fc2f2e2cfe54eb5326a943a65bcc2",
-                "reference": "346cafeec89fc2f2e2cfe54eb5326a943a65bcc2",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/8a9b598a0ede2165be5988899dcebead6fcc4d41",
+                "reference": "8a9b598a0ede2165be5988899dcebead6fcc4d41",
                 "shasum": ""
             },
             "require": {
@@ -88,7 +88,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2020-04-16T18:12:26+00:00"
+            "time": "2020-04-17T18:11:57+00:00"
         },
         {
             "name": "cakephp/utility",
@@ -2263,16 +2263,16 @@
         },
         {
             "name": "laravel-zero/framework",
-            "version": "v7.0.0",
+            "version": "v7.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-zero/framework.git",
-                "reference": "17723324e1f398b4f7791b8c3a24ebbf4761d0ce"
+                "reference": "f76b8cf12a6ca54ebbb27bab5d64a2db43f3b80c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-zero/framework/zipball/17723324e1f398b4f7791b8c3a24ebbf4761d0ce",
-                "reference": "17723324e1f398b4f7791b8c3a24ebbf4761d0ce",
+                "url": "https://api.github.com/repos/laravel-zero/framework/zipball/f76b8cf12a6ca54ebbb27bab5d64a2db43f3b80c",
+                "reference": "f76b8cf12a6ca54ebbb27bab5d64a2db43f3b80c",
                 "shasum": ""
             },
             "require": {
@@ -2345,7 +2345,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-03-15T19:14:33+00:00"
+            "time": "2020-04-17T16:26:47+00:00"
         },
         {
             "name": "league/commonmark",
@@ -7830,16 +7830,16 @@
         },
         {
             "name": "phpunit/php-timer",
-            "version": "3.0.0",
+            "version": "3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "4118013a4d0f97356eae8e7fb2f6c6472575d1df"
+                "reference": "35e732ff964693cb91ef4690f1f6016833b68f9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/4118013a4d0f97356eae8e7fb2f6c6472575d1df",
-                "reference": "4118013a4d0f97356eae8e7fb2f6c6472575d1df",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/35e732ff964693cb91ef4690f1f6016833b68f9d",
+                "reference": "35e732ff964693cb91ef4690f1f6016833b68f9d",
                 "shasum": ""
             },
             "require": {
@@ -7851,7 +7851,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "3.1-dev"
                 }
             },
             "autoload": {
@@ -7875,7 +7875,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2020-02-07T06:08:11+00:00"
+            "time": "2020-04-17T15:08:36+00:00"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -8984,16 +8984,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.5.4",
+            "version": "3.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "dceec07328401de6211037abbb18bda423677e26"
+                "reference": "73e2e7f57d958e7228fce50dc0c61f58f017f9f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/dceec07328401de6211037abbb18bda423677e26",
-                "reference": "dceec07328401de6211037abbb18bda423677e26",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/73e2e7f57d958e7228fce50dc0c61f58f017f9f6",
+                "reference": "73e2e7f57d958e7228fce50dc0c61f58f017f9f6",
                 "shasum": ""
             },
             "require": {
@@ -9031,7 +9031,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2020-01-30T22:20:29+00:00"
+            "time": "2020-04-17T01:09:41+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
