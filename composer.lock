@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.135.4",
+            "version": "3.135.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "fb6f4a12d9ad1b8fc1481aef61ed1f8a9fe2164b"
+                "reference": "a721de5e39eb584aa74611b07564bedba166893c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/fb6f4a12d9ad1b8fc1481aef61ed1f8a9fe2164b",
-                "reference": "fb6f4a12d9ad1b8fc1481aef61ed1f8a9fe2164b",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/a721de5e39eb584aa74611b07564bedba166893c",
+                "reference": "a721de5e39eb584aa74611b07564bedba166893c",
                 "shasum": ""
             },
             "require": {
@@ -88,7 +88,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2020-04-24T18:14:04+00:00"
+            "time": "2020-04-27T18:11:22+00:00"
         },
         {
             "name": "cakephp/utility",
@@ -2221,16 +2221,16 @@
         },
         {
             "name": "laravel-zero/foundation",
-            "version": "v7.6.1",
+            "version": "v7.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-zero/foundation.git",
-                "reference": "61438f6d9220d2e20f8610ccbe894507d89f8f1a"
+                "reference": "eb9fc2275706bdc150fdcc2ff9ec155fc74f7c65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-zero/foundation/zipball/61438f6d9220d2e20f8610ccbe894507d89f8f1a",
-                "reference": "61438f6d9220d2e20f8610ccbe894507d89f8f1a",
+                "url": "https://api.github.com/repos/laravel-zero/foundation/zipball/eb9fc2275706bdc150fdcc2ff9ec155fc74f7c65",
+                "reference": "eb9fc2275706bdc150fdcc2ff9ec155fc74f7c65",
                 "shasum": ""
             },
             "require": {
@@ -2259,7 +2259,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-04-14T16:39:20+00:00"
+            "time": "2020-04-27T08:21:33+00:00"
         },
         {
             "name": "laravel-zero/framework",
@@ -4206,19 +4206,20 @@
         },
         {
             "name": "revolution/discord-manager",
-            "version": "1.3.1",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kawax/discord-manager.git",
-                "reference": "0eb9d95d172a5b80d8e10aae4322af9e49c165ed"
+                "reference": "5cf6ff5ebf338a2d538c40255f84064905918dea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kawax/discord-manager/zipball/0eb9d95d172a5b80d8e10aae4322af9e49c165ed",
-                "reference": "0eb9d95d172a5b80d8e10aae4322af9e49c165ed",
+                "url": "https://api.github.com/repos/kawax/discord-manager/zipball/5cf6ff5ebf338a2d538c40255f84064905918dea",
+                "reference": "5cf6ff5ebf338a2d538c40255f84064905918dea",
                 "shasum": ""
             },
             "require": {
+                "illuminate/support": "^6.0||^7.0",
                 "laravel-discord/yasmin": "^0.8",
                 "laravel-notification-channels/discord": "^1.0",
                 "php": "^7.2||^8.0",
@@ -4263,7 +4264,7 @@
                 "discord",
                 "laravel"
             ],
-            "time": "2020-03-27T01:48:41+00:00"
+            "time": "2020-04-27T10:28:46+00:00"
         },
         {
             "name": "ringcentral/psr7",
@@ -7329,23 +7330,20 @@
         },
         {
             "name": "phpdocumentor/reflection-common",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionCommon.git",
-                "reference": "63a995caa1ca9e5590304cd845c15ad6d482a62a"
+                "reference": "6568f4687e5b41b054365f9ae03fcb1ed5f2069b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionCommon/zipball/63a995caa1ca9e5590304cd845c15ad6d482a62a",
-                "reference": "63a995caa1ca9e5590304cd845c15ad6d482a62a",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionCommon/zipball/6568f4687e5b41b054365f9ae03fcb1ed5f2069b",
+                "reference": "6568f4687e5b41b054365f9ae03fcb1ed5f2069b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~6"
             },
             "type": "library",
             "extra": {
@@ -7377,7 +7375,7 @@
                 "reflection",
                 "static analysis"
             ],
-            "time": "2018-08-07T13:53:10+00:00"
+            "time": "2020-04-27T09:25:28+00:00"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -8098,16 +8096,16 @@
         },
         {
             "name": "sebastian/code-unit",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/code-unit.git",
-                "reference": "8d8f09bd47c75159921e6e84fdef146343962866"
+                "reference": "00d2094a93573796ec6666401be467fa6efcd86a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/code-unit/zipball/8d8f09bd47c75159921e6e84fdef146343962866",
-                "reference": "8d8f09bd47c75159921e6e84fdef146343962866",
+                "url": "https://api.github.com/repos/sebastianbergmann/code-unit/zipball/00d2094a93573796ec6666401be467fa6efcd86a",
+                "reference": "00d2094a93573796ec6666401be467fa6efcd86a",
                 "shasum": ""
             },
             "require": {
@@ -8146,7 +8144,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-03-30T11:59:20+00:00"
+            "time": "2020-04-27T06:25:01+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
