@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.137.3",
+            "version": "3.137.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "d70ccd508c9a9fa5a1579f80fd1f6b8fff79a7c8"
+                "reference": "0bed146e6336ca1260e937fce2f4931681ceb3ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/d70ccd508c9a9fa5a1579f80fd1f6b8fff79a7c8",
-                "reference": "d70ccd508c9a9fa5a1579f80fd1f6b8fff79a7c8",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/0bed146e6336ca1260e937fce2f4931681ceb3ce",
+                "reference": "0bed146e6336ca1260e937fce2f4931681ceb3ce",
                 "shasum": ""
             },
             "require": {
@@ -88,7 +88,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2020-05-05T18:14:48+00:00"
+            "time": "2020-05-06T18:19:09+00:00"
         },
         {
             "name": "cakephp/utility",
@@ -951,7 +951,7 @@
         },
         {
             "name": "illuminate/broadcasting",
-            "version": "v7.10.2",
+            "version": "v7.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/broadcasting.git",
@@ -1002,7 +1002,7 @@
         },
         {
             "name": "illuminate/bus",
-            "version": "v7.10.2",
+            "version": "v7.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/bus.git",
@@ -1050,7 +1050,7 @@
         },
         {
             "name": "illuminate/cache",
-            "version": "v7.10.2",
+            "version": "v7.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/cache.git",
@@ -1101,7 +1101,7 @@
         },
         {
             "name": "illuminate/config",
-            "version": "v7.10.2",
+            "version": "v7.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/config.git",
@@ -1145,7 +1145,7 @@
         },
         {
             "name": "illuminate/console",
-            "version": "v7.10.2",
+            "version": "v7.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/console.git",
@@ -1199,7 +1199,7 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v7.10.2",
+            "version": "v7.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
@@ -1243,16 +1243,16 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v7.10.2",
+            "version": "v7.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "d05e0fc82ccfe401880309a246cd2e4f27eef992"
+                "reference": "5681c90368ffafaaa2e12c42112e344281466f23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/d05e0fc82ccfe401880309a246cd2e4f27eef992",
-                "reference": "d05e0fc82ccfe401880309a246cd2e4f27eef992",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/5681c90368ffafaaa2e12c42112e344281466f23",
+                "reference": "5681c90368ffafaaa2e12c42112e344281466f23",
                 "shasum": ""
             },
             "require": {
@@ -1283,20 +1283,20 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
-            "time": "2020-04-28T20:54:46+00:00"
+            "time": "2020-05-06T13:37:50+00:00"
         },
         {
             "name": "illuminate/database",
-            "version": "v7.10.2",
+            "version": "v7.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "60daf5ff5f61170d8fb4ea69d4e95e1c3a26394a"
+                "reference": "668658b4c0ad86ec717e9216f293c4a7f83d10a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/60daf5ff5f61170d8fb4ea69d4e95e1c3a26394a",
-                "reference": "60daf5ff5f61170d8fb4ea69d4e95e1c3a26394a",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/668658b4c0ad86ec717e9216f293c4a7f83d10a2",
+                "reference": "668658b4c0ad86ec717e9216f293c4a7f83d10a2",
                 "shasum": ""
             },
             "require": {
@@ -1345,11 +1345,11 @@
                 "orm",
                 "sql"
             ],
-            "time": "2020-05-05T22:14:34+00:00"
+            "time": "2020-05-06T15:33:01+00:00"
         },
         {
             "name": "illuminate/events",
-            "version": "v7.10.2",
+            "version": "v7.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/events.git",
@@ -1394,7 +1394,7 @@
         },
         {
             "name": "illuminate/filesystem",
-            "version": "v7.10.2",
+            "version": "v7.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/filesystem.git",
@@ -1447,7 +1447,7 @@
         },
         {
             "name": "illuminate/mail",
-            "version": "v7.10.2",
+            "version": "v7.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/mail.git",
@@ -1502,7 +1502,7 @@
         },
         {
             "name": "illuminate/notifications",
-            "version": "v7.10.2",
+            "version": "v7.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/notifications.git",
@@ -1555,7 +1555,7 @@
         },
         {
             "name": "illuminate/pipeline",
-            "version": "v7.10.2",
+            "version": "v7.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/pipeline.git",
@@ -1599,7 +1599,7 @@
         },
         {
             "name": "illuminate/queue",
-            "version": "v7.10.2",
+            "version": "v7.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/queue.git",
@@ -1659,7 +1659,7 @@
         },
         {
             "name": "illuminate/redis",
-            "version": "v7.10.2",
+            "version": "v7.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/redis.git",
@@ -1707,7 +1707,7 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v7.10.2",
+            "version": "v7.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
@@ -1769,7 +1769,7 @@
         },
         {
             "name": "illuminate/testing",
-            "version": "v7.10.2",
+            "version": "v7.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/testing.git",
@@ -1820,7 +1820,7 @@
         },
         {
             "name": "illuminate/view",
-            "version": "v7.10.2",
+            "version": "v7.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/view.git",
@@ -2263,16 +2263,16 @@
         },
         {
             "name": "laravel-zero/framework",
-            "version": "v7.1.0",
+            "version": "v7.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-zero/framework.git",
-                "reference": "f76b8cf12a6ca54ebbb27bab5d64a2db43f3b80c"
+                "reference": "652fcc7753e335fc53b020fdbd93e0f40229ebf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-zero/framework/zipball/f76b8cf12a6ca54ebbb27bab5d64a2db43f3b80c",
-                "reference": "f76b8cf12a6ca54ebbb27bab5d64a2db43f3b80c",
+                "url": "https://api.github.com/repos/laravel-zero/framework/zipball/652fcc7753e335fc53b020fdbd93e0f40229ebf6",
+                "reference": "652fcc7753e335fc53b020fdbd93e0f40229ebf6",
                 "shasum": ""
             },
             "require": {
@@ -2345,7 +2345,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-04-17T16:26:47+00:00"
+            "time": "2020-05-04T10:29:34+00:00"
         },
         {
             "name": "league/commonmark",
@@ -6410,16 +6410,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "1.10.5",
+            "version": "1.10.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "7a4d5b6aa30d2118af27c04f5e897b57156ccfa9"
+                "reference": "be81b9c4735362c26876bdbfd3b5bc7e7f711c88"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/7a4d5b6aa30d2118af27c04f5e897b57156ccfa9",
-                "reference": "7a4d5b6aa30d2118af27c04f5e897b57156ccfa9",
+                "url": "https://api.github.com/repos/composer/composer/zipball/be81b9c4735362c26876bdbfd3b5bc7e7f711c88",
+                "reference": "be81b9c4735362c26876bdbfd3b5bc7e7f711c88",
                 "shasum": ""
             },
             "require": {
@@ -6438,7 +6438,8 @@
                 "symfony/process": "^2.7 || ^3.0 || ^4.0 || ^5.0"
             },
             "conflict": {
-                "symfony/console": "2.8.38"
+                "symfony/console": "2.8.38",
+                "symfony/phpunit-bridge": "3.4.40"
             },
             "require-dev": {
                 "phpspec/prophecy": "^1.10",
@@ -6486,7 +6487,17 @@
                 "dependency",
                 "package"
             ],
-            "time": "2020-04-10T09:44:22+00:00"
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-05-06T08:28:10+00:00"
         },
         {
             "name": "composer/semver",
@@ -8053,16 +8064,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "4.0.0",
+            "version": "4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "b2560a0c33f7710e4d7f8780964193e8e8f8effe"
+                "reference": "cdc0db5aed8fbfaf475fbd95bfd7bab83c7a779c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/b2560a0c33f7710e4d7f8780964193e8e8f8effe",
-                "reference": "b2560a0c33f7710e4d7f8780964193e8e8f8effe",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/cdc0db5aed8fbfaf475fbd95bfd7bab83c7a779c",
+                "reference": "cdc0db5aed8fbfaf475fbd95bfd7bab83c7a779c",
                 "shasum": ""
             },
             "require": {
@@ -8098,7 +8109,13 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2020-02-07T06:19:00+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/sebastianbergmann",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-05-06T09:56:31+00:00"
         },
         {
             "name": "phpunit/phpunit",
