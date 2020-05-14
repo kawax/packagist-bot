@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.137.8",
+            "version": "3.138.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "0116efff39048d9bc163d3c287a85cce30b9aa20"
+                "reference": "32a4fa88dffc4328d415b922ef74819dfe060696"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/0116efff39048d9bc163d3c287a85cce30b9aa20",
-                "reference": "0116efff39048d9bc163d3c287a85cce30b9aa20",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/32a4fa88dffc4328d415b922ef74819dfe060696",
+                "reference": "32a4fa88dffc4328d415b922ef74819dfe060696",
                 "shasum": ""
             },
             "require": {
@@ -88,7 +88,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2020-05-12T18:14:22+00:00"
+            "time": "2020-05-13T18:11:31+00:00"
         },
         {
             "name": "cakephp/utility",
@@ -144,16 +144,16 @@
         },
         {
             "name": "clue/buzz-react",
-            "version": "v2.7.0",
+            "version": "v2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/clue/reactphp-buzz.git",
-                "reference": "ca9537cb5ab7b5aaebe93429980a17cf4ead32b7"
+                "reference": "7dc3208059712bc0e77aec9e9301648c5302ff4f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clue/reactphp-buzz/zipball/ca9537cb5ab7b5aaebe93429980a17cf4ead32b7",
-                "reference": "ca9537cb5ab7b5aaebe93429980a17cf4ead32b7",
+                "url": "https://api.github.com/repos/clue/reactphp-buzz/zipball/7dc3208059712bc0e77aec9e9301648c5302ff4f",
+                "reference": "7dc3208059712bc0e77aec9e9301648c5302ff4f",
                 "shasum": ""
             },
             "require": {
@@ -200,7 +200,17 @@
                 "psr-7",
                 "reactphp"
             ],
-            "time": "2020-02-26T12:05:32+00:00"
+            "funding": [
+                {
+                    "url": "https://clue.engineering/support",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/clue",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-05-13T15:43:45+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -2699,16 +2709,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.33.0",
+            "version": "2.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "4d93cb95a80d9ffbff4018fe58ae3b7dd7f4b99b"
+                "reference": "52ea68aebbad8a3b27b5d24e4c66ebe1933f8399"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/4d93cb95a80d9ffbff4018fe58ae3b7dd7f4b99b",
-                "reference": "4d93cb95a80d9ffbff4018fe58ae3b7dd7f4b99b",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/52ea68aebbad8a3b27b5d24e4c66ebe1933f8399",
+                "reference": "52ea68aebbad8a3b27b5d24e4c66ebe1933f8399",
                 "shasum": ""
             },
             "require": {
@@ -2732,7 +2742,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.x-dev"
+                    "dev-master": "2.x-dev",
+                    "dev-3.x": "3.x-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -2777,7 +2788,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-04-20T15:05:43+00:00"
+            "time": "2020-05-12T19:53:34+00:00"
         },
         {
             "name": "netresearch/jsonmapper",
@@ -9167,16 +9178,16 @@
         },
         {
             "name": "slevomat/coding-standard",
-            "version": "6.3.4",
+            "version": "6.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slevomat/coding-standard.git",
-                "reference": "51d45801cafb10bd4d233558cc3664860bb69de0"
+                "reference": "29995403896ff25fe08c44a60e2921ac0e6a419c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/51d45801cafb10bd4d233558cc3664860bb69de0",
-                "reference": "51d45801cafb10bd4d233558cc3664860bb69de0",
+                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/29995403896ff25fe08c44a60e2921ac0e6a419c",
+                "reference": "29995403896ff25fe08c44a60e2921ac0e6a419c",
                 "shasum": ""
             },
             "require": {
@@ -9220,7 +9231,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-12T14:10:20+00:00"
+            "time": "2020-05-13T14:59:55+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
