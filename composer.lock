@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.138.2",
+            "version": "3.138.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "20397150ba28912a599838c44f50f6113cae5a2b"
+                "reference": "f09630f3e54364d8f7029ddcb2f4bbae272ba754"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/20397150ba28912a599838c44f50f6113cae5a2b",
-                "reference": "20397150ba28912a599838c44f50f6113cae5a2b",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/f09630f3e54364d8f7029ddcb2f4bbae272ba754",
+                "reference": "f09630f3e54364d8f7029ddcb2f4bbae272ba754",
                 "shasum": ""
             },
             "require": {
@@ -88,7 +88,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2020-05-15T18:19:33+00:00"
+            "time": "2020-05-18T18:13:39+00:00"
         },
         {
             "name": "cakephp/utility",
@@ -2256,16 +2256,16 @@
         },
         {
             "name": "laravel-zero/foundation",
-            "version": "v7.10.3",
+            "version": "v7.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-zero/foundation.git",
-                "reference": "1147725c094f8d0ea13fd2f474d7a8111b9bcb02"
+                "reference": "3a5a8c927741a444a1092800f9a10b8b907461c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-zero/foundation/zipball/1147725c094f8d0ea13fd2f474d7a8111b9bcb02",
-                "reference": "1147725c094f8d0ea13fd2f474d7a8111b9bcb02",
+                "url": "https://api.github.com/repos/laravel-zero/foundation/zipball/3a5a8c927741a444a1092800f9a10b8b907461c5",
+                "reference": "3a5a8c927741a444a1092800f9a10b8b907461c5",
                 "shasum": ""
             },
             "require": {
@@ -2294,7 +2294,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-05-11T08:18:27+00:00"
+            "time": "2020-05-13T19:35:39+00:00"
         },
         {
             "name": "laravel-zero/framework",
@@ -2484,16 +2484,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.68",
+            "version": "1.0.69",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "3e4198372276ec99ac3409a21d7c9d1ced9026e4"
+                "reference": "7106f78428a344bc4f643c233a94e48795f10967"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/3e4198372276ec99ac3409a21d7c9d1ced9026e4",
-                "reference": "3e4198372276ec99ac3409a21d7c9d1ced9026e4",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/7106f78428a344bc4f643c233a94e48795f10967",
+                "reference": "7106f78428a344bc4f643c233a94e48795f10967",
                 "shasum": ""
             },
             "require": {
@@ -2570,7 +2570,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2020-05-12T20:33:44+00:00"
+            "time": "2020-05-18T15:13:39+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -6982,16 +6982,16 @@
         },
         {
             "name": "league/container",
-            "version": "3.3.0",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/container.git",
-                "reference": "235cc528636833fbf0d771ad0e2410d345e1096e"
+                "reference": "93238f74ff5964aee27a78508cdfbdba1cd338f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/container/zipball/235cc528636833fbf0d771ad0e2410d345e1096e",
-                "reference": "235cc528636833fbf0d771ad0e2410d345e1096e",
+                "url": "https://api.github.com/repos/thephpleague/container/zipball/93238f74ff5964aee27a78508cdfbdba1cd338f6",
+                "reference": "93238f74ff5964aee27a78508cdfbdba1cd338f6",
                 "shasum": ""
             },
             "require": {
@@ -7044,7 +7044,13 @@
                 "provider",
                 "service"
             ],
-            "time": "2019-06-30T10:51:38+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/philipobenito",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-05-18T08:20:23+00:00"
         },
         {
             "name": "mockery/mockery",
