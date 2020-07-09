@@ -83,7 +83,7 @@ class ReloadCommand extends Command
     public function schedule(Schedule $schedule): void
     {
         $schedule->command(static::class, ['--quiet'])
-                 ->everyFifteenMinutes()
+                 ->everyThirtyMinutes()
                  ->withoutOverlapping(60);
     }
 }
