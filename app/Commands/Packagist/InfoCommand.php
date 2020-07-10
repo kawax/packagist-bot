@@ -45,7 +45,6 @@ class InfoCommand extends Command
     public function schedule(Schedule $schedule): void
     {
         $schedule->command(static::class, ['--quiet'])
-                 ->everyTwoHours()
-                 ->at(55);
+                 ->hourlyAt(55);
     }
 }
