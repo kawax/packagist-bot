@@ -41,7 +41,7 @@ class GetCommand extends Command
      */
     public function handle()
     {
-        $this->client = resolve(Client::class);
+        $this->client = app(Client::class);
 
         if (! Storage::exists(config('packagist.root'))) {
             $this->call('packagist:root');
@@ -72,7 +72,7 @@ class GetCommand extends Command
             },
         ];
 
-        $pool = resolve(
+        $pool = app(
             Pool::class,
             [
                 'client'   => $this->client,

@@ -47,7 +47,7 @@ class PackageCommand extends Command
      */
     public function handle()
     {
-        $this->client = resolve(Client::class);
+        $this->client = app(Client::class);
 
         $this->package($this->argument('provider'));
     }
@@ -78,7 +78,7 @@ class PackageCommand extends Command
             },
         ];
 
-        $pool = resolve(
+        $pool = app(
             Pool::class,
             [
                 'client'   => $this->client,

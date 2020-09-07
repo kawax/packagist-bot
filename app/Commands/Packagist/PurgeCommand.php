@@ -69,7 +69,7 @@ class PurgeCommand extends Command
 
     protected function purge()
     {
-        $client = resolve(CloudFrontClient::class);
+        $client = app(CloudFrontClient::class);
 
         $result = $client->createInvalidation(
             [
