@@ -16,12 +16,12 @@
         "php": "^7.4",
         "ext-json": "*",
         "aws/aws-sdk-php": "^3.133",
-        "illuminate/notifications": "^7.0",
-        "illuminate/redis": "^7.0",
-        "illuminate/view": "^7.0",
-        "laravel-zero/framework": "^7.0",
+        "illuminate/notifications": "^8.0",
+        "illuminate/redis": "^8.0",
+        "illuminate/view": "^8.0",
+        "laravel-zero/framework": "^8.0",
         "predis/predis": "^1.1",
-        "revolution/discord-manager": "^1.3"
+        "revolution/discord-manager": "^1.4"
     },
     "require-dev": {
         "mockery/mockery": "^1.3.1",
