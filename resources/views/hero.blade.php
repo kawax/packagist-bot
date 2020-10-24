@@ -25,12 +25,12 @@
                 Yet Another Packagist Mirror
             </h1>
 
-            <article class="message is-info">
+            <article class="message is-danger">
                 <div class="message-header">
-                    <p>Enable</p>
+                    <p>End Of Life</p>
                 </div>
                 <div class="message-body">
-                    composer config -g repos.packagist composer https://packagist.kawax.biz/
+                    Composer v2 is fast enough. No longer need mirrors.
                 </div>
             </article>
 
